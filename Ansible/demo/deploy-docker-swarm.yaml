@@ -1,0 +1,19 @@
+- name: install docker
+  hosts: docker-nodes
+  roles:
+    - install-docker
+
+- name: initialize docker swarm
+  hosts: swarm-leader
+  roles:
+    - ini-docker-swarm
+
+- name: add managers to the swarm
+  hosts: swarm-manager
+  roles:
+    - add-manager-swarm
+
+- name: add workers to the swarm
+  hosts: swarm-workers
+  roles:
+    - add-worker-swarm
