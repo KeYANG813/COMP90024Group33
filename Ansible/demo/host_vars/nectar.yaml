@@ -30,6 +30,31 @@ security_groups:
     port_range_max: 80
     remote_ip_prefix: 0.0.0.0/0
 
+# couchdb setup
+- name: couchdb
+    description: "Demo couchdb HTTP port"
+    protocol: tcp
+    port_range_min: 5984
+    port_range_max: 5984
+    remote_ip_prefix: 0.0.0.0/0
+
+# couchdb erlang-native clustered installation
+- name: couchdb erlang
+    description: "Demo couchdb erlang cluster HTTP port"
+    protocol: tcp
+    port_range_min: 4369
+    port_range_max: 4369
+    remote_ip_prefix: 0.0.0.0/0
+  
+# couchdb cluster steup
+- name: couchdb cluster
+    description: "Demo couchdb cluster HTTP port"
+    protocol: tcp
+    port_range_min: 9100
+    port_range_max: 9200
+    remote_ip_prefix: 0.0.0.0/0
+
+
 # Instance
 instances:
   - name: demo-1
