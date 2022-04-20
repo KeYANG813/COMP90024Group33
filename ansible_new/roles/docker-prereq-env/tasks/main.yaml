@@ -18,6 +18,7 @@
     name: ['pip']
     state: latest
     executable: pip3
+  environment: "{{ proxy_env }}"
 
 - name: sudo apt-get install dependencies
   tags: always
@@ -27,5 +28,6 @@
     state: latest
     install_recommends: no
     update_cache: yes
+  environment: "{{ proxy_env }}"
 
   

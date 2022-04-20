@@ -7,59 +7,87 @@ instance_flavor: uom.mse.1c4g
 # Volume
 volumes:
   - vol_name: demo-vol-1-1
-    vol_size: 10
+    vol_size: 60
   - vol_name: demo-vol-1-2
     vol_size: 10
   - vol_name: demo-vol-2-1
-    vol_size: 10
+    vol_size: 60
   - vol_name: demo-vol-2-2
     vol_size: 10
+  - vol_name: demo-vol-3-1
+    vol_size: 60
+  - vol_name: demo-vol-3-2
+    vol_size: 10
+  - vol_name: demo-vol-4-1
+    vol_size: 60
+  - vol_name: demo-vol-4-2
+    vol_size: 10
+
 
 # Security group
 security_groups:
-  - name: demo_ssh
-    description: "Demo security group for SSH access"
+  - name: instance1-security-group
+    description: "security group for instance1 server"
     protocol: tcp
-    port_range_min: 22
-    port_range_max: 22
+    port_range_min: 1
+    port_range_max: 65535
     remote_ip_prefix: 0.0.0.0/0
-  - name: demo_http
-    description: "Demo security group for HTTP"
+  - name: instance2-security-group
+    description: "security group for instance2 server"
     protocol: tcp
-    port_range_min: 80
-    port_range_max: 80
+    port_range_min: 1
+    port_range_max: 65535
+    remote_ip_prefix: 0.0.0.0/0
+  - name: instance3-security-group
+    description: "security group for instance3 server"
+    protocol: tcp
+    port_range_min: 1
+    port_range_max: 65535
+    remote_ip_prefix: 0.0.0.0/0
+  - name: instance4-security-group
+    description: "security group for instance4 server"
+    protocol: tcp
+    port_range_min: 1
+    port_range_max: 65535
     remote_ip_prefix: 0.0.0.0/0
 
-# couchdb setup
-- name: couchdb
-    description: "Demo couchdb HTTP port"
-    protocol: tcp
-    port_range_min: 5984
-    port_range_max: 5984
-    remote_ip_prefix: 0.0.0.0/0
 
-# couchdb erlang-native clustered installation
-- name: couchdb erlang
-    description: "Demo couchdb erlang cluster HTTP port"
-    protocol: tcp
-    port_range_min: 4369
-    port_range_max: 4369
-    remote_ip_prefix: 0.0.0.0/0
+# # couchdb setup
+# - name: couchdb
+#     description: "Demo couchdb HTTP port"
+#     protocol: tcp
+#     port_range_min: 5984
+#     port_range_max: 5984
+#     remote_ip_prefix: 0.0.0.0/0
+
+# # couchdb erlang-native clustered installation
+# - name: couchdb erlang
+#     description: "Demo couchdb erlang cluster HTTP port"
+#     protocol: tcp
+#     port_range_min: 4369
+#     port_range_max: 4369
+#     remote_ip_prefix: 0.0.0.0/0
   
-# couchdb cluster steup
-- name: couchdb cluster
-    description: "Demo couchdb cluster HTTP port"
-    protocol: tcp
-    port_range_min: 9100
-    port_range_max: 9200
-    remote_ip_prefix: 0.0.0.0/0
+# # couchdb cluster steup
+# - name: couchdb cluster
+#     description: "Demo couchdb cluster HTTP port"
+#     protocol: tcp
+#     port_range_min: 9100
+#     port_range_max: 9200
+#     remote_ip_prefix: 0.0.0.0/0
 
 
 # Instance
 instances:
-  - name: demo-1
+  - name: instance1
+    security_groups: instance1-security-group
     volumes: ['demo-vol-1-1', 'demo-vol-1-2']
-  - name: demo-2
+  - name: instance2
+    security_groups: instance2-security-group
     volumes: ['demo-vol-2-1', 'demo-vol-2-2']
-
-
+  - name: instance3
+    security_groups: instance3-security-group
+    volumes: ['demo-vol-3-1', 'demo-vol-3-2']
+  - name: instance4
+    security_groups: instance4-security-group
+    volumes: ['demo-vol-4-1', 'demo-vol-4-2']
