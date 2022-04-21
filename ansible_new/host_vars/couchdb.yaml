@@ -1,9 +1,9 @@
 # volumes
 volumes:
   - device: /dev/vdb
-    mountpoint: /data
-  - device: /dev/vdc
     mountpoint: /var/lib/docker
+  - device: /dev/vdc
+    mountpoint: /data
 
 # set docker proxy
 proxy_env:
@@ -17,6 +17,6 @@ proxy_env:
 # CouchDB configuration
 user: user
 pass: pass
-VERSION: '3.2.1'
+image: 'ibmcom/couchdb3:3.2.1'
 cookie: '4B02D93193CB789C5CB914BE569981B1'
-uuid: '7d6c275c05d7b7d3a649b49648e06438'
+# uuid: '7d6c275c05d7b7d3a649b49648e06438'
