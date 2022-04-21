@@ -1,4 +1,4 @@
-- hosts: DataNodes
+- hosts: All
   vars_files:
     - host_vars/couchdb.yaml
   gather_facts: true
