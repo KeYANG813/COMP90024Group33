@@ -10,7 +10,7 @@
   become: yes
   docker_container:
     name: couchdb
-    image: "ibmcom/couchdb3:{{ VERSION }}"
+    image: "{{ image }}"
     state: started
     recreate: true
     ports:
