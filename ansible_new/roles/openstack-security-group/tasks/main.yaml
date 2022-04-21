@@ -24,7 +24,7 @@
     port_range_max: '{{ item.port_range_max }}'
     remote_ip_prefix: '{{ item.remote_ip_prefix }}'
     state: present
-  loop: '{{ security_groups }}'
+  loop: '{{ security_groups_rules }}'
 
 
 # Create security group rules using remote_group prefix (inter-cluster communication)
