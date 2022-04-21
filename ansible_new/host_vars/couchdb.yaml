@@ -18,5 +18,5 @@ proxy_env:
 user: user
 pass: pass
 VERSION: '3.2.1'
-#cookie: ''
-#uuid: ''
+cookie: '4B02D93193CB789C5CB914BE569981B1'
+uuid: '7d6c275c05d7b7d3a649b49648e06438'

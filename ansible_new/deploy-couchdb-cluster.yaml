@@ -1,15 +1,19 @@
 # set up CouchDB
-- name: setup couchdb
-  hosts: couchdb host
-  vars_files:
-    - host_vars/couchdb.yaml
-  gather_facts: true
+- hosts: DataNodes 
+  vars_files: 
+    - host_vars/couchdb.yaml 
+  gather_facts: true 
+
+  roles: 
+    - role: install-couchdb
+
   
-  roles:
-    - install-env
-    - docker
-    - docker-mount-volume
-    - install-couchdb
+- hosts: Masternode 
+  vars_files: 
+    - host_vars/couchdb.yaml 
+  gather_facts: true 
+  roles: 
+    - role: couchdb-finish-setup 
 
 
 
