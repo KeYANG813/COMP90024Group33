@@ -11,7 +11,7 @@ if __name__ == "__main__":
     """
     print("start")
     #put token here
-    bearer_token = "AAAAAAAAAAAAAAAAAAAAAPPBbAEAAAAAqTGj1Wqqd57XnxMzOc08jfu7TRU%3D7RHr77dxXvmaijjoSarasRzBLRdSkQzjMlTW5y9JKmCSnUexfR"
+    bearer_token = "AAAAAAAAAAAAAAAAAAAAAEo9bwEAAAAA40DLUb109523Heu6ePJD3vtThCc%3DjIH9qTJi0qCyhH9V98DtTQLLMmoV9V2mSRr4W5f9tF8m8Iee8y"
 
     if not bearer_token:
         raise RuntimeError("Not found bearer token")

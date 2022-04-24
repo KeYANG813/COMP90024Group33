@@ -34,6 +34,21 @@
     body: "{\"action\":\"add_node\",\"host\":\"{{ item }}\",\"port\":\"5984\",\"username\":\"{{ user }}\",\"password\":\"{{ pass }}\"}"
   loop: "{{ groups['workers'] }}"
 
+# In master_node, bind address change from any to 0.0.0.0
+# curl -X PUT -H 'Content-Type: application/json' http://IP:5984/_node/couchdb@IP/_config/httpd/bind_address -d '"0.0.0.0"' --user user
+- name: bind address change from any to 0.0.0.0 in master_node
+  uri:
+    url: http://{{ masternode }}:5984/_cluster_setup
+    method: POST
+    user: "{{ user }}"
+    password: "{{ pass }}"
+    force_basic_auth: yes
+    status_code: 200, 201
+    headers:
+      Content-Type: "application/json"
+    body_format: json
+    body: "{\"action\":\"add_node\",\"host\":\"{{ item }}\",\"port\":\"5984\",\"username\":\"{{ user }}\",\"password\":\"{{ pass }}\"}"
+    
   
 # Empty request to avoid error messages when finishing cluster setup
 - name: Empty request to avoid error messages when finishing cluster setup
