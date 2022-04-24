@@ -1,0 +1,85 @@
+[DataNodes]
+172.26.133.239
+172.26.133.170
+172.26.133.91
+
+[All]
+172.26.133.239
+172.26.133.170
+172.26.133.91
+172.26.129.118
+
+[instance1]
+172.26.133.239
+[instance2]
+172.26.133.170 
+[instance3]
+172.26.133.91
+[instance4]
+172.26.129.118
+
+[database:children]
+Masternode
+workers
+
+[Masternode]
+172.26.133.239
+
+[workers]
+172.26.133.170
+172.26.133.91
+
+[ProcessingNodes]
+172.26.133.226
+
+[DataNodes:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/test.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[All:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/test.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[ProcessingNodes:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/test.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+docker-swarm-1 ansible_ssh_host=172.26.38.99
+docker-swarm-2 ansible_ssh_host=172.26.38.64
+docker-swarm-3 ansible_ssh_host=172.26.37.220
+docker-swarm-4 ansible_ssh_host=172.26.38.68
+
+
+[docker-nodes]
+docker-swarm-1
+docker-swarm-2
+docker-swarm-3
+docker-swarm-4
+
+[swarm-leader]
+docker-swarm-1
+
+[swarm-managers]
+docker-swarm-2
+
+[swarm-workers]
+docker-swarm-3
+docker-swarm-4
+
+[docker:children]
+docker-nodes
+swarm-leader
+swarm-managers
+swarm-workers
+
+[docker:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/test.pem
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
