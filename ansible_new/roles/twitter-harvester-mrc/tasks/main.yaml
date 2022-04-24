@@ -5,13 +5,60 @@
 # 
 
 ---
-# Clone source code repository
-- name: Clone the code repository into home directory
-  git:
-    repo: "https://github.com/KeYANG813/comp90024.git"
-    dest: /home/ubuntu/comp90024
-  environment: "{{ proxy_env }}"
-  become: true
+# Simon 
+- name: Remove directory
+  file:
+    path: /home/ubuntu/COMP90024
+    state: absent
+
+- name: creates directory
+  file:
+    path: '/home/ubuntu/COMP90024'
+    state: directory
+
+- name: git clone repo
+  shell: git clone https://github.com/KeYANG813/comp90024.git
+  args:
+    chdir: '/home/ubuntu/COMP90024'
+
+## high-level
+# - name: add github ssh key
+#   copy:
+#     src: "config/githubKey"
+#     dest: /home/ubuntu/.ssh/githubKey
+#     owner: ubuntu
+#     group: ubuntu
+#     mode: 0600
+# # copy GitHub private key to server
+
+# - name: configure ssh to use ansible key for github.com
+#   template:
+#     src: "config/git_config"
+#     dest: /home/ubuntu/.ssh/config
+#     owner: ubuntu
+#     group: ubuntu
+#     mode: 0644
+# # configure ssh to use ansible key for github.com
+
+# - name: Creates ~COMP90024 directory
+#   file:
+#     path: /home/ubuntu/COMP90024
+#     state: directory
+
+
+# - name: pull clone
+#   shell: git clone git@github.com:KeYANG813/comp90024.git --config core.sshCommand="ssh -i /home/ubuntu/.ssh/githubKey"
+#   args:
+#     chdir: /home/ubuntu/COMP90024
+
+## middle Clone source code repository
+# - name: Clone the code repository into home directory
+#   git:
+#     repo: "https://github.com/KeYANG813/comp90024.git"
+#     key_file: ~/.ssh/id_rsa.github
+#     dest: /home/ubuntu/comp90024
+#   environment: "{{ proxy_env }}"
+#   become: true
 
 # Create Docker config directory
 - name: Make sure that Docker config directory exists
@@ -32,7 +79,7 @@
   docker_image:
     state: present
     build:
-      path: '/home/ubuntu/comp90024/crawler/get_fromMRC'
+      path: '/home/ubuntu/COMP90024/crawler/get_fromMRC'
       pull: yes
     name: crawler/myscript
     tag: latest
