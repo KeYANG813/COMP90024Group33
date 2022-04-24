@@ -5,26 +5,31 @@
 # 
 
 ---
-# Simon 
-- name: Remove directory
-  file:
-    path: /home/ubuntu/COMP90024
-    state: absent
+# # Simon 
+# - name: Remove directory
+#   file:
+#     path: /home/ubuntu/COMP90024
+#     state: absent
 
-- name: creates directory
-  file:
-    path: '/home/ubuntu/COMP90024'
-    state: directory
+# - name: creates directory
+#   file:
+#     path: '/home/ubuntu/COMP90024'
+#     state: directory
 
-- name: git clone repo
-  shell: git clone https://github.com/KeYANG813/comp90024.git
-  args:
-    chdir: '/home/ubuntu/COMP90024'
+# - name: git clone repo
+#   shell: git clone https://github.com/KeYANG813/comp90024.git
+#   args:
+#     chdir: '/home/ubuntu/COMP90024'
 
 ## high-level
+- name: Remove directory 
+  file: 
+    path: '{{ remote_working_directory }}' 
+    state: absent 
+
 # - name: add github ssh key
 #   copy:
-#     src: "config/githubKey"
+#     src: "config/id_rsa"
 #     dest: /home/ubuntu/.ssh/githubKey
 #     owner: ubuntu
 #     group: ubuntu
@@ -40,68 +45,69 @@
 #     mode: 0644
 # # configure ssh to use ansible key for github.com
 
-# - name: Creates ~COMP90024 directory
-#   file:
-#     path: /home/ubuntu/COMP90024
-#     state: directory
+- name: Creates ~COMP90024 directory
+  file:
+    path: '{{ remote_working_directory }}'
+    state: directory
 
 
-# - name: pull clone
-#   shell: git clone git@github.com:KeYANG813/comp90024.git --config core.sshCommand="ssh -i /home/ubuntu/.ssh/githubKey"
-#   args:
-#     chdir: /home/ubuntu/COMP90024
+- name: Clone the code repository into home directory
+  shell: git clone https://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@github.com/ccclym/comp90024.git
+  args:
+    chdir: '{{ remote_working_directory }}'
 
-## middle Clone source code repository
+# # middle Clone source code repository
 # - name: Clone the code repository into home directory
 #   git:
-#     repo: "https://github.com/KeYANG813/comp90024.git"
-#     key_file: ~/.ssh/id_rsa.github
-#     dest: /home/ubuntu/comp90024
+#     repo: "https://github.com/ccclym/comp90024.git"
+#     #key_file: /home/ubuntu/.ssh/githubKey
+#     dest: '{{ remote_working_directory }}'
+#     accept_hostkey: yes
 #   environment: "{{ proxy_env }}"
 #   become: true
 
 # Create Docker config directory
-- name: Make sure that Docker config directory exists
-  become: yes
-  file:
-    path: '~/.docker'
-    state: 'directory'
+# - name: Make sure that Docker config directory exists
+#   become: yes
+#   file:
+#     path: '~/.docker'
+#     state: 'directory'
 
-# Set Docker proxy for University of Melbourne Research Cloud
-- name: Ensure Docker client proxy settings are present on the server
-  become: yes
-  copy:
-    content: "{{ docker_proxy_settings }}"
-    dest: ~/.docker/config.json
+# # Set Docker proxy for University of Melbourne Research Cloud
+# - name: Ensure Docker client proxy settings are present on the server
+#   become: yes
+#   copy:
+#     content: "{{ docker_proxy_settings }}"
+#     dest: ~/.docker/config.json
 
-#Build Docker image for tweet harvester
-- name: Build an image and push it to local repo
-  docker_image:
-    state: present
-    build:
-      path: '/home/ubuntu/COMP90024/crawler/get_fromMRC'
-      pull: yes
-    name: crawler/myscript
-    tag: latest
-    source: build
-  become: yes
-  environment: "{{ proxy_env }}"
+# #Build Docker image for tweet harvester
+# - name: Build an image and push it to local repo
+#   docker_image:
+#     state: present
+#     build:
+#       path: '/home/ubuntu/COMP90024/crawler/get_fromMRC'
+#       pull: yes
+#     name: crawler/myscript
+#     tag: latest
+#     source: build
+#   become: yes
+#   environment: "{{ proxy_env }}"
 
-# Stop existing Docker containers for Twitter Harvesters and remove them (if any)
-- name: Stop Twitter Harvester Docker container
-  become: yes
-  docker_container:
-    name: crawler
-    state: absent
+# # Stop existing Docker containers for Twitter Harvesters and remove them (if any)
+# - name: Stop Twitter Harvester Docker container
+#   become: yes
+#   docker_container:
+#     name: crawler
+#     state: absent
 
 
 
-# Create new docker container for Twitter Harvester and start container
-- name: Create and start Twitter Harvester Docker container
-  become: yes
-  docker_container:
-    name: crawler
-    image: crawler/myscript
-    state: started
-    pull: false
-    recreate: true
+# # Create new docker container for Twitter Harvester and start container
+# - name: Create and start Twitter Harvester Docker container
+#   become: yes
+#   docker_container:
+#     name: crawler
+#     image: crawler/myscript
+#     state: started
+#     pull: false
+#     recreate: true
