@@ -5,23 +5,7 @@
 # 
 
 ---
-# # Simon 
-# - name: Remove directory
-#   file:
-#     path: /home/ubuntu/COMP90024
-#     state: absent
-
-# - name: creates directory
-#   file:
-#     path: '/home/ubuntu/COMP90024'
-#     state: directory
-
-# - name: git clone repo
-#   shell: git clone https://github.com/KeYANG813/comp90024.git
-#   args:
-#     chdir: '/home/ubuntu/COMP90024'
-
-## high-level
+# remove directory
 - name: Remove directory 
   file: 
     path: '{{ remote_working_directory }}' 
@@ -45,27 +29,27 @@
 #     mode: 0644
 # # configure ssh to use ansible key for github.com
 
-- name: Creates ~COMP90024 directory
+- name: Create directory
   file:
     path: '{{ remote_working_directory }}'
     state: directory
 
-
+# clone
 - name: Clone the code repository into home directory
   shell: git clone https://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@github.com/ccclym/comp90024.git
   args:
     chdir: '{{ remote_working_directory }}'
+# environment: "{{ proxy_env }}"
 
-# # middle Clone source code repository
-# - name: Clone the code repository into home directory
-#   git:
-#     repo: "https://github.com/ccclym/comp90024.git"
-#     #key_file: /home/ubuntu/.ssh/githubKey
-#     dest: '{{ remote_working_directory }}'
-#     accept_hostkey: yes
-#   environment: "{{ proxy_env }}"
-#   become: true
+# modify
+- name: Modify permission
+  shell: chmod 774 comp90024/tweet_crawler.py
+  args:
+    chdir: '{{ remote_working_directory }}'
 
+
+
+#######
 # Create Docker config directory
 # - name: Make sure that Docker config directory exists
 #   become: yes
