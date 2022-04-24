@@ -53,8 +53,10 @@ class IDPrinter(tweepy.Stream):
         tweetJson = js.loads(data, encoding= 'utf-8')
 # need to filter out the retweet
         if not tweetJson["text"].startswith('RT') and tweetJson["retweeted"] == False:
-            db.create_document(tweetJson)
-            print("get")
+            if ((tweetJson["id_str"] not in db)):
+                tweetJson["_id"] = tweetJson["id_str"]
+                db.create_document(tweetJson)
+                print("get")
             # print(newJSON)
     
     def on_status(self, status):
