@@ -4,6 +4,7 @@
   gather_facts: true
 
   roles:
+    - role: add-proxy
     - role: docker-prereq-env
     - role: docker-install
     - role: docker-mount-volume

@@ -4,13 +4,13 @@
 
 
 #run to retrieve historical data from MRC(provided by teaching team)
-- hosts: Masternode
+- hosts: DataNodes
   vars_files:
     - host_vars/environment_variables.yaml
   gather_facts: true
 
   roles:
-    - role: twitter-harvester-mrc
+    - role: twitter-crawler-api
 
 
 # #run to retrieve tweets post in victoria
