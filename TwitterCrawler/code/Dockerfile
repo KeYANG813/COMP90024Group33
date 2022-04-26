@@ -27,4 +27,8 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["python", "tweet_crawler_melbourne.py"]
+RUN python tweet_crawler_melbourne.py\
+    && python tweet_crawler_adelaide.py\
+    && python tweet_crawler_darwin.py\
+    && python tweet_crawler_brisbane.py\
+    && python tweet_crawler_sydney.py

@@ -9,7 +9,7 @@ import json
 
 USERNAME = 'user'
 PASSWORD = 'pass'
-URL = 'http://172.26.133.239:5984'
+URL = 'http://172.26.132.223:5984'
 client = Cloudant(USERNAME, PASSWORD, url=URL, connect=True, auto_renew=True)
 print(client.all_dbs())
 db = client.create_database('db_brisbane', partitioned=False)
@@ -42,7 +42,7 @@ def account_info():
         "db": {
             "user": "user",
             "password": "pass",
-            "url": "http://172.26.133.239:5984"
+            "url": "http://172.26.132.223:5984"
         }
     }
     return account
