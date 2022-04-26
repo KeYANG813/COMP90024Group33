@@ -1,0 +1,77 @@
+#
+# Part of Assignment 2 - COMP90024 course at The University of Melbourne 
+#
+# Cluster and Cloud Computing - Team 24 
+#
+---
+
+# Add nodes to CouchDB cluster
+- name: Add nodes to CouchDB cluster
+  uri:
+    url: http://{{ masternode }}:5984/_cluster_setup
+    method: POST
+    user: "{{ user }}"
+    password: "{{ pass }}"
+    force_basic_auth: yes
+    status_code: 200, 201
+    headers:
+      Content-Type: "application/json"
+    body_format: json
+    body: "{\"action\": \"enable_cluster\", \"bind_address\": \"0.0.0.0\", \"username\":\"{{ user }}\", \"password\": \"{{ pass }}\", \"port\": \"5984\", \"remote_node\": \"{{ item }}\", \"node_count\": \"3\",\"remote_current_user\": \"{{ user }}\", \"remote_current_password\":\"{{ pass }}\"}"
+  loop: "{{ groups['workers'] }}"
+# Join nodes to CouchDB cluster
+- name: Join nodes to CouchDB cluster
+  uri:
+    url: http://{{ masternode }}:5984/_cluster_setup
+    method: POST
+    user: "{{ user }}"
+    password: "{{ pass }}"
+    force_basic_auth: yes
+    status_code: 200, 201
+    headers:
+      Content-Type: "application/json"
+    body_format: json
+    body: "{\"action\":\"add_node\",\"host\":\"{{ item }}\",\"port\":\"5984\",\"username\":\"{{ user }}\",\"password\":\"{{ pass }}\"}"
+  loop: "{{ groups['workers'] }}"
+
+# In master_node, bind address change from any to 0.0.0.0
+# curl -X PUT -H 'Content-Type: application/json' http://IP:5984/_node/couchdb@IP/_config/httpd/bind_address -d '"0.0.0.0"' --user user
+- name: Bind address change from any to 0.0.0.0 in master_node
+  uri:
+    url: http://{{ masternode }}:5984/_cluster_setup
+    method: POST
+    user: "{{ user }}"
+    password: "{{ pass }}"
+    force_basic_auth: yes
+    status_code: 200, 201
+    headers:
+      Content-Type: "application/json"
+    body_format: json
+    body: "{\"action\": \"enable_single_node\", \"bind_address\": \"0.0.0.0\"}"
+    
+  
+# Empty request to avoid error messages when finishing cluster setup
+- name: Empty request to avoid error messages when finishing cluster setup
+  uri:
+    url: http://{{ masternode }}:5984/
+    method: GET
+    user: "{{ user }}"
+    password: "{{ pass }}"
+    force_basic_auth: yes
+    return_content: yes
+  run_once: true
+
+# Finish cluster setup
+- name: Finish cluster setup
+  uri:
+    url: http://{{ masternode }}:5984/_cluster_setup
+    method: POST
+    user: "{{ user }}"
+    password: "{{ pass }}"
+    force_basic_auth: yes
+    headers:
+      Content-Type: "application/json"
+    status_code: 200, 201
+    body_format: json
+    body: "{\"action\":\"finish_cluster\"}"    
+  run_once: true
