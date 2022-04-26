@@ -4,6 +4,15 @@
 # Cluster and Cloud Computing - Team 24 
 #
 ---
+- name: Change masternode bind address
+  # shell: curl -u {{ user }}:{{ pass }} -X PUT -H 'Content-Type:application/json' http://{{ masternode }}:5984/_node/couchdb@{{ masternode }}/_config/httpd/bind_address -d '{{ bind_address }}'
+  shell: curl -u user:pass -X PUT -H 'Content-Type:application/json' http://172.26.132.223:5984/_node/couchdb@172.26.132.223/_config/httpd/bind_address -d '"0.0.0.0"'
+
+- name: Change worker1 bind address
+  shell: curl -u user:pass -X PUT -H 'Content-Type:application/json' http://172.26.129.211:5984/_node/couchdb@172.26.129.211/_config/httpd/bind_address -d '"0.0.0.0"'
+
+- name: Change worker2 bind address
+  shell: curl -u user:pass -X PUT -H 'Content-Type:application/json' http://172.26.131.33:5984/_node/couchdb@172.26.131.33/_config/httpd/bind_address -d '"0.0.0.0"'
 
 # Add nodes to CouchDB cluster
 - name: Add nodes to CouchDB cluster
