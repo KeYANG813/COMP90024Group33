@@ -23,8 +23,18 @@ $(function () {
 
         //--------------------------- Variables Initialisation ---------------------------\\
 
-        console.log(hashtags_data)
-        
+        //console.log(hashtags_data)
+
+        const mapData = [
+            { name: 'adelaide', value: 9 },
+            { name: 'brisbane', value: 12 },
+            { name: 'darwin', value: 12 },
+            { name: 'melbourne', value: 12 },
+            { name: 'sydney', value: 14 }
+
+        ];
+
+        console.log(mapData[0].value)
         // var mapData = [
         //     [],
         //     [],
@@ -768,147 +778,147 @@ $(function () {
         });
 
 
-        // optionXyMap01 = {
-        //     timeline: {
-        //         data: year,
-        //         axisType: 'category',
-        //         autoPlay: true,
-        //         playInterval: 3000,
-        //         left: '10%',
-        //         right: '10%',
-        //         bottom: '3%',
-        //         width: '80%',
-        //         label: {
-        //             normal: {
-        //                 textStyle: {
-        //                     color: '#ddd'
-        //                 }
-        //             },
-        //             emphasis: {
-        //                 textStyle: {
-        //                     color: '#fff'
-        //                 }
-        //             }
-        //         },
-        //         symbolSize: 10,
-        //         lineStyle: {
-        //             color: '#555'
-        //         },
-        //         checkpointStyle: {
-        //             borderColor: '#777',
-        //             borderWidth: 2
-        //         },
-        //         controlStyle: {
-        //             showNextBtn: true,
-        //             showPrevBtn: true,
-        //             normal: {
-        //                 color: '#666',
-        //                 borderColor: '#666'
-        //             },
-        //             emphasis: {
-        //                 color: '#aaa',
-        //                 borderColor: '#aaa'
-        //             }
-        //         },
+        optionXyMap01 = {
+            // timeline: {
+            //     data: year,
+            //     axisType: 'category',
+            //     autoPlay: true,
+            //     playInterval: 3000,
+            //     left: '10%',
+            //     right: '10%',
+            //     bottom: '3%',
+            //     width: '80%',
+            //     label: {
+            //         normal: {
+            //             textStyle: {
+            //                 color: '#ddd'
+            //             }
+            //         },
+            //         emphasis: {
+            //             textStyle: {
+            //                 color: '#fff'
+            //             }
+            //         }
+            //     },
+            //     symbolSize: 10,
+            //     lineStyle: {
+            //         color: '#555'
+            //     },
+            //     checkpointStyle: {
+            //         borderColor: '#777',
+            //         borderWidth: 2
+            //     },
+            //     controlStyle: {
+            //         showNextBtn: true,
+            //         showPrevBtn: true,
+            //         normal: {
+            //             color: '#666',
+            //             borderColor: '#666'
+            //         },
+            //         emphasis: {
+            //             color: '#aaa',
+            //             borderColor: '#aaa'
+            //         }
+            //     },
 
-        //     },
-        //     baseOption: {
-        //         animation: true,
-        //         animationDuration: 1000,
-        //         animationEasing: 'cubicInOut',
-        //         animationDurationUpdate: 1000,
-        //         animationEasingUpdate: 'cubicInOut',
-        //         grid: {
-        //             right: '3%',
-        //             top: '15%',
-        //             bottom: '65%',
-        //             width: '20%'
-        //         },
-        //         tooltip: {
-        //             trigger: 'axis', // hover触发器 时间轴
-        //             axisPointer: { // 坐标轴指示器，坐标轴触发有效
-        //                 type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
-        //                 shadowStyle: {
-        //                     color: 'rgba(150,150,150,0.1)' //hover颜色
-        //                 }
-        //             }
-        //         },
-        //         toolbox: {
-        //             feature: {
-        //                 // dataZoom: {
-        //                 //     yAxisIndex: false
-        //                 // },
-        //                 saveAsImage: {
-        //                     pixelRatio: 2
-        //                 }
-        //             }
-        //         },
-        //         geo: { //地图设置
-        //             // nameProperty: "STATE_NAME",
-        //             show: true,
-        //             map: 'australia',
-        //             roam: false,
-        //             zoom: 1,
-        //             layoutCenter: ['50%', '50%'],
-        //             // If width-height ratio is larger than 1, then width is set to be 100.
-        //             // Otherwise, height is set to be 100.
-        //             // This makes sure that it will not exceed the area of 100x100
-        //             layoutSize: 500,
-        //             // center: [133.7751, -25.2744],
-        //             tooltip: {
-        //                 trigger: 'item',
-        //                 formatter: (p) => {
-        //                     let val = p.value[2];
-        //                     if (window.isNaN(val)) {
-        //                         val = 0;
-        //                     }
-        //                     let txtCon =
-        //                         "<div style='text-align:left'>" + p.name + ":<br />Total Tweets：" + val.toFixed(2) + '</div>';
-        //                     return txtCon;
-        //                 }
-        //             },
-        //             label: {
-        //                 emphasis: {
-        //                     show: false
-        //                 }
-        //             },
-        //             itemStyle: {
-        //                 normal: {
-        //                     // areaColor: '#4c60ff',
-        //                     // borderColor: '#002097',
-        //                     borderColor: 'rgba(147, 235, 248, 1)',
-        //                     borderWidth: 1,
-        //                     areaColor: {
-        //                         type: 'radial',
-        //                         x: 0.5,
-        //                         y: 0.5,
-        //                         r: 0.8,
-        //                         colorStops: [{
-        //                             offset: 0,
-        //                             color: 'rgba(147, 235, 248, 0)' // 0% 处的颜色
-        //                         }, {
-        //                             offset: 1,
-        //                             color: 'rgba(147, 235, 248, .2)' // 100% 处的颜色
-        //                         }],
-        //                         globalCoord: false // 缺省为 false
-        //                     },
-        //                     shadowColor: 'rgba(128, 217, 248, 1)',
-        //                     // shadowColor: 'rgba(255, 255, 255, 1)',
-        //                     shadowOffsetX: -2,
-        //                     shadowOffsetY: 2,
-        //                     shadowBlur: 10
-        //                 },
-        //                 emphasis: {
-        //                     // areaColor: '#293fff',
-        //                     areaColor: '#389BB7',
-        //                     borderWidth: 0
-        //                 }
-        //             }
-        //         },
-        //     },
-        //     options: []
+            // },
+            baseOption: {
+                animation: true,
+                animationDuration: 1000,
+                animationEasing: 'cubicInOut',
+                animationDurationUpdate: 1000,
+                animationEasingUpdate: 'cubicInOut',
+                grid: {
+                    right: '3%',
+                    top: '15%',
+                    bottom: '65%',
+                    width: '20%'
+                },
+                // tooltip: {
+                //     trigger: 'axis', // hover触发器 时间轴
+                //     axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                //         type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+                //         shadowStyle: {
+                //             color: 'rgba(150,150,150,0.1)' //hover颜色
+                //         }
+                //     }
+                // },
+                toolbox: {
+                    feature: {
+                        // dataZoom: {
+                        //     yAxisIndex: false
+                        // },
+                        saveAsImage: {
+                            pixelRatio: 2
+                        }
+                    }
+                },
+                geo: { //地图设置
+                    // nameProperty: "STATE_NAME",
+                    show: true,
+                    map: 'australia',
+                    roam: false,
+                    zoom: 1,
+                    layoutCenter: ['50%', '50%'],
+                    // If width-height ratio is larger than 1, then width is set to be 100.
+                    // Otherwise, height is set to be 100.
+                    // This makes sure that it will not exceed the area of 100x100
+                    layoutSize: 500,
+                    // center: [133.7751, -25.2744],
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: (p) => {
+                            let val = p.value[2];
+                            if (window.isNaN(val)) {
+                                val = 0;
+                            }
+                            let txtCon =
+                                "<div style='text-align:left'>" + p.name + ":<br />Total Tweets：" + val.toFixed(2) + '</div>';
+                            return txtCon;
+                        }
+                    },
+                    label: {
+                        emphasis: {
+                            show: false
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            // areaColor: '#4c60ff',
+                            // borderColor: '#002097',
+                            borderColor: 'rgba(147, 235, 248, 1)',
+                            borderWidth: 1,
+                            areaColor: {
+                                type: 'radial',
+                                x: 0.5,
+                                y: 0.5,
+                                r: 0.8,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'rgba(147, 235, 248, 0)' // 0% 处的颜色
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(147, 235, 248, .2)' // 100% 处的颜色
+                                }],
+                                globalCoord: false // 缺省为 false
+                            },
+                            shadowColor: 'rgba(128, 217, 248, 1)',
+                            // shadowColor: 'rgba(255, 255, 255, 1)',
+                            shadowOffsetX: -2,
+                            shadowOffsetY: 2,
+                            shadowBlur: 10
+                        },
+                        emphasis: {
+                            // areaColor: '#293fff',
+                            areaColor: '#389BB7',
+                            borderWidth: 0
+                        }
+                    }
+                },
+            },
+            options: []
 
-        // };
+        };
     // geo: {
     //     map: 'china',
     //     label: {
@@ -1033,16 +1043,16 @@ $(function () {
                             }
                         },
                         animation: false,
-                        data: data
+                        data: mapData
                     },
                     //地图中闪烁的点
                     {
                         //  name: 'Top 5',
                         type: 'effectScatter',
                         coordinateSystem: 'geo',
-                        data: convertData(data.sort(function(a, b) {
+                        data: convertData(mapData.sort(function(a, b) {
                             return b.value - a.value;
-                        }).slice(0, 20)),
+                        }).slice(0, 5)),
                         symbolSize: function(val) {
                             return val[2] / 10000;
                         },
@@ -1061,9 +1071,9 @@ $(function () {
                         },
                         itemStyle: {
                             normal: {
-                                color: colors[colorIndex][n],
+                                color: colors[colorIndex],
                                 shadowBlur: 10,
-                                shadowColor: colors[colorIndex][n]
+                                shadowColor: colors[colorIndex]
                             }
                         },
                         zlevel: 1

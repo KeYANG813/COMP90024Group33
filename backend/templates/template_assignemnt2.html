@@ -270,9 +270,10 @@ $(document).ready(function(){
 
         axios.get("/senario3")
                 .then(function (response) {
-                  console.log(response);
+                  //console.log(response);
                   that.city_hashtags=response.data;
                   hashtags_data = JSON.parse(JSON.stringify(that.city_hashtags))
+                  console.log(hashtags_data);
                 })
                 .catch(function (error) {
                   console.log(error.response.data);
