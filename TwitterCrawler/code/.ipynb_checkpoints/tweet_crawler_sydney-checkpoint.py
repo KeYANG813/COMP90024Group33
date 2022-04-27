@@ -42,7 +42,7 @@ def account_info():
         "db": {
             "user": "user",
             "password": "pass",
-            "url": "http://172.26.133.239:5984"
+            "url": "http://127.0.0.1:5984"
         }
     }
     return account
@@ -65,10 +65,10 @@ class IDPrinter(tweepy.Stream):
 
 if __name__ == '__main__':
     account = account_info()
-    Consumer_Key = account["accounts"]["xwqian2"]["Consumer_Key"]
-    Consumer_Secret = account["accounts"]["xwqian2"]["Consumer_Secret"]
-    Access_Token = account["accounts"]["xwqian2"]["Access_Token"]
-    Access_Token_Secret = account["accounts"]["xwqian2"]["Access_Token_Secret"]
+    Consumer_Key = account["accounts"]["christina"]["Consumer_Key"]
+    Consumer_Secret = account["accounts"]["christina"]["Consumer_Secret"]
+    Access_Token = account["accounts"]["christina"]["Access_Token"]
+    Access_Token_Secret = account["accounts"]["christina"]["Access_Token_Secret"]
     stream = tweepy.Stream(
     Consumer_Key, Consumer_Secret,
     Access_Token, Access_Token_Secret
