@@ -39,11 +39,11 @@ language_dic = {
 total_tweet = { "number": 3000000 }
 
 word_dic = {
-    "sydney": ["www", "eeee", "rowsj", "oejgnsjdf"],
-    "melbourne": ["wiensl", "happy", "good", "well", "esoal", "rswao"],
-    "brisbane": ["wheel", "bad", "well", "raledje", "welekr"],
-    "adelaide": ["wenlanfl", "weleij", "workfknls", "enfshvlj"],
-    "darwin": ["ebksbfk", "enrlsnlf", "dnfsjnf", "wrmla", "jflsnglfn"]
+    "sydney": [{"name":"www", "value": 2000}, {"name":"djfn", "value": 28400}, {"name":"llll", "value": 346}],
+    "melbourne": [{"name":"hrw", "value": 253}, {"name":"djewn", "value": 400}, {"name":"lugffn", "value": 36}],
+    "brisbane": [{"name":"jtd", "value": 56}, {"name":"rerer", "value": 6400}, {"name":"kkgkufn", "value": 8}],
+    "adelaide": [{"name":"fwew", "value": 99}, {"name":"dhthth", "value": 2460}, {"name":"kmrffn", "value": 566}],
+    "darwin": [{"name":"whrsdw", "value": 666}, {"name":"btbtn", "value": 220}, {"name":"kejffn", "value": 86}]
 }
 
 # @app.route('/')

@@ -4,7 +4,7 @@ var colors = [
     ["#DD6B66", "#759AA0", "#E69D87", "#8DC1A9", "#EA7E53", "#EEDD78", "#73A373", "#73B9BC", "#7289AB", "#91CA8C", "#F49F42"],
     ['#3772FF','#DF2935','#FDCA40','#E6E8E6','#ADC6FF', '#F4B8BC', '#FEE9AE', '#FFFFFF', '#77EBF8', '#17BEBB', '#D2FDFF', '#ADFBFF','#3ABEFF', '#F4EC90']
 ];
-// var colors = ['#3772FF','#DF2935','#FDCA40','#E6E8E6','#ADC6FF', '#F4B8BC', '#FEE9AE', '#FFFFFF', '#77EBF8', '#17BEBB', '#D2FDFF', '#ADFBFF','#3ABEFF', '#F4EC90']
+
 var colorIndex = 0;
 
 
@@ -23,8 +23,6 @@ $(function () {
 
         //--------------------------- Variables Initialisation ---------------------------\\
 
-        //console.log(hashtags_data)
-
         const mapData = [
             { name: 'adelaide', value: 9 },
             { name: 'brisbane', value: 12 },
@@ -35,12 +33,6 @@ $(function () {
         ];
 
         console.log(mapData[0].value)
-        // var mapData = [
-        //     [],
-        //     [],
-        //     [],
-        //     []
-        // ];
         var categoryData = [];
         var barData = [];
         var langdis_data = [];
@@ -48,42 +40,7 @@ $(function () {
         //var sentdis_data = [];
         var tophashtags_data = [];
         var wordyearindex = 3, wordlocationindex = 0
-        
-        // for (var key in geoCoordMap) {
-        //     mapData[0].push({
-        //         "year": '2018',
-        //         "name": key,
-        //         "value": city_2018[key],
-        //     });
-        //     mapData[1].push({
-        //         "year": '2019',
-        //         "name": key,
-        //         "value": city_2019[key],
-        //     });
-        //     mapData[2].push({
-        //         "year": '2020',
-        //         "name": key,
-        //         "value": city_2020[key],
-        //     });
-        //     mapData[3].push({
-        //         "year": '2021',
-        //         "name": key,
-        //         "value": city_2021[key],
-        //     });
-        //     console.log(city_2021[key])
-        // }
-        
-        // for (var i = 0; i < mapData.length; i++) {
-        //     mapData[i].sort(function sortNumber(a, b) {
-        //         return a.value - b.value
-        //     });
-        //     barData.push([]);
-        //     categoryData.push([]);
-        //     for (var j = 0; j < mapData[i].length; j++) {
-        //         barData[i].push(mapData[i][j].value);
-        //         categoryData[i].push(mapData[i][j].name.toUpperCase());
-        //     }
-        // }
+  
         
         var convertData = function(data) {
             var res = [];
@@ -133,29 +90,7 @@ $(function () {
                         }   
                     }                   
                 },
-                // label: {
-                //     color: 'rgba(255, 255, 255, 0.9)',
-                //     overflow: 'truncate',
-                //     edgeDistance: '25%',
-                //     bleedMargin: 10,
-                //     distanceToLabelLine: 5,
-                //     normal: {
-                //         Show: true, // ​​whether to display the label
-                //         //// The location of the tag. The 'outside' is outside the pie slice and is connected to the corresponding sector by a visual guide. 'inside', 'inner' Same as 'inside', inside the pie slice. 'center' is at the center of the pie chart.
-                //         position: 'left',
-                //         // The content of the displayed label
-                //         //a (series name), b (data item name), c (number), d (percentage)
-                //         formatter: "{b}:{c}({d}%)", 
-                //         emphasis: {
-                //                  //The label style displayed by the mouse on the ring
-                //             show: true,
-                //             textStyle: {
-                //                 fontSize: '6',
-                //                 fontWeight: 'bold'
-                //             }
-                //         }
-                //     }
-                // },
+
                 labelLine: {
                     lineStyle: {
                         // color: 'rgba(255, 255, 255, 0.3)'
@@ -189,134 +124,7 @@ $(function () {
             })
         }
         
-        
-        // Time Distribution
-        // for (var i = 0; i < keys.length; i++) {
-        //     var keyname = keys[i].toUpperCase(); 
-        //     console.log(time_data[i])
-        //     timedis_data.push(
-        //         {
-        //             name: keyname,
-        //             type: 'line',
-        //             smooth: true,
-        //             symbol: 'circle',
-        //             symbolSize: 5,
-        //             showSymbol: false,
-        //             lineStyle: {
-                        
-        //                 normal: {
-        //                     color: '#0184d5',
-        //                     width: 2
-        //                 }
-        //             },
-        //             areaStyle: {
-        //                 normal: {
-        //                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-        //                         offset: 0,
-        //                         color: 'rgba(1, 132, 213, 0.4)'
-        //                     }, {
-        //                         offset: 0.8,
-        //                         color: 'rgba(1, 132, 213, 0.1)'
-        //                     }], false),
-        //                     shadowColor: 'rgba(0, 0, 0, 0.1)',
-        //                 }
-        //             },
-        //             itemStyle: {
-        //                 normal: {
-        //                     color: '#0184d5',
-        //                     borderColor: 'rgba(221, 220, 107, .1)',
-        //                     borderWidth: 12
-        //                 }
-        //             },
-        //             markArea: {
-        //                 label:{
-        //                     color: 'rgba(255, 255, 255, 0.9)',
-        //                 },
-        //                 itemStyle: {
-        //                     color: 'rgba(255, 173, 177, 0.4)'
-        //                 },
-        //                 data: [ [{
-        //                     name: 'Morning Peak',
-        //                     xAxis: '7'
-        //                 }, {
-        //                     xAxis: '10'
-        //                 }], [{
-        //                     name: 'Evening Peak',
-        //                     xAxis: '17'
-        //                 }, {
-        //                     xAxis: '21'
-        //                 }] ]
-        //             },
-        //             data: time_data[i]
-            
-        //         })
-        // }
-
-        // Sentiment Distribution
-        // for (var i = 0; i < keys.length; i++) {
-        //     var keyname = keys[i].toUpperCase(); 
-        //     console.log(sent_data[i])
-        //     sentdis_data.push({
-        //         name: keyname, //city
-        //         type: 'line',
-        //         smooth: true,
-        //         symbol: 'circle',
-        //         symbolSize: 5,
-        //         showSymbol: false,
-        //         data: sent_data[i], //.sort(function (a, b) { return a.value - b.value; }),
-        //     })
-        // }        
-        
-        // // WordCloud
-        // for (var i = 0; i < keys.length; i++) {
-        //     var keyname = keys[i].toUpperCase(); 
-        //     // console.log(hashtags_data[i])
-        //     tophashtags_data.push({
-        //             name: keyname,
-        //             type: 'wordCloud',
-        //             sizeRange: [30, 70],//文字范围
-        //             //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
-        //             rotationRange: [-45, 90],
-        //             rotationStep: 45,
-        //             textRotation: [0, 45, 90, -45],
-        //             //形状
-        //             shape: 'circle',
-        //             // Global text style
-        //             textStyle: {
-        //                 fontFamily: 'sans-serif',
-        //                 fontWeight: 'bold',
-        //                 // Color can be a callback function or a color string
-        //                 // color: ['#3772FF','#DF2935','#FDCA40','#E6E8E6','#ADC6FF', '#F4B8BC', '#FEE9AE', '#FFFFFF', '#77EBF8', '#17BEBB', 'D2FDFF']
-        //                 color: function(){
-        //                     var color = ['#3772FF','#DF2935','#FDCA40','#E6E8E6','#ADC6FF', '#F4B8BC', '#FEE9AE', '#FFFFFF', '#77EBF8', '#17BEBB', '#D2FDFF', '#ADFBFF','#3ABEFF', '#F4EC90', '#DBB494']
-        //                     return color[Math.floor(Math.random() * color.length)];
-        //                 }
-        //                 // color: function (){ 
-        //                 //     return "hsl(" + 360 * Math.random() + ',' +
-        //                 //                (70 + 20 * Math.random()) + '%,' + 
-        //                 //                (60 + 30 * Math.random()) + '%)'
-        //                 //   }
-        //                 // color: function () {
-        //                 //     // Random color
-        //                 //     return 'rgb(' + [
-        //                 //         Math.round(Math.random() * 255),
-        //                 //         Math.round(Math.random() * 255),
-        //                 //         Math.round(Math.random() * 255)
-        //                 //     ].join(',') + ')';
-        //                 // }
-        //             },
-        //             //悬停上去的字体的阴影设置
-        //             emphasis: {
-        //                 focus: 'self',
-            
-        //                 textStyle: {
-        //                     shadowBlur: 10,
-        //                     shadowColor: '#333'
-        //                 }
-        //             },
-        //             data: hashtags_data[i]
-        //         })
-        //     }
+ 
         
         // 饼状图配置
         var lang_option = {
@@ -339,373 +147,16 @@ $(function () {
                     }
                 }
             },
-            // legend: {
-            //     // The mode selected by the legend controls whether the display state of the series can be changed by clicking on the legend. The legend selection is turned on by default and can be set to false to close.
-            //     selectedMode: true, 
-            //     /* orient: 'vertical', */
-            //     /* x : 'right', //the legend is shown on the right
-            //     y: 'center', */ //The legend is centered above the vertical display
-            //     bottom:0,
-            //     itemWidth: 10, // the width of the legend mark
-            //     itemHeight: 10, //Graph height of the legend mark
-            //     // Data:['EN', 'CN', 'JP', 'KR', 'FR'],
-            //     textStyle: { // style of legend text
-            //     color: 'rgba(255,255,255,.5)',
-            //     // Color: '#A6A8B6', //text color
-            //     fontSize: 10 // text size
-            //     }
-            // },   		  
+          
             tooltip: {
                 trigger: 'item',
-                // formatter: "{a} <br/>{b}: {c} ({d}%)",
-                // textStyle: { // style of legend text
-                //             Color:'#fff', //text color
-                //             fontSize: 12 // text size
-                // }
+
             },
-            // visualMap: {
-            //     show: false,
-            //     min: Math.min(...Object.values(vue.city_lang[keys[0]])),
-            //     max: Math.max(...Object.values(vue.city_lang[keys[0]])),
-            //     inRange: {
-            //         colorLightness: [0.2, 0.5]
-            //     }
-            // },
+
             series: [langdis_data[0]]
         };
         
-        // var lang_option = {
-        //     title: {
-        //         zlevel: 2,
-        //         // z:3,
-        //         text: langdis_data[0]['name'].toUpperCase(),
-        //         // top: '2%',
-        //         left: 'center',
-        //         textStyle: {
-        //             color: '#fff',
-        //             fontSize: '14'
-        //         }
-        //     },
-        //     toolbox: {
-        //         feature: {
-        //             dataZoom: {
-        //                 yAxisIndex: false
-        //             },
-        //             saveAsImage: {
-        //                 pixelRatio: 2
-        //             }
-        //         }
-        //     },
-        //     tooltip: {
-        //         trigger: 'item',
-        //         formatter: "{a} <br/>{b}: {c}",
-        //         textStyle: { // style of legend text
-        //                     Color:'#fff', //text color
-        //                     fontSize: 12 // text size
-        //         }
-        //     },
-        //     grid: {
-        //         left: '2%',
-        //         top:'20px',
-        //         right: '2%',
-        //         bottom: '15%',
-        //        containLabel: true
-        //     },
-        //     dataZoom: [{
-        //         type: 'inside'
-        //     }, {
-        //         type: 'slider',
-        //     }],
-        //     xAxis: {
-        //         type: 'category',
-        //         data: Object.keys(vue.city_lang[keys[0]]),
-        //         silent: false,
-        //         splitLine: {
-        //             show: false 
-        //         },
-        //         splitArea: {
-        //             show: false
-        //         },
-        //         axisLine: {
-        //             show: true,
-        //             lineStyle: {
-        //                 color: "rgba(255,255,255,.1)",
-        //                 width: 1,
-        //                 type: "solid"
-        //             },
-        //         },
-        //         axisTick: {
-        //             show: false,
-        //         },
-        //         axisLabel:  {
-        //                 interval: 5,
-        //                // rotate:50,
-        //                 show: true,
-        //                 splitNumber: 5,
-        //                 textStyle: {
-        //                      color: "rgba(255,255,255,.6)",
-        //                     fontSize: '10',
-        //                 },
-        //             },
-        //     },
-        //     yAxis: {
-        //         axisLabel: {
-        //             //formatter: '{value} %'
-        //              show:true,
-        //               textStyle: {
-        //                       color: "rgba(255,255,255,.6)",
-        //                      fontSize: '12',
-        //                  },
-        //          },
-        //          axisTick: {
-        //              show: false,
-        //          },
-        //          axisLine: {
-        //              show: true,
-        //              lineStyle: {
-        //                  color: "rgba(255,255,255,.1)",
-        //                  width: 1,
-        //                  type: "solid"
-        //              },
-        //          },
-        //          splitLine: {
-        //              lineStyle: {
-        //                 color: "rgba(255,255,255,.1)",
-        //              }
-        //          },
-        //         splitArea: {
-        //             show: false
-        //         }
-        //     },
-        //     series: [langdis_data[0]]
-        // };
-        
-        // var time_option = {
-        //     title: {
-        //         zlevel: 2,
-        //         // z:3,
-        //         text: timedis_data[0]['name'].toUpperCase(),
-        //         // top: '2%',
-        //         left: 'center',
-        //         top: 'center',
-        //         textStyle: {
-        //             color: '#fff',
-        //             fontSize: '18'
-        //         }
-        //     },
-        //     toolbox: {
-        //         feature: {
-        //             dataZoom: {
-        //                 yAxisIndex: false
-        //             },
-        //             saveAsImage: {
-        //                 pixelRatio: 2
-        //             }
-        //         }
-        //     },
-        //     tooltip: {
-        //         trigger: 'axis',
-        //         axisPointer: {
-        //             lineStyle: {
-        //                 color: '#dddc6b'
-        //             }
-        //         },
-        //         // formatter: "{a} <br/>{b}: {c}",
-        //         textStyle: { // style of legend text
-        //                     Color:'#fff', //text color
-        //                     fontSize: 12 // text size
-        //         }
-        //     },
-        //     grid: {
-        //         left: '2%',
-        //         top:'20px',
-        //         right: '2%',
-        //         bottom: '15%',
-        //        containLabel: true
-        //     },
-        //     dataZoom: [{
-        //         type: 'inside'
-        //     }, {
-        //         type: 'slider',
-        //     }],
-        //     xAxis: {
-        //         type: 'category',
-        //         data: Object.keys(vue.city_time_dis[keys[0]]),
-        //         silent: false,
-        //         splitLine: {
-        //             show: false
-        //         },
-        //         splitArea: {
-        //             show: false
-        //         },
-        //         axisLine: {
-        //             show: true,
-        //             lineStyle: {
-        //                 color: "rgba(255,255,255,.1)",
-        //                 width: 1,
-        //                 type: "solid"
-        //             },
-        //         },
-        //         axisTick: {
-        //             show: false,
-        //         },
-        //         axisLabel:  {
-        //                 interval: 0,
-        //                // rotate:50,
-        //                 show: true,
-        //                 splitNumber: 5,
-        //                 textStyle: {
-        //                      color: "rgba(255,255,255,.6)",
-        //                     fontSize: '10',
-        //                 },
-        //             },
-        //     },
-        //     yAxis: {
-        //         axisLabel: {
-        //             //formatter: '{value} %'
-        //              show:true,
-        //               textStyle: {
-        //                       color: "rgba(255,255,255,.6)",
-        //                      fontSize: '12',
-        //                  },
-        //          },
-        //          axisTick: {
-        //              show: false,
-        //          },
-        //          axisLine: {
-        //              show: true,
-        //              lineStyle: {
-        //                  color: "rgba(255,255,255,.1)",
-        //                  width: 1,
-        //                  type: "solid"
-        //              },
-        //          },
-        //          splitLine: {
-        //              lineStyle: {
-        //                 color: "rgba(255,255,255,.1)",
-        //              }
-        //          },
-        //         splitArea: {
-        //             show: false
-        //         }
-        //     },
-        //     visualMap: {
-        //         show: false,
-        //         dimension: 0,
-        //         pieces: [{
-        //             lte: 7,
-        //             color: '#0184d5'
-        //         }, {
-        //             gt: 7,
-        //             lte: 10,
-        //             color: 'red'
-        //         }, {
-        //             gt: 10,
-        //             lte: 17,
-        //             color: '#0184d5'
-        //         }, {
-        //             gt: 17,
-        //             lte: 21,
-        //             color: 'red'
-        //         }, {
-        //             gt: 17,
-        //             color: '#0184d5'
-        //         }]
-        //     },
-        //     series: [timedis_data[0]]
-        // };
-
-        // var sent_option = {
-
-        //     toolbox: {
-        //         feature: {
-              
-        //             saveAsImage: {
-        //                 pixelRatio: 2
-        //             }
-        //         }
-        //     },
-        //     tooltip: {
-        //         trigger: 'axis',
-
-        //     },
-        //     grid: {
-        //         left: '2%',
-        //         // top:'20px',
-        //         right: '2%',
-        //         bottom: '5%',
-        //        containLabel: true
-        //     },
-
-        //     xAxis: {
-        //         type: 'category',
-        //         data: Object.keys(vue.city_sentiment[keys[0]]),
-        //         silent: false,
-        //         splitLine: {
-        //             show: false 
-        //         },
-        //         splitArea: {
-        //             show: false
-        //         },
-        //         axisLine: {
-        //             show: true,
-        //             lineStyle: {
-        //                 color: "rgba(255,255,255,.1)",
-        //                 width: 1,
-        //                 type: "solid"
-        //             },
-        //         },
-        //         axisTick: {
-        //             show: false,
-        //         },
-        //         axisLabel:  {
-        //                 interval: 0,
-        //                // rotate:50,
-        //                 show: true,
-        //                 splitNumber: 5,
-        //                 textStyle: {
-        //                      color: "rgba(255,255,255,.6)",
-        //                     fontSize: '10',
-        //                 },
-        //             },
-        //     },
-        //     yAxis: {
-        //         axisLabel: {
-        //             //formatter: '{value} %'
-        //              show:true,
-        //               textStyle: {
-        //                       color: "rgba(255,255,255,.6)",
-        //                      fontSize: '12',
-        //                  },
-        //          },
-        //          axisTick: {
-        //              show: false,
-        //          },
-        //          axisLine: {
-        //              show: true,
-        //              lineStyle: {
-        //                  color: "rgba(255,255,255,.1)",
-        //                  width: 1,
-        //                  type: "solid"
-        //              },
-        //          },
-        //          splitLine: {
-        //              lineStyle: {
-        //                 color: "rgba(255,255,255,.1)",
-        //              }
-        //          },
-        //         splitArea: {
-        //             show: false
-        //         }
-        //     },
-        //     legend:{
-        //         show: true,
-        //         textStyle:{
-        //             color: "#fff"
-        //         }
-        //     },
-        //     series: [sentdis_data[0], sentdis_data[1], sentdis_data[2], sentdis_data[3], sentdis_data[4]]
-        // };
+ 
         console.log(hashtags_data['adelaide'])
         var wordCloud_option = {
             title: {
@@ -762,66 +213,16 @@ $(function () {
 
         console.log(langdis_data[0])
         // 初始化数据
-        // setInterval(langChart.setOption(lang_option),5000);
-        // setInterval(timeChart.setOption(time_option),5000);
-        // setInterval(sentChart.setOption(sent_option),5000);
-        // setInterval(wordCloud.setOption(sent_option),5000);
         langChart.setOption(lang_option);
-        // timeChart.setOption(time_option);
-        // sentChart.setOption(sent_option);
         wordCloud.setOption(wordCloud_option);
         window.addEventListener("resize",function(){
             langChart.resize();
-            // timeChart.resize();
-            // sentChart.resize();
             wordCloud.resize();
         });
 
 
         optionXyMap01 = {
-            // timeline: {
-            //     data: year,
-            //     axisType: 'category',
-            //     autoPlay: true,
-            //     playInterval: 3000,
-            //     left: '10%',
-            //     right: '10%',
-            //     bottom: '3%',
-            //     width: '80%',
-            //     label: {
-            //         normal: {
-            //             textStyle: {
-            //                 color: '#ddd'
-            //             }
-            //         },
-            //         emphasis: {
-            //             textStyle: {
-            //                 color: '#fff'
-            //             }
-            //         }
-            //     },
-            //     symbolSize: 10,
-            //     lineStyle: {
-            //         color: '#555'
-            //     },
-            //     checkpointStyle: {
-            //         borderColor: '#777',
-            //         borderWidth: 2
-            //     },
-            //     controlStyle: {
-            //         showNextBtn: true,
-            //         showPrevBtn: true,
-            //         normal: {
-            //             color: '#666',
-            //             borderColor: '#666'
-            //         },
-            //         emphasis: {
-            //             color: '#aaa',
-            //             borderColor: '#aaa'
-            //         }
-            //     },
-
-            // },
+            
             baseOption: {
                 animation: true,
                 animationDuration: 1000,
@@ -834,15 +235,7 @@ $(function () {
                     bottom: '65%',
                     width: '20%'
                 },
-                // tooltip: {
-                //     trigger: 'axis', // hover触发器 时间轴
-                //     axisPointer: { // 坐标轴指示器，坐标轴触发有效
-                //         type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
-                //         shadowStyle: {
-                //             color: 'rgba(150,150,150,0.1)' //hover颜色
-                //         }
-                //     }
-                // },
+
                 toolbox: {
                     feature: {
                         // dataZoom: {
@@ -919,38 +312,12 @@ $(function () {
             options: []
 
         };
-    // geo: {
-    //     map: 'china',
-    //     label: {
-    //         emphasis: {
-    //             show: false
-    //         }
-    //     },
-    //     roam: false,//禁止其放大缩小
-    //     itemStyle: {
-    //         normal: {
-    //             areaColor: '#4c60ff',
-    //             borderColor: '#002097'
-    //         },
-    //         emphasis: {
-    //             areaColor: '#293fff'
-    //         }
-    //     }
-    // },
-        // for (var n = 0; n < year.length; n++) {
-            optionXyMap01.options.push({
+
+        optionXyMap01.options.push({
                 // backgroundColor: '#013954',
                 title:
                     [
-                    // {
-                    //         text: 'Area Tweets',
-                    //         left: '42%',
-                    //         top: '8%',
-                    //         textStyle: {
-                    //             color: '#fff',
-                    //             fontSize: 25
-                    //         }
-                    //     },
+
                         {
                             id: 'statistic',
                             text: 'Area Tweets',
@@ -962,56 +329,7 @@ $(function () {
                             }
                         }
                     ],
-                // xAxis: {
-                //     type: 'value',
-                //     scale: true,
-                //     position: 'top',
-                //     min: 0,
-                //     boundaryGap: false,
-                //     splitLine: {
-                //         show: false
-                //     },
-                //     axisLine: {
-                //         show: false
-                //     },
-                //     axisTick: {
-                //         show: false
-                //     },
-                //     axisLabel: {
-                //         show: false,
-                //         margin: 5,
-                //         textStyle: {
-                //             color: '#aaa'
-                //         }
-                //     },
-                // },
-                // yAxis: {
-                //     type: 'category',
-                //     //  name: 'TOP 20',
-                //     nameGap: 16,
-                //     axisLine: {
-                //         show: true,
-                //         lineStyle: {
-                //             color: '#ddd'
-                //         }
-                //     },
-                //     axisTick: {
-                //         show: false,
-                //         lineStyle: {
-                //             color: '#ddd'
-                //         }
-                //     },
-                //     axisLabel: {
-                //         interval: '0',
-                //         textStyle: {
-                //             color: '#ddd'
-                //         }
-                //     },
-                //     data: categoryData[n]
-                // },
-                // tooltip:{
-                //     show: true
-                // },
+                
                 series: [
                     //地图
                     {
@@ -1078,18 +396,7 @@ $(function () {
                         },
                         zlevel: 1
                     },
-                    //柱状图
-                    // {
-                    //     zlevel: 1.5,
-                    //     type: 'bar',
-                    //     symbol: 'none',
-                    //     itemStyle: {
-                    //         normal: {
-                    //             color: colors[colorIndex][n]
-                    //         }
-                    //     },
-                    //     data: barData[n]
-                    // }
+
                 ]
             })
         //}
@@ -1106,40 +413,19 @@ $(function () {
                 console.log(item)
                 return item == city.toLowerCase();
             });
-            // var yearidx = year.findIndex(function(item) {
-            //     return item == city ;
-            // });
 
             if (index !== -1){
 
                 wordlocationindex = index
-                // option['title']['text'] = city;
                 lang_option['title']['text'] = langdis_data[index].name;
-                // lang_option['xAxis']['data'] = Object.keys(vue.city_lang[keys[index]]);
-                // lang_option['visualMap']['min'] = Math.min(...Object.values(vue.city_lang[keys[index]]));
-                // lang_option['visualMap']['max'] = Math.max(...Object.values(vue.city_lang[keys[index]]));
                 lang_option['series'] = [langdis_data[index]];
                 langChart.setOption(lang_option);
 
-                // time_option['title']['text'] = timedis_data[index].name;
-                // time_option['xAxis']['data'] = Object.keys(vue.city_time_dis[keys[index]]);
-                // time_option['series'] = [timedis_data[index]];
-                // timeChart.setOption(time_option);
-
-                // sent_option['title']['text'] = sentdis_data[index].name.toUpperCase();
-                // sent_option['xAxis']['data'] = Object.keys(vue.city_sentiments[keys[index]]);
-                // sent_option['series'] = [sentdis_data[index]];
-                // sentChart.setOption(sent_option);
             }
-            
-            // if (yearidx !== -1){
-            //     wordyearindex = yearidx
-            // }
-            
+
             wordCloud_option['series']['data'] = hashtags_data[keys[wordlocationindex]]
             wordCloud_option['title']['text'] = keys[wordlocationindex].toUpperCase()
-            // wordCloud_option['series'] = [tophashtags_data[index]];
-            // console.log(tophashtags_data[index])
+
             wordCloud.setOption(wordCloud_option);
         });
 
