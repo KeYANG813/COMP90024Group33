@@ -133,6 +133,10 @@ $(document).ready(function(){
         [],
         []
   ];
+  var seti_data = [
+        [],
+        []
+  ];
   var sent_data = [];
   var hashtags_data = [];
 
@@ -162,8 +166,8 @@ $(document).ready(function(){
      this.get_total_tweets()
     //  this.get_city_year_tweets()
      this.get_city_lang_distribution()
-    //  this.get_city_sentiment()
-    this.get_city_freq_tweet()
+     this.get_city_sentiment()
+     this.get_city_freq_tweet()
      this.get_city_topwords()
     },
     methods:{
@@ -226,6 +230,32 @@ $(document).ready(function(){
                 .catch(function (error) {
                   console.log(error);
                 });
+
+      },
+      get_city_sentiment(){
+        var that =this;
+        axios.get("/senario3setiment")
+                .then(function (response) {
+                  console.log(response);
+                  that.city_sentiment=response.data;
+                  for (var i = 0; i < seti_data.length; i++){
+                    if (i == 0){
+                      for (loc in geoCoordMap){
+                        seti_data[i].push(loc)
+                      }
+                    } else {
+                      for (loc in geoCoordMap){
+                        seti_data[i].push(that.city_sentiment[loc])
+                      }
+                    }
+                  }
+                  console.log(seti_data)
+                  
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+
 
       },
       get_city_topwords(){

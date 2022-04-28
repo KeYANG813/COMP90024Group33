@@ -16,7 +16,7 @@ $(function () {
 
         var freChart = echarts.init(document.getElementById('echart1')); //初始化语言分布图
         var langChart = echarts.init(document.getElementById('echart2')); //初始化语言分布图
-        //var sentChart = echarts.init(document.getElementById('echart4')); //初始化语言分布图
+        var setiChart = echarts.init(document.getElementById('echart4')); //初始化语言分布图
         var wordCloud = echarts.init(document.getElementById('echart5')); //初始化语言分布图
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('map_1'));
@@ -37,7 +37,7 @@ $(function () {
         var barData = [];
         var langdis_data = [];
         //var timedis_data = [];
-        //var sentdis_data = [];
+        var sentdis_data = [];
         var tophashtags_data = [];
         var wordyearindex = 3, wordlocationindex = 0
   
@@ -220,17 +220,36 @@ $(function () {
             },
             data: hashtags_data[keys[wordlocationindex]]
             }
-        };        
+        }; 
+        
+        seti_option = {
+            xAxis: {
+              type: 'category',
+              data: seti_data[0]
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [
+              {
+                data: seti_data[1],
+                type: 'line'
+              }
+            ]
+          };
+          
         //--------------------------- Charts Initialisation ---------------------------\\
 
         console.log(langdis_data[0])
         console.log(freq_data)
         // 初始化数据
         langChart.setOption(lang_option);
+        setiChart.setOption(seti_option);
         wordCloud.setOption(wordCloud_option);
         freChart.setOption(fre_option);
         window.addEventListener("resize",function(){
             langChart.resize();
+            setiChart.resize();
             wordCloud.resize();
             freChart.resize();
         });

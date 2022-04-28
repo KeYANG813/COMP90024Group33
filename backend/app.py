@@ -55,6 +55,14 @@ freq_dic = {
     "darwin":  {"shopping": 334, "luxury": 532, "travel": 235},
 }
 
+setiment_dic = {
+    "sydney": 493,
+    "melbourne": 349,
+    "brisbane": 520,
+    "adelaide":  438,
+    "darwin":  243,
+}
+
 
 # @app.route('/')
 # def helloWorld():
@@ -86,6 +94,11 @@ def get_freq_dis():
 def get_word_price():
     top_word = word_dic
     return jsonify(top_word)
+
+@app.route("/senario3setiment")
+def get_setiment():
+    setiment = setiment_dic
+    return jsonify(setiment)
 
 
 if __name__ == '__main__':
