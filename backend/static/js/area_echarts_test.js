@@ -14,7 +14,7 @@ $(function () {
     // map();
     function map() {
 
-        //var timeChart = echarts.init(document.getElementById('echart1')); //初始化语言分布图
+        var freChart = echarts.init(document.getElementById('echart1')); //初始化语言分布图
         var langChart = echarts.init(document.getElementById('echart2')); //初始化语言分布图
         //var sentChart = echarts.init(document.getElementById('echart4')); //初始化语言分布图
         var wordCloud = echarts.init(document.getElementById('echart5')); //初始化语言分布图
@@ -156,6 +156,18 @@ $(function () {
             series: [langdis_data[0]]
         };
         
+        fre_option = {
+            legend: {},
+            tooltip: {},
+            dataset: {
+              source: freq_data
+            },
+            xAxis: { type: 'category' },
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+        };
  
         console.log(hashtags_data['adelaide'])
         var wordCloud_option = {
@@ -212,12 +224,15 @@ $(function () {
         //--------------------------- Charts Initialisation ---------------------------\\
 
         console.log(langdis_data[0])
+        console.log(freq_data)
         // 初始化数据
         langChart.setOption(lang_option);
         wordCloud.setOption(wordCloud_option);
+        freChart.setOption(fre_option);
         window.addEventListener("resize",function(){
             langChart.resize();
             wordCloud.resize();
+            freChart.resize();
         });
 
 

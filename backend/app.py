@@ -46,6 +46,16 @@ word_dic = {
     "darwin": [{"name":"whrsdw", "value": 666}, {"name":"btbtn", "value": 220}, {"name":"kejffn", "value": 86}]
 }
 
+
+freq_dic = {
+    "sydney": {"shopping": 321, "luxury": 444, "travel": 583},
+    "melbourne":  {"shopping": 450, "luxury": 340, "travel": 543},
+    "brisbane": {"shopping": 431, "luxury": 324, "travel": 643},
+    "adelaide":  {"shopping": 234, "luxury": 477, "travel": 853},
+    "darwin":  {"shopping": 334, "luxury": 532, "travel": 235},
+}
+
+
 # @app.route('/')
 # def helloWorld():
 #     return jsonify({'result': True, 'content': 'hello world'})
@@ -65,6 +75,12 @@ def get_total():
 def get_lang_dis():
     langdis = language_dic
     return jsonify(langdis)
+
+
+@app.route("/senario2")
+def get_freq_dis():
+    frequency = freq_dic
+    return jsonify(frequency)
 
 @app.route("/senario3")
 def get_word_price():

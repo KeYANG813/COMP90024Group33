@@ -70,7 +70,7 @@ $(document).ready(function(){
   <ul class="clearfix">
     <li>
       <div class="boxall" style="height: 4.8rem">
-        <div class="alltitle">Regional Tweets: Time distribution</div>
+        <div class="alltitle">Regional Tweets: #Tweets mentions the related topic</div>
         <div class="allnav" id="echart1"></div>
         <div class="boxfoot"></div>
       </div>
@@ -125,7 +125,14 @@ $(document).ready(function(){
 <script>
   // var city_2018 = {}, city_2019 = {}, city_2020 = {}, city_2021 = {};
   var lang_data = [];
-  // var time_data = [];
+  var freq_data = [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+  ];
   var sent_data = [];
   var hashtags_data = [];
 
@@ -145,7 +152,7 @@ $(document).ready(function(){
     el:'#app',
     data:{
       totalltweets:0,
-      // city_tweets:0,
+      freq_tweets:0,
       city_lang:0,
       city_sentiment:0,
       // city_time_dis:0,
@@ -156,7 +163,7 @@ $(document).ready(function(){
     //  this.get_city_year_tweets()
      this.get_city_lang_distribution()
     //  this.get_city_sentiment()
-    //  this.get_city_timedistribution()
+    this.get_city_freq_tweet()
      this.get_city_topwords()
     },
     methods:{
@@ -173,43 +180,7 @@ $(document).ready(function(){
                 });
 
       },
-      // get_city_year_tweets:function(){
-      //   var that =this;
-
-      //   axios.get("/tweetperyearcity")
-      //           .then(function (response) {
-      //             console.log(response);
-      //             that.city_tweets=response.data;
-      //             city_2018['adelaide'] = that.city_tweets.adelaide['2018']
-      //             city_2018['brisbane'] =  that.city_tweets.brisbane['2018']
-      //             city_2018["canberra"] = that.city_tweets.canberra['2018']
-      //             city_2018["melbourne"] = that.city_tweets.melbourne['2018']
-      //             city_2018["sydney"] = that.city_tweets.sydney['2018']
-      //               //2019年数据
-      //             city_2019['adelaide'] = that.city_tweets.adelaide['2019']
-      //             city_2019['brisbane'] =  that.city_tweets.brisbane['2019']
-      //             city_2019["canberra"] = that.city_tweets.canberra['2019']
-      //             city_2019["melbourne"] = that.city_tweets.melbourne['2019']
-      //             city_2019["sydney"] = that.city_tweets.sydney['2019']
-      //               //2020年数据
-      //             city_2020['adelaide'] = that.city_tweets.adelaide['2020']
-      //             city_2020['brisbane'] =  that.city_tweets.brisbane['2020']
-      //             city_2020["canberra"] = that.city_tweets.canberra['2020']
-      //             city_2020["melbourne"] = that.city_tweets.melbourne['2020']
-      //             city_2020["sydney"] = that.city_tweets.sydney['2020']
-      //               //2021年数据
-      //             city_2021['adelaide'] = that.city_tweets.adelaide['2021']
-      //             city_2021['brisbane'] =  that.city_tweets.brisbane['2021']
-      //             city_2021["canberra"] = that.city_tweets.canberra['2021']
-      //             city_2021["melbourne"] = that.city_tweets.melbourne['2021']
-      //             city_2021["sydney"] = that.city_tweets.sydney['2021']
-      //             // console.log(this.city_tweets);
-      //           })
-      //           .catch(function (error) {
-      //             console.log(error);
-      //           });
-
-      // },
+     
       get_city_lang_distribution:function(){
         var that =this;
 
@@ -230,41 +201,33 @@ $(document).ready(function(){
 
       },
 
-      // get_city_sentiment:function(){
-      //   var that =this;
-      //   axios.get("/sentiment")
-      //           .then(function (response) {
-      //             console.log(response);
-      //             that.city_sentiment=response.data;
-      //             for (loc in geoCoordMap){
-      //               window[loc+'_sent'] = []
-      //               for (var sent in that.city_sentiment[loc]){
-      //                   window[loc+'_sent'].push({"name": sent, "value": that.city_sentiment[loc][sent]})}                      
-      //               sent_data.push(window[loc+'_sent'])}
-      //           })
-      //           .catch(function (error) {
-      //             console.log(error);
-      //           });
+      get_city_freq_tweet(){
+        var that =this;
+        axios.get("/senario2")
+                .then(function (response) {
+                  console.log(response);
+                  that.freq_tweets=response.data;
+                  for (var i = 0; i < freq_data.length; i++){
+                    if (i == 0){
+                      freq_data[i].push("Hot Topic")
+                      freq_data[i].push("shopping")
+                      freq_data[i].push("luxury")
+                      freq_data[i].push("travel")
+                    } else {
+                      freq_data[i].push(keys[i-1])
+                      freq_data[i].push(that.freq_tweets[keys[i-1]]["shopping"])
+                      freq_data[i].push(that.freq_tweets[keys[i-1]]["luxury"])
+                      freq_data[i].push(that.freq_tweets[keys[i-1]]["travel"])
+                    }
+                  }
+                  console.log(freq_data)
+                  
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
 
-      // },
-      // get_city_timedistribution(){
-      //   var that =this;
-
-      //   axios.get("/timedistribution")
-      //           .then(function (response) {
-      //             console.log(response);
-      //             that.city_time_dis=response.data;
-      //             for (loc in geoCoordMap){
-      //               window[loc+'_time'] = []
-      //               for (var time in that.city_time_dis[loc]){
-      //                   window[loc+'_time'].push({"name": time, "value": that.city_time_dis[loc][time]})}                      
-      //               time_data.push(window[loc+'_time'])}
-      //           })
-      //           .catch(function (error) {
-      //             console.log(error);
-      //           });
-
-      // },
+      },
       get_city_topwords(){
         var that =this;
 
