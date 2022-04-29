@@ -1,21 +1,6 @@
-# app.py - a minimal flask api using flask_restful
-# from flask import Flask
-# from flask_restful import Resource, Api
-
-# app = Flask(__name__)
-# api = Api(app)
-
-# class HelloWorld(Resource):
-#     def get(self):
-#         return {'hello': 'world'}
-
-# api.add_resource(HelloWorld, '/')
-
-# if __name__ == '__main__':
-#     app.run(debug=True, host='0.0.0.0')
-
 from flask import Flask
 from flask import render_template, jsonify
+import language_analysis
 
 app = Flask(__name__)
 
@@ -81,7 +66,7 @@ def get_total():
 # language distribution each city
 @app.route("/senario1")
 def get_lang_dis():
-    langdis = language_dic
+    langdis = language_analysis.lang_count_for_city()
     return jsonify(langdis)
 
 
