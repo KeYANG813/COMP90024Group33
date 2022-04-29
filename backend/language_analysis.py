@@ -55,14 +55,19 @@ def lang_count_for_city():
                     lang_sorted[i] = (j['ISO language name'].split(", ")[0],lang_sorted[i][1])
         lang_sorted_dict = dict(list(Counter(key for key, num in lang_sorted for idx in range(num)).items()))
         lang_dict[city] = lang_sorted_dict
+    
+    dict_change = {"db_melbourne": "melbourne","db_sydney": "sydney", "db_brisbane": "brisbane", "db_darwin": "darwin","db_adelaide": "adelaide"}
+    for old, new in dict_change.items():
+        lang_dict[new] = lang_dict.pop(old)
     return lang_dict
-  
+
+
 
 # people twitter time over cities
 # def time_dis():
 #     client = couchdb_init()
 #     dbname = ["db_melbourne", "db_sydney", "db_adelaide", "db_darwin", "db_brisbane"]
-#     time_dis = {}
+#     time_dis = {}s
 #     for city in dbname:
 #         citydb = client[city]
 #         djson = json.loads(hour)
