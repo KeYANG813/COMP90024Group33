@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import render_template, jsonify
-import language_analysis
+import language_analysis, total_tweets
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ language_dic = {
     "Filipino":1703,"Hindi":652,"Spanish":392,"Punjabi":477}
 }
 
-total_tweet = { "number": 3000000 }
+# total_tweet = { "number": 3000000 }
 
 word_dic = {
     "sydney": [{"name":"www", "value": 2000}, {"name":"djfn", "value": 28400}, {"name":"llll", "value": 346}],
@@ -69,7 +69,7 @@ def template_test():
 # language distribution each city
 @app.route("/totaltweet")
 def get_total():
-    total_t = total_tweet
+    total_t = total_tweets.total_twts()[1] 
     return jsonify(total_t)
 
 # language distribution each city
@@ -96,9 +96,10 @@ def get_setiment():
 
 # total tweet number each city
 @app.route("/tweetpercity")
-def get_total_twts():
+def get_city_twts():
     # totaltwt = data_analysis.total_twts()
-    totaltwt = city_tweet
+    totaltwt = total_tweets.total_twts()[0]
+    #totaltwt = city_tweet
     return jsonify(totaltwt)
 
 

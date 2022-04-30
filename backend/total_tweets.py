@@ -1,3 +1,8 @@
+from cloudant.client import CouchDB
+from cloudant.view import View
+import json
+from collections import Counter
+
 def total_twts():
     client = CouchDB('user', 'pass', url='http://172.26.132.223:5984', connect=True)
     cities = ["db_melbourne", "db_sydney", "db_adelaide", "db_darwin", "db_brisbane"]
@@ -30,11 +35,5 @@ def total_twts():
                 
         total_twts[city] = year_count
         current_twts['total_tweets'] = number
-    return total_twts, current_twts
-
-from cloudant.client import CouchDB
-from cloudant.view import View
-import json
-from collections import Counter
-
-print(total_twts())
+    return  total_twts, current_twts
+    #

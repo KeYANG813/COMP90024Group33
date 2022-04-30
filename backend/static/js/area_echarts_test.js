@@ -355,7 +355,7 @@ $(function () {
                                     .slice(0, 6)
                                 ),
                                 symbolSize: function (val) {
-                                  return val[2] / 10;
+                                  return val[2] / 100000;
                                 },   
                                 encode: {
                                   value: 2

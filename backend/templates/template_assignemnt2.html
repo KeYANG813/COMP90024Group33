@@ -85,12 +85,12 @@ $(document).ready(function(){
   <div class="bar">
     <div class="barbox">
       <ul class="clearfix">
-        <li class="pulll_left counter" v-text="totalltweets">{{totalltweets}}</li>
+        <li class="pulll_left counter" v-text="totalltweets">{{totaltweets}}</li>
       </ul>
     </div>
     <div class="barbox2">
       <ul class="clearfix">
-        <li class="pulll_left">Total Tweets</li>
+        <li class="pulll_left">Total Live Tweets</li>
       </ul>
     </div>
   </div>
@@ -105,7 +105,7 @@ $(document).ready(function(){
     <div class="barbox">
       <ul class="clearfix">
        
-        <li class="pulll_left counter" v-text="totalltweets">{{totalltweets}}</li>
+        <li class="pulll_left counter" v-text="totalltweets">{{ totaltweets }}</li>
       </ul>
     </div>
     <div class="barbox2">
@@ -218,26 +218,6 @@ $(document).ready(function(){
     },
     
     methods:{
-      get_city_tweets:function(){
-        var that =this;
-  
-        axios.get("/tweetpercity")
-                .then(function (response) {
-                  // console.log(response);
-                  that.city_tweets=response.data;
-                  // console.log(this.city_tweets);
-                  city['adelaide'] = that.city_tweets.adelaide
-                  city['brisbane'] =  that.city_tweets.brisbane
-                  city["darwin"] = that.city_tweets.darwin
-                  city["melbourne"] = that.city_tweets.melbourne
-                  city["sydney"] = that.city_tweets.sydney
-                  console.log(city);
-                })
-                .catch(function (error) {
-                  console.log(error);
-                });
-
-      },
 
       get_total_tweets:function(){
         var that =this;
@@ -245,7 +225,8 @@ $(document).ready(function(){
         axios.get("/totaltweet")
                 .then(function (response) {
                   console.log(response);
-                  that.totalltweets=response.data['number'];
+                  that.totaltweets=response.data['total_tweets'];
+                  console.log(response.data['total_tweets']);
                 })
                 .catch(function (error) {
                   console.log(error);
@@ -328,17 +309,21 @@ $(document).ready(function(){
       },
       get_city_tweets:function(){
         var that =this;
-        console.log(document.getElementById("canvas"));
         axios.get("/tweetpercity")
                 .then(function (response) {
                   // console.log(response);
                   that.city_tweets=response.data;
                   // console.log(that.city_tweets);
-                  city['adelaide'] = that.city_tweets.adelaide
-                  city['brisbane'] =  that.city_tweets.brisbane
-                  city["darwin"] = that.city_tweets.darwin
-                  city["melbourne"] = that.city_tweets.melbourne
-                  city["sydney"] = that.city_tweets.sydney
+                  // city['adelaide'] = that.city_tweets.adelaide
+                  // city['brisbane'] =  that.city_tweets.brisbane
+                  // city["darwin"] = that.city_tweets.darwin
+                  // city["melbourne"] = that.city_tweets.melbourne
+                  // city["sydney"] = that.city_tweets.sydney
+                  city['adelaide'] = that.city_tweets.db_adelaide['2022']
+                  city['brisbane'] =  that.city_tweets.db_brisbane['2022']
+                  city["darwin"] = that.city_tweets.db_darwin['2022']
+                  city["melbourne"] = that.city_tweets.db_melbourne['2022']
+                  city["sydney"] = that.city_tweets.db_sydney['2022']
                   console.log(city);
                 })
                 .catch(function (error) {
