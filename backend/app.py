@@ -48,6 +48,15 @@ setiment_dic = {
     "darwin":  243,
 }
 
+city_tweet = {
+    
+    "melbourne": 180,
+    "sydney": 200,
+    "brisbane": 80,
+    "adelaide": 100,
+    "darwin": 50
+}
+
 
 # @app.route('/')
 # def helloWorld():
@@ -84,6 +93,13 @@ def get_word_price():
 def get_setiment():
     setiment = setiment_dic
     return jsonify(setiment)
+
+# total tweet number each city
+@app.route("/tweetpercity")
+def get_total_twts():
+    # totaltwt = data_analysis.total_twts()
+    totaltwt = city_tweet
+    return jsonify(totaltwt)
 
 
 if __name__ == '__main__':

@@ -2,26 +2,34 @@
 <!doctype html>
 <html>
 <head>
-<meta http-equiv="refresh" content="300">	
-<meta charset="utf-8">
-<title>index</title>
-<script type="text/javascript" src="../static/js/jquery.js"></script>
+  <meta http-equiv="refresh" content="300">	
+  <meta charset="utf-8">
+  <title>webAPP</title>
+  <script type="text/javascript" src="../static/js/jquery.js"></script>
+  <link rel="stylesheet" href="../static/css/comon2.css">
+</head>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
 
   <!-- <script type="text/javascript" src="../static/js/axios.min.js"></script> -->
-<link rel="stylesheet" href="../static/css/comon0.css">
+
 <div id="app">
   <!-- style="opacity: .5" 透明度 -->
   <div class="canvas" >
-    <iframe frameborder="0" scrolling="auto" src="../static/js/melsa4.html" style="width: 100%; height: 100%"></iframe>
+    <h1 class="padding">first map</h1>
+    <iframe frameborder="0" scrolling="no" src="../static/js/melsa4.html" style="width: 100%; height: 65%"></iframe>
+    <h1 class="padding">second map</h1>
+    <iframe frameborder="0" scrolling="no" src="../static/js/melsa4.html" style="width: 100%; height: 65%"></iframe>
   </div>
   <div class="loading">
     <div class="loadbox"> <img src="../static/picture/loading.gif"> Loading... </div>
   </div>
 
-</head>
+
 <script>
 	$(window).load(function(){  
              $(".loading").fadeOut()
@@ -43,6 +51,8 @@ $(document).ready(function(){
 <script type="text/javascript" src="../static/js/vue.min.js"></script>
 	<!-- <script language="JavaScript" src="../static/js/js.js"></script> -->
 <body>
+
+
 
 <div class="head">
   <h1>Tweet Analysis</h1>
@@ -69,64 +79,94 @@ $(document).ready(function(){
 </div>
 
 
+<div class="mainbox1"  >
+  <ul class="clearfix">
+    <li>
+  <div class="bar">
+    <div class="barbox">
+      <ul class="clearfix">
+        <li class="pulll_left counter" v-text="totalltweets">{{totalltweets}}</li>
+      </ul>
+    </div>
+    <div class="barbox2">
+      <ul class="clearfix">
+        <li class="pulll_left">Total Tweets</li>
+      </ul>
+    </div>
+  </div>
+  <div class="map">
+    <div class="map4" id="map_1"></div>
+  </div>
+</li>
+
+
+<li>
+  <div class="bar">
+    <div class="barbox">
+      <ul class="clearfix">
+       
+        <li class="pulll_left counter" v-text="totalltweets">{{totalltweets}}</li>
+      </ul>
+    </div>
+    <div class="barbox2">
+      <ul class="clearfix">
+        <li class="pulll_left">AURIN Total Tweets</li>
+      </ul>
+    </div>
+  </div>
+</li>
+</ul>
+</div>
+
 <div class="mainbox"  >
   <ul class="clearfix">
     <li>
+      <div class="bar">
+      <div class="barbox">
+        <h1 class="padding">Language for each city</h1>
+      </div>
+    </div>
+        <div class="boxall" style="height: 4.8rem">
+          <div class="alltitle">Regional Tweets: Language Distribution</div>
+          <div class="allnav" id="echart2"></div>
+          <div class="boxfoot"></div>
+        </div>
+     
+        <div class="boxall" style="height:4.8rem">
+        <div class="alltitle">Sentiment Analysis</div>
+        <div class="allnav" id="echart4"></div>
+        <div class="boxfoot"></div>
+      </div>
+    </li>
+
+    <li>
+      <h1 class="padding">xxx for each city</h1>
+      <div class="boxall" style="height: 4.8rem">
+        <div class="alltitle">Regional Top emontional words</div>
+        <div class="allnav" id="echart5"></div>
+        <div class="boxfoot"></div>
+      </div>
       <div class="boxall" style="height: 4.8rem">
         <div class="alltitle">Regional Tweets: #Tweets mentions the related topic</div>
         <div class="allnav" id="echart1"></div>
         <div class="boxfoot"></div>
       </div>
-      <div class="boxall" style="height: 4.8rem">
-        <div class="alltitle">Regional Tweets: Language Distribution</div>
-        <div class="allnav" id="echart2"></div>
-        <div class="boxfoot"></div>
-      </div>
+
 
       <div class="boxfoot">
 			
 		  </div>
 
     </li>
-    <li>
-      <div class="bar">
-        <div class="barbox">
-          <ul class="clearfix">
-            <li class="pulll_left counter" v-text="totalltweets">{{totalltweets}}</li>
-          </ul>
-        </div>
-        <div class="barbox2">
-          <ul class="clearfix">
-            <li class="pulll_left">Total Tweets</li>
-          </ul>
-        </div>
-      </div>
-      <div class="map">
-        <div class="map1"><img src="../static/picture/lbx.png"></div>
-        <div class="map2"><img src="../static/picture/jt.png"></div>
-        <!-- <div class="map3"><img src="../static/picture/map.png"></div> -->
-        <div class="map4" id="map_1"></div>
-      </div>
-    </li>
-    <li>
-        <div class="boxall" style="height:4.8rem">
-        <div class="alltitle">Sentiment Analysis</div>
-        <div class="allnav" id="echart4"></div>
-        <div class="boxfoot"></div>
-      </div>
-      <div class="boxall" style="height: 4.8rem">
-        <div class="alltitle">Regional Top emontional words</div>
-        <div class="allnav" id="echart5"></div>
-        <div class="boxfoot"></div>
-      </div>
-    </li>
   </ul>
 </div>
+
 <div class="back"></div>
 </div>
 
 <script>
   // var city_2018 = {}, city_2019 = {}, city_2020 = {}, city_2021 = {};
+  var city = {}
   var lang_data = [];
   var freq_data = [
         [],
@@ -152,6 +192,8 @@ $(document).ready(function(){
       "melbourne": [144.9631, -37.8136],
       "sydney": [151.2093, -33.8688],
   };
+
+  
   var keys = Object.keys( geoCoordMap );
   // console.log(keys)
 
@@ -162,18 +204,41 @@ $(document).ready(function(){
       freq_tweets:0,
       city_lang:0,
       city_sentiment:0,
+      city_tweets:0,
       // city_time_dis:0,
       city_hashtags:0,
     },
     mounted (){
      this.get_total_tweets()
-    //  this.get_city_year_tweets()
+     this.get_city_tweets()
      this.get_city_lang_distribution()
      this.get_city_sentiment()
      this.get_city_freq_tweet()
      this.get_city_topwords()
     },
+    
     methods:{
+      get_city_tweets:function(){
+        var that =this;
+  
+        axios.get("/tweetpercity")
+                .then(function (response) {
+                  // console.log(response);
+                  that.city_tweets=response.data;
+                  // console.log(this.city_tweets);
+                  city['adelaide'] = that.city_tweets.adelaide
+                  city['brisbane'] =  that.city_tweets.brisbane
+                  city["darwin"] = that.city_tweets.darwin
+                  city["melbourne"] = that.city_tweets.melbourne
+                  city["sydney"] = that.city_tweets.sydney
+                  console.log(city);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+
+      },
+
       get_total_tweets:function(){
         var that =this;
 
@@ -261,6 +326,26 @@ $(document).ready(function(){
 
 
       },
+      get_city_tweets:function(){
+        var that =this;
+        console.log(document.getElementById("canvas"));
+        axios.get("/tweetpercity")
+                .then(function (response) {
+                  // console.log(response);
+                  that.city_tweets=response.data;
+                  // console.log(that.city_tweets);
+                  city['adelaide'] = that.city_tweets.adelaide
+                  city['brisbane'] =  that.city_tweets.brisbane
+                  city["darwin"] = that.city_tweets.darwin
+                  city["melbourne"] = that.city_tweets.melbourne
+                  city["sydney"] = that.city_tweets.sydney
+                  console.log(city);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+
+      },
       get_city_topwords(){
         var that =this;
 
@@ -278,14 +363,14 @@ $(document).ready(function(){
       },
     }
 
+    
+
   });
 
 </script>
+
 <script type="text/javascript" src="../static/js/mapData.js"></script>
-<!-- <script type="text/javascript" src="../static/js/china.js"></script> -->
 <script type="text/javascript" src="../static/js/australia.js"></script>
-<!-- <script type="text/javascript" src="../static/js/area_echarts.js"></script> -->
-<!-- <script type="text/javascript" src="../static/js/variables.js"></script> -->
 <script type="text/javascript" src="../static/js/area_echarts_test.js"></script>
 </body>
 </html>
