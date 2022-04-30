@@ -85,7 +85,7 @@ $(document).ready(function(){
   <div class="bar">
     <div class="barbox">
       <ul class="clearfix">
-        <li class="pulll_left counter" v-text="totalltweets">{{totaltweets}}</li>
+        <li class="pulll_left counter" v-text="totalltweets">{{totalltweets}}</li>
       </ul>
     </div>
     <div class="barbox2">
@@ -105,7 +105,7 @@ $(document).ready(function(){
     <div class="barbox">
       <ul class="clearfix">
        
-        <li class="pulll_left counter" v-text="totalltweets">{{ totaltweets }}</li>
+        <li class="pulll_left counter" v-text="totalltweets">{{ totalltweets }}</li>
       </ul>
     </div>
     <div class="barbox2">
@@ -225,7 +225,7 @@ $(document).ready(function(){
         axios.get("/totaltweet")
                 .then(function (response) {
                   console.log(response);
-                  that.totaltweets=response.data['total_tweets'];
+                  that.totalltweets=response.data['total_tweets'];
                   console.log(response.data['total_tweets']);
                 })
                 .catch(function (error) {

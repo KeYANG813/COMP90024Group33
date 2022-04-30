@@ -372,9 +372,13 @@ $(function () {
                                 },
 
                                 itemStyle: {
-                                  shadowBlur: 10,
-                                  shadowColor: '#333'
+                                    normal:{
+                                        color:'#FFA500',
+                                    },
+                                    shadowBlur: 10,
+                                    shadowColor: '#FFA500'
                                 },
+                                
                                 emphasis: {
                                   scale: true
                                 },
