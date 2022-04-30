@@ -1,18 +1,27 @@
 from cloudant.client import Cloudant
 import tweepy
-from tweepy import Stream
 import json as js
 import argparse
 from datetime import datetime
 import time
-import json
+from urllib3.exceptions import ProtocolError
 
 USERNAME = 'user'
 PASSWORD = 'pass'
 URL = 'http://172.26.132.223:5984'
-client = Cloudant(USERNAME, PASSWORD, url=URL, connect=True, auto_renew=True)
+try:
+    client = Cloudant(USERNAME, PASSWORD, url=URL, connect=True, auto_renew=True)
+except:
+    print("Cannot find CouchDB Server ... Exiting\n")
+    print("----_Stack Trace_-----\n")
+    raise
 print(client.all_dbs())
-db = client.create_database('db_brisbane', partitioned=False)
+
+try:
+    db = client.create_database('db_brisbane', partitioned=False)
+except:
+    print("Connectd to the database failed!\n")
+
 
 def account_info():
 
@@ -76,6 +85,15 @@ class IDPrinter(tweepy.Stream):
     def on_status(self, status):
         print(status.id)
         print(status.place)
+    
+    def on_error(self, status):
+        print(status)
+        if status_code == 420:
+            time.sleep(10)
+        if status_code == 429:
+            time.sleep(15*60 + 1)
+        else:
+            time.sleep(10)
 
 if __name__ == '__main__':
     account = account_info()
@@ -91,6 +109,17 @@ if __name__ == '__main__':
     Consumer_Key, Consumer_Secret,
     Access_Token, Access_Token_Secret
     )
-    printer.filter(locations = [152.0734,-28.3640,153.5467,-26.4523])
+    
+    while True:
+        try:
+            printer.filter(locations = [152.0734,-28.3640,153.5467,-26.4523])
+        except ProtocolError as e:
+            print(f"{timestamp()} ProtocolError: {e}\n")
+        except AttributeError as e:
+            print(f"{timestamp()} AttributeError: {e}\n")
+        except Exception as e:
+            print(f"{timestamp()} Received unknown exception: {e}\n") 
+        finally:
+            continue
     
     
