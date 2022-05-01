@@ -48,5 +48,3 @@ def count_hashtags():
         citys[new] = citys.pop(old)
     
     return citys
-
-print(count_hashtags())
