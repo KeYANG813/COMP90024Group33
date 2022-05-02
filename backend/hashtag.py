@@ -13,29 +13,46 @@ def couchdb_init():
 def count_hashtags():
     citys = {}
     dbname = ["db_melbourne", "db_sydney", "db_adelaide", "db_darwin", "db_brisbane"]
+    design_hashtag_doc= '''
+    {
+      "_id" : "_design/hash",
+      "language": "javascript",
+      "views" : {
+        "count_hash":{
+          "map": "function(doc){if (doc.lang) {
+        
+            if (doc.entities) {
+                if (doc.entities.hashtags) {
+                    if (doc.entities.hashtags.length > 0) {
+                        for (var idx in doc.entities.hashtags) {
+                            emit(doc.entities.hashtags[idx].text, 1);
+                        }
+                    }
+                
+                }
+            }
+        }
+        }",  
+          "reduce" : "_count"}
+      }
+    }
+    '''
     client = couchdb_init()
     for city in dbname:
-        city_hashtag = {}
+        citydb = client[city]
+        hashtag_num = {}
         top_hashtags = []
-        results = Result(client[city].all_docs, include_docs=True)
-        for i in results:
-            doc = i['doc']
-            if "lang" in doc.keys():
-                if doc['lang'] != "en":
-                    continue
-            else:
-                continue
-            if "entities" in doc.keys():
-                entities = doc["entities"]
-                if "hashtags" in entities.keys():
-                    tag_list = entities["hashtags"]
-                    if (tag_list != []):
-                        for dic in tag_list:
-                            if dic['text'] not in city_hashtag:
-                                city_hashtag[dic['text']] = 1
-                            else:
-                                city_hashtag[dic['text']] += 1
-        hashtag_sorted = dict(sorted(city_hashtag.items(), key=lambda item: item[1], reverse = True)[:10])
+        json_data = json.loads(design_hashtag_doc, strict=False)
+        if not json_data['_id'] in citydb:
+            citydb.create_document(json_data)
+
+        create_view = View(citydb['_design/hash'], 'count_hash')
+        with create_view.custom_result(group=True) as results:
+            for result in results:
+                hashtag_num[result['key']] = result['value']
+
+            hashtag_sorted = dict(sorted(hashtag_num.items(), key=lambda item: item[1], reverse = True)[:10])
+            
         for key in hashtag_sorted:
             format_dic = {}
             format_dic["name"] = key
