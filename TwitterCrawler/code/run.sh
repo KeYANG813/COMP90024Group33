@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Sydney
-python tweet_crawler_sydney.py &
+# start 1
+start 1 > python tweet_crawler_sydney.py &
 
-# Adelaide
-python tweet_crawler_adelaide.py &
+# start 2
+start 2 > python tweet_crawler_adelaide.py &
