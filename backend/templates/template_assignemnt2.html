@@ -18,13 +18,13 @@
   <!-- <script type="text/javascript" src="../static/js/axios.min.js"></script> -->
 
 <div id="app">
-  <!-- style="opacity: .5" 透明度 -->
-  <div class="canvas" >
-    <h1 class="padding">first map</h1>
-    <iframe frameborder="0" scrolling="no" src="../static/js/melsa4.html" style="width: 100%; height: 65%"></iframe>
-    <h1 class="padding">second map</h1>
-    <iframe frameborder="0" scrolling="no" src="../static/js/melsa4.html" style="width: 100%; height: 65%"></iframe>
+  <!-- 透明度 -->
+  <div class="canvas" style="opacity: .8" >
+    <h1 class="padding">Melbourne SA2 compound sentiment analysis</h1>
+    <iframe frameborder="0" scrolling="no" src="../static/js/nltk.html" style="width: 100%; height: 63%"></iframe>
+
   </div>
+ 
   <div class="loading">
     <div class="loadbox"> <img src="../static/picture/loading.gif"> Loading... </div>
   </div>
@@ -78,6 +78,73 @@ $(document).ready(function(){
   </script>
 </div>
 
+<div class="mainbox1"  >
+  <ul class="clearfix">
+    <li>
+      <div class="bar">
+        <div class="barbox">
+          <ul class="clearfix">
+           
+            <li class="pulll_left counter" v-text="totalltweets">{{ totalltweets }}</li>
+          </ul>
+        </div>
+        <div class="barbox2">
+          <ul class="clearfix">
+            <li class="pulll_left">Melbourne Total Tweets (from old data)</li>
+          </ul>
+        </div>
+</li> 
+</ul>
+</div>
+
+
+
+<div class="mainbox4"  >
+  <ul class="clearfix">
+ 
+
+    <li>
+      <div class="bar2">
+        <div class="barbox3">
+          <ul class="clearfix">
+          <li class="padding">Melbourne Income Analysis</li>
+        </ul>
+        </div>
+      </div>
+      <div class="boxall" style="height: 6.4rem">
+        <div class="alltitle">Income over poor and rich suburbs</div>
+        <div class="allnav" id="echart6"></div>
+        <div class="boxfoot"></div>
+      </div>
+      <div class="boxfoot">
+
+		  </div>
+
+    </li>
+
+    <li>
+      <div class="bar2">
+        <div class="barbox3">
+          <ul class="clearfix">
+          <li class="padding">Melbourne Sentiment Analysis</li>
+        </ul>
+        </div>
+      </div>
+      <div class="boxall" style="height:6.4rem">
+        <div class="alltitle">Sentiment score over poor and rich suburbs</div>
+        <div class="allnav" id="echart4"></div>
+        <div class="boxfoot"></div>
+      </div>
+
+      <div class="boxfoot"></div>
+
+   
+    
+
+    </li>
+    
+  </ul>
+</div>
 
 <div class="mainbox1"  >
   <ul class="clearfix">
@@ -94,72 +161,62 @@ $(document).ready(function(){
       </ul>
     </div>
   </div>
-  <div class="map">
-    <div class="map4" id="map_1"></div>
-  </div>
-</li>
-
-
-<li>
-  <div class="bar">
-    <div class="barbox">
-      <ul class="clearfix">
-       
-        <li class="pulll_left counter" v-text="totalltweets">{{ totalltweets }}</li>
-      </ul>
-    </div>
-    <div class="barbox2">
-      <ul class="clearfix">
-        <li class="pulll_left">AURIN Total Tweets</li>
-      </ul>
-    </div>
-  </div>
-</li>
+</li> 
 </ul>
 </div>
 
-<div class="mainbox"  >
+<div class="mainbox5"  >
   <ul class="clearfix">
     <li>
-      <div class="bar">
-      <div class="barbox">
-        <h1 class="padding">Language for each city</h1>
+      <div class="map">
+        <div class="map4" id="map_1"></div>
+      </div>
+    </li>
+
+
+    <li>
+      <div class="bar2">
+      <div class="barbox3">
+        <ul class="clearfix">
+        <li class="padding">Language Distribution</li>
+      </ul>
       </div>
     </div>
-        <div class="boxall" style="height: 4.8rem">
+        <div class="boxall" style="height: 5rem">
           <div class="alltitle">Regional Tweets: Language Distribution</div>
           <div class="allnav" id="echart2"></div>
           <div class="boxfoot"></div>
         </div>
      
-        <div class="boxall" style="height:4.8rem">
-        <div class="alltitle">Sentiment Analysis</div>
-        <div class="allnav" id="echart4"></div>
-        <div class="boxfoot"></div>
-      </div>
+     
     </li>
 
     <li>
-      <h1 class="padding">xxx for each city</h1>
-      <div class="boxall" style="height: 4.8rem">
-        <div class="alltitle">Regional Top emontional words</div>
+      <div class="bar2">
+        <div class="barbox3">
+          <ul class="clearfix">
+          <li class="padding">Hashtags Word Cloud</li>
+        </ul>
+        </div>
+      </div>
+      <div class="boxall" style="height: 5rem">
+        <div class="alltitle">Regional Top hashtags</div>
         <div class="allnav" id="echart5"></div>
         <div class="boxfoot"></div>
       </div>
-      <div class="boxall" style="height: 4.8rem">
-        <div class="alltitle">Regional Tweets: #Tweets mentions the related topic</div>
-        <div class="allnav" id="echart1"></div>
-        <div class="boxfoot"></div>
-      </div>
-
-
       <div class="boxfoot">
 			
 		  </div>
 
     </li>
-  </ul>
+
+</ul>
 </div>
+
+
+
+
+
 
 <div class="back"></div>
 </div>
@@ -177,6 +234,10 @@ $(document).ready(function(){
         []
   ];
   var seti_data = [
+        [],
+        []
+  ];
+  var income_data = [
         [],
         []
   ];
@@ -207,6 +268,7 @@ $(document).ready(function(){
       city_tweets:0,
       // city_time_dis:0,
       city_hashtags:0,
+      mel_income:0,
     },
     mounted (){
      this.get_total_tweets()
@@ -215,6 +277,7 @@ $(document).ready(function(){
      this.get_city_sentiment()
      this.get_city_freq_tweet()
      this.get_city_topwords()
+     this.get_city_income()
     },
     
     methods:{
@@ -346,6 +409,33 @@ $(document).ready(function(){
                 });
 
       },
+
+      // get_city_income(){
+      //   var that =this;
+      //   axios.get("/senario2income")
+      //           .then(function (response) {
+      //             console.log(response);
+      //             that.mel_income=response.data;
+      //             for (var i = 0; i < income_data.length; i++){
+      //               if (i == 0){
+      //                 for (loc in that.mel_income){
+      //                   income_data[i].push(loc)
+      //                 }
+      //               } else {
+      //                 for (loc in that.mel_income){
+      //                   income_data[i].push(that.mel_income[loc])
+      //                 }
+      //               }
+      //             }
+      //             console.log(income_data)
+                  
+      //           })
+      //           .catch(function (error) {
+      //             console.log(error);
+      //           });
+      // },
+
+
     }
 
     
