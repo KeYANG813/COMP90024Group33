@@ -109,7 +109,7 @@ if __name__ == '__main__':
     Consumer_Key, Consumer_Secret,
     Access_Token, Access_Token_Secret
     )
-
+    print("start crawler......")
     while True:
         try:
             printer.filter(locations = [149.9719,-34.3312,151.6305,-32.9961])
