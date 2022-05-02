@@ -65,7 +65,7 @@ def account_info():
         "db": {
             "user": "user",
             "password": "pass",
-            "url": "http://127.0.0.1:5984"
+            "url": "http://172.26.132.223:5984"
         }
     }
     return account
