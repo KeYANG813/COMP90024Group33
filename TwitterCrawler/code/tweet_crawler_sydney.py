@@ -9,7 +9,7 @@ import json
 
 USERNAME = 'user'
 PASSWORD = 'pass'
-URL = 'http://127.0.0.1:5984'
+URL = 'http://172.26.132.223:5984'
 try:
     client = Cloudant(USERNAME, PASSWORD, url=URL, connect=True, auto_renew=True)
 except:
@@ -39,6 +39,20 @@ def account_info():
                 "Access_Token": "1517696674243948545-ozARJ8xRdGarhfknxGHqvMs51uPXp3",
                 "Access_Token_Secret": "rN3JxUTER0PjMXqsy4WSgzqGk10IF29IBG7JXSotRUAxG",
                 "bearer_token":"AAAAAAAAAAAAAAAAAAAAAEo9bwEAAAAA40DLUb109523Heu6ePJD3vtThCc%3DjIH9qTJi0qCyhH9V98DtTQLLMmoV9V2mSRr4W5f9tF8m8Iee8y"
+            },
+            "christina2": {
+                "Consumer_Key": "NiN2E5xgpBPCVkfYywHqc14ZE",
+                "Consumer_Secret": "g1mlvEAI9JlVvzgDFjlilGewtbrfsd3W6IyYtG9fqghOIm6nwn",
+                "Access_Token": "1517696674243948545-wBmsqL0LgXlHyxgCnBIgjWH305hGLe",
+                "Access_Token_Secret": "mM9CbWlNbH9be0cMOlGDLV2sc2CLvWcD2Nyt4FDh5Glk9",
+                "bearer_token":"AAAAAAAAAAAAAAAAAAAAALOtbwEAAAAAS6GIbpYYMDLRdsVcFeEPqkfDizc%3DjwkHEy4hesjdPiXRMKLmYAlrF7GkLfL27mD9UOcLe6LI6C2nTz"
+            },
+            "christina3": {
+                "Consumer_Key": "XwIG0yNQExqRoON18fpY8cW98",
+                "Consumer_Secret": "dZWwg1daAHLezqbFIJ8dnWZDS34s8dv0erI8MKYPDmrjTlMh1c",
+                "Access_Token": "1517696674243948545-xLPlqXaBKOsQQXkBVkFZQ4EUSrHKja",
+                "Access_Token_Secret": "83MIicJjO1hYxvpKaHUjIve0cihjTCodmZ7YHYJjqvBsm",
+                "bearer_token":"AAAAAAAAAAAAAAAAAAAAANmtbwEAAAAAdxNdCIq24x2lcpJoS0TWjCxv2Ck%3Dh3lQ1EueBEQnMenBgk8ZeOZ3sXQXJ9ciayy4VnbZNL3Rq78uc4"
             },
             "wendy": {
                 "Consumer_Key": "mPbAIQI6GiUKsR89tBZ1dOVte",
@@ -83,10 +97,10 @@ class IDPrinter(tweepy.Stream):
 
 if __name__ == '__main__':
     account = account_info()
-    Consumer_Key = account["accounts"]["christina"]["Consumer_Key"]
-    Consumer_Secret = account["accounts"]["christina"]["Consumer_Secret"]
-    Access_Token = account["accounts"]["christina"]["Access_Token"]
-    Access_Token_Secret = account["accounts"]["christina"]["Access_Token_Secret"]
+    Consumer_Key = account["accounts"]["christina3"]["Consumer_Key"]
+    Consumer_Secret = account["accounts"]["christina3"]["Consumer_Secret"]
+    Access_Token = account["accounts"]["christina3"]["Access_Token"]
+    Access_Token_Secret = account["accounts"]["christina3"]["Access_Token_Secret"]
     stream = tweepy.Stream(
     Consumer_Key, Consumer_Secret,
     Access_Token, Access_Token_Secret

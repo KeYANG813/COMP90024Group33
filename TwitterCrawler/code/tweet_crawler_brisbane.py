@@ -97,10 +97,10 @@ class IDPrinter(tweepy.Stream):
 
 if __name__ == '__main__':
     account = account_info()
-    Consumer_Key = account["accounts"]["wendy"]["Consumer_Key"]
-    Consumer_Secret = account["accounts"]["wendy"]["Consumer_Secret"]
-    Access_Token = account["accounts"]["wendy"]["Access_Token"]
-    Access_Token_Secret = account["accounts"]["wendy"]["Access_Token_Secret"]
+    Consumer_Key = account["accounts"]["xwqian2"]["Consumer_Key"]
+    Consumer_Secret = account["accounts"]["xwqian2"]["Consumer_Secret"]
+    Access_Token = account["accounts"]["xwqian2"]["Access_Token"]
+    Access_Token_Secret = account["accounts"]["xwqian2"]["Access_Token_Secret"]
     stream = tweepy.Stream(
     Consumer_Key, Consumer_Secret,
     Access_Token, Access_Token_Secret

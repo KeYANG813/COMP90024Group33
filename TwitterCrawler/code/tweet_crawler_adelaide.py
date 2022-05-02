@@ -40,6 +40,20 @@ def account_info():
                 "Access_Token_Secret": "rN3JxUTER0PjMXqsy4WSgzqGk10IF29IBG7JXSotRUAxG",
                 "bearer_token":"AAAAAAAAAAAAAAAAAAAAAEo9bwEAAAAA40DLUb109523Heu6ePJD3vtThCc%3DjIH9qTJi0qCyhH9V98DtTQLLMmoV9V2mSRr4W5f9tF8m8Iee8y"
             },
+            "christina2": {
+                "Consumer_Key": "NiN2E5xgpBPCVkfYywHqc14ZE",
+                "Consumer_Secret": "g1mlvEAI9JlVvzgDFjlilGewtbrfsd3W6IyYtG9fqghOIm6nwn",
+                "Access_Token": "1517696674243948545-wBmsqL0LgXlHyxgCnBIgjWH305hGLe",
+                "Access_Token_Secret": "mM9CbWlNbH9be0cMOlGDLV2sc2CLvWcD2Nyt4FDh5Glk9",
+                "bearer_token":"AAAAAAAAAAAAAAAAAAAAALOtbwEAAAAAS6GIbpYYMDLRdsVcFeEPqkfDizc%3DjwkHEy4hesjdPiXRMKLmYAlrF7GkLfL27mD9UOcLe6LI6C2nTz"
+            },
+            "christina3": {
+                "Consumer_Key": "XwIG0yNQExqRoON18fpY8cW98",
+                "Consumer_Secret": "dZWwg1daAHLezqbFIJ8dnWZDS34s8dv0erI8MKYPDmrjTlMh1c",
+                "Access_Token": "1517696674243948545-xLPlqXaBKOsQQXkBVkFZQ4EUSrHKja",
+                "Access_Token_Secret": "83MIicJjO1hYxvpKaHUjIve0cihjTCodmZ7YHYJjqvBsm",
+                "bearer_token":"AAAAAAAAAAAAAAAAAAAAANmtbwEAAAAAdxNdCIq24x2lcpJoS0TWjCxv2Ck%3Dh3lQ1EueBEQnMenBgk8ZeOZ3sXQXJ9ciayy4VnbZNL3Rq78uc4"
+            },
             "wendy": {
                 "Consumer_Key": "mPbAIQI6GiUKsR89tBZ1dOVte",
                 "Consumer_Secret": "0Vsm4cXRuLutFREUj0elbpF92PyyIb29TSR1BdwGXivLUftVD9",
