@@ -17,8 +17,8 @@ $(function () {
         // var freChart = echarts.init(document.getElementById('echart1')); //初始化语言分布图
         var langChart = echarts.init(document.getElementById('echart2')); //初始化语言分布图
         var setiChart = echarts.init(document.getElementById('echart4')); //初始化语言分布图
-        var wordCloud = echarts.init(document.getElementById('echart5')); //初始化语言分布图
         var incomeChart = echarts.init(document.getElementById('echart6')); //初始化语言分布图
+        var wordCloud = echarts.init(document.getElementById('echart5')); //初始化语言分布图
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('map_1'));
 
@@ -203,7 +203,8 @@ $(function () {
             },
             series: {
             type: 'wordCloud',
-            sizeRange: [12,25],//文字范围
+            sizeRange: [12,30],//文字范围
+            // 12,25
             //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
             rotationRange: [-45, 90],
             rotationStep: 45,
@@ -392,27 +393,7 @@ $(function () {
               },
             ]
           };
-          
-        //--------------------------- Charts Initialisation ---------------------------\\
-
-        console.log(langdis_data[0])
-        console.log(freq_data)
-        // 初始化数据
-        langChart.setOption(lang_option);
-        setiChart.setOption(seti_option);
-        wordCloud.setOption(wordCloud_option);
-        incomeChart.setOption(income_option);
-        // freChart.setOption(fre_option);
-        window.addEventListener("resize",function(){
-            langChart.resize();
-            incomeChart.resize();
-            setiChart.resize();
-            wordCloud.resize();
-            // freChart.resize();
-        });
-
-
-       optionXyMap01 = {
+          optionXyMap01 = {
             title: {
                 text: "Five city live tweets", // 主标题文本，支持使用 \n 换行
                 //top: 20, // 定位 值: 'top', 'middle', 'bottom' 也可以是具体的值或者百分比
@@ -543,11 +524,26 @@ $(function () {
                         ]
                     // })
             }
-        myChart.setOption(optionXyMap01, true);
-        window.addEventListener("resize",function(){
-            myChart.resize();
-        });
+          
+        //--------------------------- Charts Initialisation ---------------------------\\
 
+        console.log(langdis_data[0])
+        console.log(freq_data)
+        // 初始化数据
+        langChart.setOption(lang_option);
+        incomeChart.setOption(income_option);
+        setiChart.setOption(seti_option);
+        myChart.setOption(optionXyMap01, true);
+        wordCloud.setOption(wordCloud_option);
+        // freChart.setOption(fre_option);
+        window.addEventListener("resize",function(){
+            langChart.resize();
+            incomeChart.resize();
+            setiChart.resize();
+            myChart.resize();
+            wordCloud.resize();
+            // freChart.resize();
+        });
 
         myChart.on('click', function (params) {
             var city = params.name;
