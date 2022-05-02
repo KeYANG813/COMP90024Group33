@@ -27,5 +27,4 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-RUN python tweet_crawler_sydney.py
-RUN python tweet_crawler_adelaide.py
+ENTRYPOINT  ["run.sh"]
