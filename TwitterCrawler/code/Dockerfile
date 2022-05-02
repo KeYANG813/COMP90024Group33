@@ -27,5 +27,5 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-RUN python tweet_crawler_sydney.py \
-    && python tweet_crawler_adelaide.py
+RUN python tweet_crawler_sydney.py
+RUN python tweet_crawler_adelaide.py
