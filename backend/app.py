@@ -135,8 +135,8 @@ def get_city_twts():
 # number of hashtag each city
 @app.route("/senario3")
 def get_word_price():
-    top_word = word_dic
-    # top_word = hashtag.count_hashtags()
+    #top_word = word_dic
+    top_word = hashtag.count_hashtags()
     return jsonify(top_word)    
 
 
