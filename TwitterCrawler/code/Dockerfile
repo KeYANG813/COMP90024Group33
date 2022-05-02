@@ -26,6 +26,5 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN pip install -r requirements.txt
-RUN 
 
-RUN nohup python3 tweet_crawler_sydney.py &
+CMD ["python", "tweet_crawler_sydney.py"]

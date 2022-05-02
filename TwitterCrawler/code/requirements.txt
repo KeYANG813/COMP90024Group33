@@ -1,5 +1,2 @@
 cloudant
 tweepy
-nltk
-#textblob
-#schedule
