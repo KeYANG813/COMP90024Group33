@@ -60,35 +60,39 @@
     path: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/__pycache__'
     state: absent
 
-#######
-# # Create Docker config directory
-# - name: Make sure that Docker config directory exists
-#   become: yes
-#   file:
-#     path: '~/.docker'
-#     state: 'directory'
+######
+# Create Docker config directory
+- name: Make sure that Docker config directory exists
+  become: yes
+  file:
+    path: '~/.docker'
+    state: 'directory'
 
-# # Set Docker proxy for University of Melbourne Research Cloud
-# - name: Ensure Docker client proxy settings are present on the server
-#   become: yes
-#   copy:
-#     content: "{{ docker_proxy_settings }}"
-#     dest: ~/.docker/config.json
+# Set Docker proxy for University of Melbourne Research Cloud
+- name: Ensure Docker client proxy settings are present on the server
+  become: yes
+  copy:
+    content: "{{ docker_proxy_settings }}"
+    dest: ~/.docker/config.json
 
-# - name: Shut down previous server
-#   become:
-#     yes
-#   shell: docker-compose down -d
-#   args:
-#     chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code'
+- name: Shut down previous server
+  become:
+    yes
+  shell: docker-compose down -d
+  args:
+    chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code'
 
+- name: copy crawler config to hosts
+  copy:
+    src: 'configs/crawlerSetting.py'
+    dest: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code'
 
-# - name: Start server
-#   become:
-#     yes
-#   shell: docker-compose up --build -d
-#   args:
-#     chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code'
+- name: Start server
+  become:
+    yes
+  shell: docker-compose up --build -d
+  args:
+    chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code'
 
 ######## 
 # #Build Docker image for tweet harvester
