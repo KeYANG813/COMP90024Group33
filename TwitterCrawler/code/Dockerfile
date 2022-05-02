@@ -26,9 +26,6 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN pip install -r requirements.txt
+RUN 
 
-RUN python tweet_crawler_melbourne.py\
-    && python tweet_crawler_adelaide.py\
-    && python tweet_crawler_darwin.py\
-    && python tweet_crawler_brisbane.py\
-    && python tweet_crawler_sydney.py
+RUN nohup python3 tweet_crawler_sydney.py &
