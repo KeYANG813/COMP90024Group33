@@ -4,7 +4,7 @@
 
 
 #run to retrieve historical data from MRC(provided by teaching team)
-- hosts: DataNodes
+- hosts: instance2
   vars_files:
     - host_vars/environment_variables.yaml
   gather_facts: true
