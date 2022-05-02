@@ -14,10 +14,11 @@ $(function () {
     // map();
     function map() {
 
-        var freChart = echarts.init(document.getElementById('echart1')); //初始化语言分布图
+        // var freChart = echarts.init(document.getElementById('echart1')); //初始化语言分布图
         var langChart = echarts.init(document.getElementById('echart2')); //初始化语言分布图
         var setiChart = echarts.init(document.getElementById('echart4')); //初始化语言分布图
         var wordCloud = echarts.init(document.getElementById('echart5')); //初始化语言分布图
+        var incomeChart = echarts.init(document.getElementById('echart6')); //初始化语言分布图
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('map_1'));
 
@@ -70,7 +71,8 @@ $(function () {
                 hoverAnimation: 'false',
                 radius: ['30%', '52%'],
                 center: ['50%', '50%'],
-                color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab','#06b4ab','#06c8ab','#06dcab','#06f0ab'],
+                // color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab','#06b4ab','#06c8ab','#06dcab','#06f0ab'],
+                color: ['#4B0082', '#800080', "8B008B", "#9932CC", "#8A2BE2", "#6A5ACD", "#9370DB", "#7B68EE", "#BA55D3", "#DDA0DD", "#D8BFD8", "#E6E6FA"],
                 data: lang_data[i], //.sort(function (a, b) { return a.value - b.value; }),
                 emphasis: {
                     itemStyle: {
@@ -156,7 +158,9 @@ $(function () {
 
             },
 
-            series: [langdis_data[0]]
+            
+            series: [langdis_data[0]],
+
         };
         
         fre_option = {
@@ -199,17 +203,25 @@ $(function () {
             },
             series: {
             type: 'wordCloud',
-            sizeRange: [30, 70],//文字范围
+            sizeRange: [12,25],//文字范围
             //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
             rotationRange: [-45, 90],
             rotationStep: 45,
             textRotation: [0, 45, 90, -45],
             shape: 'circle',
+            left: 'center',
+            top: 'center',
+            right: null,
+            bottom: null,
+            width: '100%',
+            height: '80%',
+            layoutAnimation: false,
             textStyle: {
                 fontFamily: 'sans-serif',
                 fontWeight: 'bold',
                 color: function(){
                     var color = ['#3772FF','#DF2935','#FDCA40','#E6E8E6','#ADC6FF', '#F4B8BC', '#FEE9AE', '#FFFFFF', '#77EBF8', '#17BEBB', '#D2FDFF', '#ADFBFF','#3ABEFF', '#F4EC90', '#DBB494']
+                    // var color = ['#4B0082', '#800080', "8B008B", "#9932CC", "#8A2BE2", "#6A5ACD", "#9370DB", "#7B68EE", "#BA55D3", "#DDA0DD", "#D8BFD8", "#E6E6FA"]
                     return color[Math.floor(Math.random() * color.length)];
                 }
             },
@@ -225,19 +237,159 @@ $(function () {
             }
         }; 
         
-        seti_option = {
+        // seti_option = {
+        //     xAxis: {
+        //       type: 'category',
+        //       data: seti_data[0],
+        //       axisLine: {
+        //         lineStyle: {
+        //             color:'#fff'
+        //         }
+        //       },
+        //     },
+        //     yAxis: {
+        //       type: 'value',
+        //       axisLine: {
+        //         lineStyle: {
+        //             color:'#fff'
+        //         } 
+        //       },
+        //     },
+        //     series: [
+        //       {
+        //         data: seti_data[1],
+        //         type: 'line'
+        //       }
+        //     ]
+        //   };
+          
+          income_option = {
             xAxis: {
               type: 'category',
-              data: seti_data[0]
+              axisLabel: {
+                show: true,
+                interval: 0,
+                rotate: 45,
+              },
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              },
+              data: ['Melbourne', 'Carlton', 'Box Hill', 'Parkville', 'Chadstone', 'Balwyn', 'Kew', 'South Yarra - West']
             },
             yAxis: {
-              type: 'value'
+              type: 'value',
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              }
+            },
+            tooltip:{
+                // type: "cross",
+                trigger: 'axis',
+            },
+           
+            grid: {
+                // top: '3%', // 等价于 y: '16%'
+                left: '3%',
+                right: '3%',
+                bottom: '2%',
+                containLabel: true
+            },
+            
+            series: [
+              {
+                data: [28068, 36819, 37979, 45596, 47564, 49615, 59400, 65330],
+                type: 'line',
+                lineStyle:{
+                    normal:{
+                        color: "#fff"
+                    }
+                }
+              }
+            ]
+          };
+
+          seti_option = {
+            // title: {
+            //   text: 'Line chart'
+            // },
+            tooltip: {
+              trigger: 'axis'
+            },
+            
+            legend: {
+                textStyle:{
+                    color: '#fff',
+                },
+                data: ['Score_Compound', 'Score_Neutral', 'Score_Postive', 'Score_Negative']
+            },
+     
+            grid: {
+                left: '3%',
+                right: '3%',
+                bottom: '2%',
+                containLabel: true
+                },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              axisLabel: {
+                show: true,
+                interval: 0,
+                rotate: 45,
+              },
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              },
+              data: ['Melbourne', 'Carlton', 'Box Hill', 'Parkville', 'Chadstone', 'Balwyn', 'Kew', 'South Yarra - West']
+            },
+            yAxis: {
+              type: 'value',
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              },
             },
             series: [
               {
-                data: seti_data[1],
-                type: 'line'
-              }
+                name: 'Score_Compound',
+                type: 'line',
+                stack: 'Total',
+                data: [0.13524705837203288,0.13246898489638217,0.08995380359612716,0.1136941245940361,0.017715952980688243,0.2383178410794603,0.15716871827411202, 0.14902319034852549]
+              },
+              {
+                name: 'Score_Neutral',
+                type: 'line',
+                stack: 'Total',
+                data: [0.8753614191963948,0.8450275728837369, 0.8478540802213,0.85736728668438, 0.8780319059613767, 0.7905412293853068, 0.8334022842639596,0.8253739946380705]
+              },
+              {
+                name: 'Score_Postive',
+                type: 'line',
+                stack: 'Total',
+                data: [0.09624118279157347,0.11135511064278181, 0.10007330567081606, 0.09964275169766747, 0.06891603694374478, 0.1765097451274362, 0.12780837563451777, 0.1245234584450403]
+              },
+              {
+                name: 'Score_Negative',
+                type: 'line',
+                stack: 'Total',
+                data: [0.02837853551828669, 0.04361766772040745, 0.05207745504840939, 0.042994390315913775, 0.05306045340050377, 0.03144377811094452, 0.03878870558375634, 0.050101206434316356]
+              },
             ]
           };
           
@@ -249,12 +401,14 @@ $(function () {
         langChart.setOption(lang_option);
         setiChart.setOption(seti_option);
         wordCloud.setOption(wordCloud_option);
-        freChart.setOption(fre_option);
+        incomeChart.setOption(income_option);
+        // freChart.setOption(fre_option);
         window.addEventListener("resize",function(){
             langChart.resize();
+            incomeChart.resize();
             setiChart.resize();
             wordCloud.resize();
-            freChart.resize();
+            // freChart.resize();
         });
 
 
@@ -373,10 +527,10 @@ $(function () {
 
                                 itemStyle: {
                                     normal:{
-                                        color:'#FFA500',
+                                        color:'#CC3399',
                                     },
                                     shadowBlur: 10,
-                                    shadowColor: '#FFA500'
+                                    shadowColor: '#CC3399'
                                 },
                                 
                                 emphasis: {

@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import render_template, jsonify
-import language_analysis, total_tweets
+import language_analysis, total_tweets, hashtag
 
 app = Flask(__name__)
 
@@ -23,12 +23,30 @@ language_dic = {
 
 # total_tweet = { "number": 3000000 }
 
+# word_dic = {
+#     "sydney": [{"name":"www", "value": 2000}, {"name":"djfn", "value": 28400}, {"name":"llll", "value": 346}],
+#     "melbourne": [{"name":"hrw", "value": 253}, {"name":"djewn", "value": 400}, {"name":"lugffn", "value": 36}],
+#     "brisbane": [{"name":"jtd", "value": 56}, {"name":"rerer", "value": 6400}, {"name":"kkgkufn", "value": 8}],
+#     "adelaide": [{"name":"fwew", "value": 99}, {"name":"dhthth", "value": 2460}, {"name":"kmrffn", "value": 566}],
+#     "darwin": [{"name":"whrsdw", "value": 666}, {"name":"btbtn", "value": 220}, {"name":"kejffn", "value": 86}]
+# }
+
 word_dic = {
-    "sydney": [{"name":"www", "value": 2000}, {"name":"djfn", "value": 28400}, {"name":"llll", "value": 346}],
-    "melbourne": [{"name":"hrw", "value": 253}, {"name":"djewn", "value": 400}, {"name":"lugffn", "value": 36}],
-    "brisbane": [{"name":"jtd", "value": 56}, {"name":"rerer", "value": 6400}, {"name":"kkgkufn", "value": 8}],
-    "adelaide": [{"name":"fwew", "value": 99}, {"name":"dhthth", "value": 2460}, {"name":"kmrffn", "value": 566}],
-    "darwin": [{"name":"whrsdw", "value": 666}, {"name":"btbtn", "value": 220}, {"name":"kejffn", "value": 86}]
+    'melbourne': [{'name': 'auspol', 'value': 115}, {'name': 'victraffic', 'value': 95}, {'name': 'ausvotes', 'value': 88}, 
+    {'name': 'Melbourne', 'value': 49}, {'name': 'GoPies', 'value': 47}, {'name': 'LNPliarsCrooksThieves', 'value': 42}, 
+    {'name': 'gopies', 'value': 35}, {'name': 'AlboForPM', 'value': 30}, {'name': 'QandA', 'value': 28}, {'name': 'AFLEaglesTigers', 'value': 27}], 
+    'sydney': [{'name': 'Albo4PM', 'value': 239}, {'name': 'Labor', 'value': 217}, {'name': 'auspol', 'value': 159}, {'name': 'May21st', 'value': 115}, 
+    {'name': 'ItsASin', 'value': 111}, {'name': 'funnyvideos', 'value': 110}, {'name': 'MayDay2022', 'value': 108}, {'name': 'ScoMo', 'value': 101}, 
+    {'name': 'Greens', 'value': 85}, {'name': 'ausvotes', 'value': 82}], 
+    'brisbane': [{'name': 'auspol', 'value': 87}, {'name': 'razorfadebarbershop', 'value': 72}, {'name': 'halililbrahimceyhan', 'value': 60}, 
+    {'name': 'ausvotes', 'value': 56}, {'name': 'AusVotes2022', 'value': 50}, {'name': 'sılaatürkoğlu', 'value': 43}, {'name': 'furdu2022', 'value': 27}, 
+    {'name': 'qanda', 'value': 22}, {'name': 'EternalThroneOfGod', 'value': 20}, {'name': 'FurDU', 'value': 20}], 
+    'darwin': [{'name': 'AlboForPM', 'value': 17}, {'name': 'onlyfans', 'value': 6}, {'name': 'KeungTo', 'value': 6}, {'name': 'weflyasone', 'value': 6}, 
+    {'name': 'Albo4PM', 'value': 5}, {'name': 'DojaCat', 'value': 4}, {'name': 'doja', 'value': 4}, {'name': 'AusKeungToCandies', 'value': 4}, {'name': 'HMASMaitland', 'value': 3}, 
+    {'name': 'tattooed', 'value': 3}], 
+    'adelaide': [{'name': 'EternalThroneOfGod', 'value': 30}, {'name': 'Heartstopper', 'value': 29}, {'name': 'Horror', 'value': 24}, {'name': 'Comedy', 'value': 24}, 
+    {'name': 'HeartstopperNetflix', 'value': 19}, {'name': 'auspol', 'value': 16}, {'name': 'AFLCrowsGiants', 'value': 15}, {'name': 'ausvotes', 'value': 12}, 
+    {'name': 'Adelaide', 'value': 12}, {'name': 'ASM22PER', 'value': 12}]
 }
 
 
@@ -57,6 +75,16 @@ city_tweet = {
     "darwin": 50
 }
 
+# income_dic = {
+#     'Melbourne': 28068, 
+#     'Carlton': 36819,
+#     'Box Hill': 37979, 
+#     'Parkville': 45596,
+#     'Chadstone': 47564,
+#     'Balwyn': 49615, 
+#     'Kew': 59400, 
+#     'South Yarra - West': 65330}
+
 
 # @app.route('/')
 # def helloWorld():
@@ -84,11 +112,13 @@ def get_freq_dis():
     frequency = freq_dic
     return jsonify(frequency)
 
-@app.route("/senario3")
-def get_word_price():
-    top_word = word_dic
-    return jsonify(top_word)
+# # old data income
+# @app.route("/senario2income")
+# def get_income():
+#     income = income_dic
+#     return jsonify(income)    
 
+# setiment score
 @app.route("/senario3setiment")
 def get_setiment():
     setiment = setiment_dic
@@ -101,6 +131,13 @@ def get_city_twts():
     totaltwt = total_tweets.total_twts()[0]
     #totaltwt = city_tweet
     return jsonify(totaltwt)
+
+# number of hashtag each city
+@app.route("/senario3")
+def get_word_price():
+    top_word = word_dic
+    # top_word = hashtag.count_hashtags()
+    return jsonify(top_word)    
 
 
 if __name__ == '__main__':
