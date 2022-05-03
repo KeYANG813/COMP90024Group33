@@ -1,53 +1,8 @@
-# Group 16
-
-# Team members:
-
-# Zenan Ji (Student ID: 1122396) - city: Nanjing
-
-# Weijie Ye (Student ID: 1160818) - city: Fuzhou
-
-# Wenqin Liu (Student ID: 807291) - city: Guangdong
-
-# Jinhong Yong (Student ID: 1198833) - city: Kuala Lumpur
-
-# Zixuan Zeng (Student ID: 1088297) - city: Melbourne
-
----
-# - name: copy the ssh key to whole hosts
-#   copy:
-#     src: "GitHub.key"
-#     dest: /home/ubuntu/.ssh/GitKey
-#     mode: 600
-
-# - name: configure ssh
-#   template:
-#     src: "ssh_config"
-#     dest: /home/ubuntu/.ssh/config
-#     mode: 644
-
 # remove directory
 - name: Remove directory 
   file: 
     path: '{{ remote_working_directory }}' 
     state: absent 
-
-# - name: add github ssh key
-#   copy:
-#     src: "config/id_rsa"
-#     dest: /home/ubuntu/.ssh/githubKey
-#     owner: ubuntu
-#     group: ubuntu
-#     mode: 0600
-# # copy GitHub private key to server
-
-# - name: configure ssh to use ansible key for github.com
-#   template:
-#     src: "config/git_config"
-#     dest: /home/ubuntu/.ssh/config
-#     owner: ubuntu
-#     group: ubuntu
-#     mode: 0644
-# # configure ssh to use ansible key for github.com
 
 - name: Create directory
   file:
