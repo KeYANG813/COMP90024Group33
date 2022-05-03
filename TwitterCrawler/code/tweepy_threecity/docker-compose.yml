@@ -23,19 +23,19 @@ version: '3'
 services:
   crawlerade:      
     build:
-      context: ./adelaide
-      dockerfile: Dockerfile-adelaide
+      context: .
+      dockerfile: adelaide/Dockerfile
     volumes:
       - .:/usr/src/app
   crawlerbri:       
     build: 
-      context: ./brisbane
-      dockerfile: Dockerfile-brisbane
+      context: .
+      dockerfile: brisbane/Dockerfile
     volumes:
       - .:/usr/src/app
   crawlerdar:       
     build: 
-      context: ./darwin
-      dockerfile: Dockerfile-darwin
+      context: .
+      dockerfile: darwin/Dockerfile
     volumes:
       - .:/usr/src/app
