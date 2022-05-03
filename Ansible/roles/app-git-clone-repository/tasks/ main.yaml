@@ -1,3 +1,5 @@
+---
+
 - name: Remove directory
   file:
     path: /home/ubuntu/COMP90024
