@@ -48,7 +48,7 @@ a:hover{ color:#06c; text-decoration: none!important}
 
 .canvas{position: absolute; width:49%; left: 50%; top: 28%; height: 99%; z-index: 1;}
 .canvas h1{ color:#ef8a03; text-align: center; font-size: .35rem;}
-.canvas h1.padding{padding-top:10px;
+.canvas h1.padding{padding-top:20px;
 	padding-bottom:10px;
 	padding-right:25px;
 	padding-left:25;}
