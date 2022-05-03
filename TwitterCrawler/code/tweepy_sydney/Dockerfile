@@ -13,5 +13,5 @@ COPY . .
 
 RUN pip install -r requirements.txt 
 
-CMD ["Python", "twitter_cralwer_sydney"]
+CMD ["python", "tweet_crawler_sydney.py"]
 
