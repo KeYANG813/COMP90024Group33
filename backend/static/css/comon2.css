@@ -41,13 +41,13 @@ a:hover{ color:#06c; text-decoration: none!important}
 /*谷哥滚动条样式*/
 
   ::-webkit-scrollbar {width:5px;height:5px;position:absolute}
-  ::-webkit-scrollbar-thumb {background-color:#3f5cb4f6}
+  ::-webkit-scrollbar-thumb {background-color:#385587}
   ::-webkit-scrollbar-track {background-color:#ddd}
 
 /***/
 
 .canvas{position: absolute; width:49%; left: 50%; top: 28%; height: 99%; z-index: 1;}
-.canvas h1{ color:#fff; text-align: center; font-size: .35rem;}
+.canvas h1{ color:#ef8a03; text-align: center; font-size: .35rem;}
 .canvas h1.padding{padding-top:10px;
 	padding-bottom:10px;
 	padding-right:25px;
@@ -119,12 +119,12 @@ a:hover{ color:#06c; text-decoration: none!important}
 .barbox:after{border-right: 2px solid #5bc0de; right: 0; bottom: 0;border-bottom: 2px solid #5bc0de; }
 
 .barbox{  border: 1px solid rgba(98, 166, 225, 0.431); position: relative;}
-.barbox li{ font-size: .7rem; color: #ffe02d; padding: .05rem 0;  font-family:FamiraTextSerif-Semibold; font-weight: bold;}
+.barbox li{ font-size: .7rem; color: #ffbf37; padding: .05rem 0;  font-family:FamiraTextSerif-Semibold; font-weight: bold;}
 .barbox2 li{ font-size: .25rem; color:rgba(255,255,255,.7); padding-top: .1rem; font-family:FamiraTextSerif-Semibold;}
 
 .bar2{background:rgba(101,132,226,.1); padding: .1rem;}
 .barbox3{  border: 1px solid rgba(98, 166, 225, 0.431); position: relative;}
-.barbox3 li{ font-size: .3rem; color: #ffeb7b; padding: .05rem 0;  font-family:FamiraTextSerif-Semibold; font-weight: bold;text-align: center;}
+.barbox3 li{ font-size: .3rem; color: #ef8a03; padding: .05rem 0;  font-family:FamiraTextSerif-Semibold; font-weight: bold;text-align: center;}
 
 .map{  position:relative; height: 7.5rem; z-index: 9;}
 /* .map4{ width: 200%; height:7rem;  position: relative; left: -50%; top: 4%; margin-top: .2rem; z-index: 5;} */

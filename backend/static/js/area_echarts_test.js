@@ -72,7 +72,8 @@ $(function () {
                 radius: ['30%', '52%'],
                 center: ['50%', '50%'],
                 // color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab','#06b4ab','#06c8ab','#06dcab','#06f0ab'],
-                color: ['#4B0082', '#800080', "8B008B", "#9932CC", "#8A2BE2", "#6A5ACD", "#9370DB", "#7B68EE", "#BA55D3", "#DDA0DD", "#D8BFD8", "#E6E6FA"],
+                // color: ['#4B0082', '#800080', "8B008B", "#9932CC", "#8A2BE2", "#6A5ACD", "#9370DB", "#7B68EE", "#BA55D3", "#DDA0DD", "#D8BFD8", "#E6E6FA"],
+                color: ['#f0ddcc', '#f0c95a', '#f7b07e', '#cd5445', '#ffda8a', '#79b4b7', '#ff8600', '#ff6700', '#ffb900','#bb5b14', '#966813', '#643800'],
                 data: lang_data[i], //.sort(function (a, b) { return a.value - b.value; }),
                 emphasis: {
                     itemStyle: {
@@ -306,11 +307,11 @@ $(function () {
               {
                 data: [28068, 36819, 37979, 45596, 47564, 49615, 59400, 65330],
                 type: 'line',
-                lineStyle:{
-                    normal:{
-                        color: "#fff"
-                    }
-                }
+                // lineStyle:{
+                //     normal:{
+                //         color: "#fff"
+                //     }
+                // }
               }
             ]
           };
@@ -393,6 +394,7 @@ $(function () {
               },
             ]
           };
+
           optionXyMap01 = {
             title: {
                 text: "Five city live tweets", // 主标题文本，支持使用 \n 换行
@@ -490,7 +492,7 @@ $(function () {
                                     .slice(0, 6)
                                 ),
                                 symbolSize: function (val) {
-                                  return val[2] / 1000;
+                                  return val[2] / 1200;
                                 },   
                                 encode: {
                                   value: 2
@@ -508,10 +510,10 @@ $(function () {
 
                                 itemStyle: {
                                     normal:{
-                                        color:'#CC3399',
+                                        color:'#fcda9d',
                                     },
                                     shadowBlur: 10,
-                                    shadowColor: '#CC3399'
+                                    shadowColor: '#fcda9d'
                                 },
                                 
                                 emphasis: {
