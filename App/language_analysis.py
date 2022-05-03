@@ -3,7 +3,7 @@ from cloudant.view import View
 import json
 from collections import Counter
 
-file_path = '../backend/language_code.json'
+file_path = '../App/language_code.json'
 
 def couchdb_init():
     USERNAME = 'user'
