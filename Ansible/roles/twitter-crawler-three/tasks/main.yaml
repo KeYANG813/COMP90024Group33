@@ -1,0 +1,116 @@
+#
+# Part of Assignment 2 - COMP90024 course at The University of Melbourne 
+#
+# Cluster and Cloud Computing - Team 24 
+# 
+
+---
+
+# remove directory
+- name: Remove directory 
+  file: 
+    path: '{{ remote_working_directory }}' 
+    state: absent 
+
+# - name: add github ssh key
+#   copy:
+#     src: "config/id_rsa"
+#     dest: /home/ubuntu/.ssh/githubKey
+#     owner: ubuntu
+#     group: ubuntu
+#     mode: 0600
+# # copy GitHub private key to server
+
+# - name: configure ssh to use ansible key for github.com
+#   template:
+#     src: "config/git_config"
+#     dest: /home/ubuntu/.ssh/config
+#     owner: ubuntu
+#     group: ubuntu
+#     mode: 0644
+# # configure ssh to use ansible key for github.com
+
+- name: Create directory
+  file:
+    path: '{{ remote_working_directory }}'
+    state: directory
+
+# clone
+- name: Clone the code repository into home directory
+  shell: git clone https://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@github.com/KeYANG813/COMP90024Group33.git
+  args:
+    chdir: '{{ remote_working_directory }}'
+  environment: "{{ proxy_env }}"
+
+- name: Git pull lastest repo
+  shell: git pull
+  args:
+    chdir: '/home/ubuntu/COMP90024/COMP90024Group33'
+
+# modify
+# - name: Modify permission
+#   shell: chmod 774 COMP90024Group33/TwitterCrawler/code/tweet_crawler.py
+#   args:
+#     chdir: '{{ remote_working_directory }}'
+
+- name: Remove directory __pycache__
+  become: 
+    yes
+  file:
+    path: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/__pycache__'
+    state: absent
+
+######
+# Create Docker config directory
+- name: Make sure that Docker config directory exists
+  become: yes
+  file:
+    path: '~/.docker'
+    state: 'directory'
+
+# Set Docker proxy for University of Melbourne Research Cloud
+- name: Ensure Docker client proxy settings are present on the server
+  become: yes
+  copy:
+    content: "{{ docker_proxy_settings }}"
+    dest: ~/.docker/config.json
+
+- name: Shut down previous server
+  become:
+    yes
+  shell: docker-compose down -d
+  args:
+    chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/tweepy_threecity'
+
+- name: copy crawler config to hosts
+  copy:
+    src: 'configs/crawlerSetting.py'
+    dest: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/tweepy_threecity'
+
+- name: Start server
+  become:
+    yes
+  shell: docker-compose up --build -d
+  args:
+    chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/tweepy_threecity'
+
+######## 
+# #Build Docker image for tweet harvester
+# - name: Build an image and push it to local repo
+#   docker_image:
+#     state: present
+#     build:
+#       path: '/home/ubuntu/COMP90024/crawler/get_fromMRC'
+#       pull: yes
+#     name: crawler/myscript
+#     tag: latest
+#     source: build
+#   become: yes
+#   environment: "{{ proxy_env }}"
+
+# # Stop existing Docker containers for Twitter Harvesters and remove them (if any)
+# - name: Stop Twitter Harvester Docker container
+#   become: yes
+#   docker_container:
+#     name: crawler
+#     state: absent
