@@ -73,7 +73,7 @@ $(function () {
                 center: ['50%', '50%'],
                 // color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab','#06b4ab','#06c8ab','#06dcab','#06f0ab'],
                 // color: ['#4B0082', '#800080', "8B008B", "#9932CC", "#8A2BE2", "#6A5ACD", "#9370DB", "#7B68EE", "#BA55D3", "#DDA0DD", "#D8BFD8", "#E6E6FA"],
-                color: ['#f0ddcc', '#f0c95a', '#f7b07e', '#cd5445', '#ffda8a', '#79b4b7', '#ff8600', '#ff6700', '#ffb900','#bb5b14', '#966813', '#643800'],
+                color: ['#f0ddcc', '#f0c95a', '#f7b07e', '#cd5445', '#ffda8a', '#79b4b7', '#ff8600', '#ff6700', '#ffb900','#bb5b14', '#c28c5e'],
                 data: lang_data[i], //.sort(function (a, b) { return a.value - b.value; }),
                 emphasis: {
                     itemStyle: {
