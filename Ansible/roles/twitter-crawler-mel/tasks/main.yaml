@@ -80,19 +80,19 @@
     yes
   shell: docker-compose down -d
   args:
-    chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code'
+    chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/tweepy_melbourne'
 
 - name: copy crawler config to hosts
   copy:
     src: 'configs/crawlerSetting.py'
-    dest: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code'
+    dest: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/tweepy_melbourne'
 
 - name: Start server
   become:
     yes
   shell: docker-compose up --build -d
   args:
-    chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code'
+    chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/tweepy_melbourne'
 
 ######## 
 # #Build Docker image for tweet harvester
