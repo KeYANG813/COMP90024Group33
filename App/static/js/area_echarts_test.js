@@ -271,7 +271,7 @@ $(function () {
               axisLabel: {
                 show: true,
                 interval: 0,
-                rotate: 45,
+                rotate: 60,
               },
               axisLine:{
                 show: true,
@@ -348,7 +348,7 @@ $(function () {
               axisLabel: {
                 show: true,
                 interval: 0,
-                rotate: 45,
+                rotate: 60,
               },
               axisLine:{
                 show: true,
