@@ -17,4 +17,4 @@ services:
   crawler:
     build: .
     volumes:
-      - .:/usr/src/app
+      - .:/usr/src/twpymel
