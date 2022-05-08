@@ -1,8 +1,17 @@
-#
-# Part of Assignment 2 - COMP90024 course at The University of Melbourne 
-#
-# Cluster and Cloud Computing - Team 24 
-#
+# 2022 COMP90024 Group 33 
+
+# Team members:
+
+# Ke Yang (Student ID: 1219623) - city: Anhui
+
+# Yimeng Liu (Student ID: 1074206) - city: Guangdong
+
+# Jintong Liu (Student ID: 1074498) - city: Hebei
+
+# Keang Xu (Student ID: 1008807) - city: Hubei
+
+# Xinwei Qian (Student ID: 1068271) - city: Jiangsu
+
 ---
 - name: Change masternode bind address
   # shell: curl -u {{ user }}:{{ pass }} -X PUT -H 'Content-Type:application/json' http://{{ masternode }}:5984/_node/couchdb@{{ masternode }}/_config/httpd/bind_address -d '{{ bind_address }}'

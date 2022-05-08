@@ -1,16 +1,16 @@
-// # Group 16
-//
+// # 2022 COMP90024 Group 33 
+
 // # Team members:
-//
-//     # Zenan Ji (Student ID: 1122396) - city: Nanjing
-//
-// # Weijie Ye (Student ID: 1160818) - city: Fuzhou
-//
-// # Wenqin Liu (Student ID: 807291) - city: Guangdong
-//
-// # Jinhong Yong (Student ID: 1198833) - city: Kuala Lumpur
-//
-// # Zixuan Zeng (Student ID: 1088297) - city: Melbourne
+
+// # Ke Yang (Student ID: 1219623) - city: Anhui
+
+// # Yimeng Liu (Student ID: 1074206) - city: Guangdong
+
+// # Jintong Liu (Student ID: 1074498) - city: Hebei
+
+// # Keang Xu (Student ID: 1008807) - city: Hubei
+
+// # Xinwei Qian (Student ID: 1068271) - city: Jiangsu
 
 var ec_result = echarts.init(document.getElementById('analysisResult'))
 var ec_result_option = {

@@ -1,16 +1,16 @@
-// # Group 16
-//
+// # 2022 COMP90024 Group 33 
+
 // # Team members:
-//
-//     # Zenan Ji (Student ID: 1122396) - city: Nanjing
-//
-// # Weijie Ye (Student ID: 1160818) - city: Fuzhou
-//
-// # Wenqin Liu (Student ID: 807291) - city: Guangdong
-//
-// # Jinhong Yong (Student ID: 1198833) - city: Kuala Lumpur
-//
-// # Zixuan Zeng (Student ID: 1088297) - city: Melbourne
+
+// # Ke Yang (Student ID: 1219623) - city: Anhui
+
+// # Yimeng Liu (Student ID: 1074206) - city: Guangdong
+
+// # Jintong Liu (Student ID: 1074498) - city: Hebei
+
+// # Keang Xu (Student ID: 1008807) - city: Hubei
+
+// # Xinwei Qian (Student ID: 1068271) - city: Jiangsu
 
 var colors = [
     ["#1DE9B6", "#F46E36", "#04B9FF", "#5DBD32", "#FFC809", "#FB95D5", "#BDA29A", "#6E7074", "#546570", "#C4CCD3"],

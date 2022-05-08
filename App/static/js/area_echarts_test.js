@@ -1,3 +1,19 @@
+// # 2022 COMP90024 Group 33 
+
+// # Team members:
+
+// # Ke Yang (Student ID: 1219623) - city: Anhui
+
+// # Yimeng Liu (Student ID: 1074206) - city: Guangdong
+
+// # Jintong Liu (Student ID: 1074498) - city: Hebei
+
+// # Keang Xu (Student ID: 1008807) - city: Hubei
+
+// # Xinwei Qian (Student ID: 1068271) - city: Jiangsu
+
+
+
 var colors = [
     ["#1DE9B6", "#EBEBEB", "#9DFBF8", "#FDCA40", "#FB95D5", "#BDA29A", "#6E7074", "#546570", "#C4CCD3"],
     ["#37A2DA", "#67E0E3", "#32C5E9", "#9FE6B8", "#FFDB5C", "#FF9F7F", "#FB7293", "#E062AE", "#E690D1", "#E7BCF3", "#9D96F5", "#8378EA", "#8378EA"],

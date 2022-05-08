@@ -1,16 +1,16 @@
-# Group 16
+# 2022 COMP90024 Group 33 
 
 # Team members:
 
-# Zenan Ji (Student ID: 1122396) - city: Nanjing
+# Ke Yang (Student ID: 1219623) - city: Anhui
 
-# Weijie Ye (Student ID: 1160818) - city: Fuzhou
+# Yimeng Liu (Student ID: 1074206) - city: Guangdong
 
-# Wenqin Liu (Student ID: 807291) - city: Guangdong
+# Jintong Liu (Student ID: 1074498) - city: Hebei
 
-# Jinhong Yong (Student ID: 1198833) - city: Kuala Lumpur
+# Keang Xu (Student ID: 1008807) - city: Hubei
 
-# Zixuan Zeng (Student ID: 1088297) - city: Melbourne
+# Xinwei Qian (Student ID: 1068271) - city: Jiangsu
 
 FROM python:3.8.2
 
