@@ -71,4 +71,3 @@ def lang_count_for_city():
     for old, new in dict_change.items():
         lang_dict[new] = lang_dict.pop(old)
     return lang_dict
-print(lang_count_for_city())
