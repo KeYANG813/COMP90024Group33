@@ -46,7 +46,7 @@ To deploy the whole system locally, firstly clone the gitbub repo, then enter th
    ```
 Then copy our MRC private key to your local ssh file
    ```sh
-   copy test.pem ~/.ssh/test.pem
+   cp test.pem ~/.ssh/test.pem
    ```
 
 Now you finish all necessary preparation, ready to run Ansible playbook
