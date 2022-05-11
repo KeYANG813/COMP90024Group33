@@ -11,8 +11,6 @@
 # Keang Xu (Student ID: 1008807) - city: Hubei
 
 # Xinwei Qian (Student ID: 1068271) - city: Jiangsu
-
-
 from cloudant.client import CouchDB
 from cloudant.view import View
 import json
@@ -63,39 +61,14 @@ def lang_count_for_city():
         
         # get most frequent languages
         for i in range(len(lang_sorted)):
-            if i >= 10:
-                lang_sorted[i] = ('Others',lang_sorted[i][1])
             for j in lang_code:
                 if lang_sorted[i][0] == j['639-1']:
                     lang_sorted[i] = (j['ISO language name'].split(", ")[0],lang_sorted[i][1])
-        lang_sorted_dict = dict(list(Counter(key for key, num in lang_sorted for idx in range(num)).items()))
-        lang_dict[city] = lang_sorted_dict
+        lang_sorted_list = list(Counter(key for key, num in lang_sorted for idx in range(num)).items())
+        lang_dict[city] = lang_sorted_list[:10]
     
     dict_change = {"db_melbourne": "melbourne","db_sydney": "sydney", "db_brisbane": "brisbane", "db_darwin": "darwin","db_adelaide": "adelaide"}
     for old, new in dict_change.items():
         lang_dict[new] = lang_dict.pop(old)
     return lang_dict
-
-
-
-# people twitter time over cities
-# def time_dis():
-#     client = couchdb_init()
-#     dbname = ["db_melbourne", "db_sydney", "db_adelaide", "db_darwin", "db_brisbane"]
-#     time_dis = {}s
-#     for city in dbname:
-#         citydb = client[city]
-#         djson = json.loads(hour)
-#         if not djson['_id'] in citydb:
-#             citydb.create_document(djson)
-#         hour_count = {}
-#         view = View(citydb['_design/hour'], 'hour_count')
-#         with view.custom_result(group=True) as results:
-#             for result in results:
-#                 hour_count[(int(result['key']%24)] = result['value']
-#         time_dis[city] = hour_count
-#     return time_dis
-
-
-
-
+print(lang_count_for_city())
