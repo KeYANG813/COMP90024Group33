@@ -20,24 +20,6 @@
     path: '{{ remote_working_directory }}' 
     state: absent 
 
-# - name: add github ssh key
-#   copy:
-#     src: "config/id_rsa"
-#     dest: /home/ubuntu/.ssh/githubKey
-#     owner: ubuntu
-#     group: ubuntu
-#     mode: 0600
-# # copy GitHub private key to server
-
-# - name: configure ssh to use ansible key for github.com
-#   template:
-#     src: "config/git_config"
-#     dest: /home/ubuntu/.ssh/config
-#     owner: ubuntu
-#     group: ubuntu
-#     mode: 0644
-# # configure ssh to use ansible key for github.com
-
 - name: Create directory
   file:
     path: '{{ remote_working_directory }}'
@@ -101,24 +83,3 @@
   shell: docker-compose up --build -d
   args:
     chdir: '/home/ubuntu/COMP90024/COMP90024Group33/TwitterCrawler/code/tweepy_melbourne'
-
-######## 
-# #Build Docker image for tweet harvester
-# - name: Build an image and push it to local repo
-#   docker_image:
-#     state: present
-#     build:
-#       path: '/home/ubuntu/COMP90024/crawler/get_fromMRC'
-#       pull: yes
-#     name: crawler/myscript
-#     tag: latest
-#     source: build
-#   become: yes
-#   environment: "{{ proxy_env }}"
-
-# # Stop existing Docker containers for Twitter Harvesters and remove them (if any)
-# - name: Stop Twitter Harvester Docker container
-#   become: yes
-#   docker_container:
-#     name: crawler
-#     state: absent
