@@ -65,7 +65,7 @@ def lang_count_for_city():
                 if lang_sorted[i][0] == j['639-1']:
                     lang_sorted[i] = (j['ISO language name'].split(", ")[0],lang_sorted[i][1])
         lang_sorted_list = list(Counter(key for key, num in lang_sorted for idx in range(num)).items())
-        lang_dict[city] = lang_sorted_list[:10]
+        lang_dict[city] = dict(lang_sorted_list[:10])
     
     dict_change = {"db_melbourne": "melbourne","db_sydney": "sydney", "db_brisbane": "brisbane", "db_darwin": "darwin","db_adelaide": "adelaide"}
     for old, new in dict_change.items():
