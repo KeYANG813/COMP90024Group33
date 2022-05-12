@@ -30,13 +30,12 @@ $(function () {
     // map();
     function map() {
 
-        // var freChart = echarts.init(document.getElementById('echart1')); //初始化语言分布图
         var langChart = echarts.init(document.getElementById('echart2')); //初始化语言分布图
         var setiChart = echarts.init(document.getElementById('echart4')); //初始化语言分布图
         var incomeChart = echarts.init(document.getElementById('echart6')); //初始化语言分布图
         var wordCloud = echarts.init(document.getElementById('echart5')); //初始化语言分布图
         var wordseti = echarts.init(document.getElementById('echart3')); //初始化语言分布图
-        // 基于准备好的dom，初始化echarts实例
+  
         var myChart = echarts.init(document.getElementById('map_1'));
 
         //--------------------------- Variables Initialisation ---------------------------\\
@@ -45,10 +44,7 @@ $(function () {
         var categoryData = [];
         var barData = [];
         var langdis_data = [];
-        //var timedis_data = [];
-        var sentdis_data = [];
-        var tophashtags_data = [];
-        var wordyearindex = 3, wordlocationindex = 0
+        var wordlocationindex = 0
   
         for (var key in geoCoordMap) {
             mapData.push({
@@ -221,7 +217,7 @@ $(function () {
             },
             series: {
             type: 'wordCloud',
-            sizeRange: [12,30],//文字范围
+            sizeRange: [14,30],//文字范围
             // 12,25
             //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
             rotationRange: [-45, 90],
@@ -420,7 +416,7 @@ $(function () {
                 textStyle:{
                     color: '#fff',
                 },
-                data: ['Score_Compound', 'Score_Neutral', 'Score_Postive', 'Score_Negative']
+                data: ['Score_Compound', 'Score_Postive', 'Score_Neutral','Score_Negative']
             },
      
             grid: {
@@ -468,23 +464,24 @@ $(function () {
                 
               },
               {
-                name: 'Score_Neutral',
+                name: 'Score_Negative',
                 type: 'line',
                 stack: 'Total',
                 data: seti_data[1][1]
               },
               {
-                name: 'Score_Postive',
+                name: 'Score_Neutral',
                 type: 'line',
                 stack: 'Total',
                 data: seti_data[1][2]
               },
               {
-                name: 'Score_Negative',
+                name: 'Score_Postive',
                 type: 'line',
                 stack: 'Total',
                 data: seti_data[1][3]
               },
+              
               
             ]
             
@@ -493,11 +490,11 @@ $(function () {
           optionXyMap01 = {
             title: {
                 text: "Five city live tweets", // 主标题文本，支持使用 \n 换行
-                //top: 20, // 定位 值: 'top', 'middle', 'bottom' 也可以是具体的值或者百分比
-                //left: "center", // 值: 'left', 'center', 'right' 同上
+                
+                left: "left", // 值: 'left', 'center', 'right' 同上
                 textStyle: {
                   // 文本样式
-                  fontSize: 24,
+                  fontSize: 18,
                   fontWeight: 600,
                   color: "#fff"
                 }
@@ -527,12 +524,8 @@ $(function () {
                     // If width-height ratio is larger than 1, then width is set to be 100.
                     // Otherwise, height is set to be 100.
                     // This makes sure that it will not exceed the area of 100x100
-                    layoutSize: 500,
-                    // center: [133.7751, -25.2744],
-
-                    // need solve
-                    
-                    
+                    layoutSize: 480,
+                    // center: [133.7751, -25.2744], 320
                     label: {
                         emphasis: {
                             show: false
@@ -587,7 +580,7 @@ $(function () {
                                     .slice(0, 6)
                                 ),
                                 symbolSize: function (val) {
-                                  return val[2] / 2500;
+                                  return val[2] / 3000;
                                 },   
                                 encode: {
                                   value: 2

@@ -152,13 +152,14 @@ $(document).ready(function(){
   </ul>
 </div>
 
-<div class="mainbox1"  >
+<!-- <div class="mainbox1"  >
   <ul class="clearfix">
-    <li>
-  <div class="bar">
-    <div class="barbox">
+  
+  <li>
+  <div class="bar4">
+    <div class="barbox4">
       <ul class="clearfix">
-        <li class="pulll_left counter" v-text="totalltweets">{{totalltweets}}</li>
+        <li class="pulll_left counter"></li>
       </ul>
     </div>
     <div class="barbox2">
@@ -169,17 +170,10 @@ $(document).ready(function(){
   </div>
 </li> 
 </ul>
-</div>
+</div> -->
 
 <div class="mainbox5"  >
   <ul class="clearfix">
-    <li>
-      <div class="map">
-        <div class="map4" id="map_1"></div>
-      </div>
-    </li>
-
-
     <li>
       <div class="bar2">
       <div class="barbox3">
@@ -188,14 +182,33 @@ $(document).ready(function(){
       </ul>
       </div>
     </div>
-        <div class="boxall" style="height: 5rem">
+        <div class="boxall" style="height: 4rem">
           <div class="alltitle">Regional Tweets: Language Distribution</div>
           <div class="allnav" id="echart2"></div>
           <div class="boxfoot"></div>
         </div>
-     
-     
     </li>
+
+    <li>
+    <div class="bar">
+      <div class="barbox">
+        <ul class="clearfix">
+          <li class="pulll_left counter" v-text="totalltweets">{{totalltweets}}</li>
+        </ul>
+      </div>
+      <div class="barbox2">
+        <ul class="clearfix">
+          <li class="pulll_left">Total Live Tweets</li>
+        </ul>
+      </div>
+    </div>
+
+      <div class="map">
+        <div class="map4" id="map_1"></div>
+      </div>
+
+    </li>
+
 
     <li>
       <div class="bar2">
@@ -205,7 +218,7 @@ $(document).ready(function(){
         </ul>
         </div>
       </div>
-      <div class="boxall" style="height: 5rem">
+      <div class="boxall" style="height: 4rem">
         <div class="alltitle">Regional Top hashtags</div>
         <div class="allnav" id="echart5"></div>
         <div class="boxfoot"></div>
@@ -213,7 +226,9 @@ $(document).ready(function(){
       <div class="boxfoot">
 			
 		  </div>
+    <!-- </li> 
 
+    <li> -->
       <div class="bar2">
         <div class="barbox3">
           <ul class="clearfix">
@@ -221,7 +236,7 @@ $(document).ready(function(){
         </ul>
         </div>
       </div>
-      <div class="boxall" style="height: 5rem">
+      <div class="boxall" style="height: 4rem">
         <div class="alltitle">Regional sentiment of hashtags</div>
         <div class="allnav" id="echart3"></div>
         <div class="boxfoot"></div>
@@ -234,11 +249,6 @@ $(document).ready(function(){
 
 </ul>
 </div>
-
-
-
-
-
 
 <div class="back"></div>
 </div>
