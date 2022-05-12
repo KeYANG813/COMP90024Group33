@@ -2,19 +2,26 @@
 ```
 | /AURIN
       - Preprocessing AURIN data download from AURIN
-  /scenarios.py
-      - implement 5 scenarios and add the processed json to falsk ReSTful API
-  /view_data.py
-      - backend get data from database (MapReduce Here)
+  /static 
+      - design the web
+  /templates
+      - template of the frontend
+  /test
+      - unused codes
+  /app.py
+      - start the frontend
+  /Dockerfile
+      - configure dockerfile for backend
+  /hashtag.py
+      -  count the top 10 hashtags each cities and calculate the sentimentic score
+  /language_analysis.py
+      - count top 10 languages used in cities
   /requirements.txt
       - install the environment need (e.g. flask)
-  /AURIN_api
-      - add AURIN json to falsk ReSTful API
-  /app.py
-      - start the backend
-  /ini.py
-      - initialise some global variables
-
+  /save_json_from_cloud_couchdb.py
+      - save live tweets as json from couchdb 
+  /total_tweets.py
+      - count total tweets for each city
 ```
 
 
