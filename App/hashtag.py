@@ -18,6 +18,9 @@ from cloudant.view import View
 from cloudant.result import Result
 import json
 from collections import Counter
+import nltk
+nltk.download('vader_lexicon')
+from nltk.sentiment import SentimentIntensityAnalyzer
 
 def couchdb_init():
     USERNAME = 'user'
@@ -25,7 +28,16 @@ def couchdb_init():
     client = CouchDB(USERNAME, PASSWORD, url='http://172.26.132.223:5984', connect=True)
     return client
 
-def count_hashtags():
+def calculate_city_score(hashtag_list):
+    text = ""
+    for hashtag in hashtag_list:
+        text = text + " " + hashtag["name"]
+    sia = SentimentIntensityAnalyzer()
+    score = sia.polarity_scores(text)
+    return score
+
+def hashtags_analysis():
+    # count hashtags
     citys = {}
     dbname = ["db_melbourne", "db_sydney", "db_adelaide", "db_darwin", "db_brisbane"]
     design_hashtag_doc= '''
@@ -79,4 +91,27 @@ def count_hashtags():
     for old, new in dict_change.items():
         citys[new] = citys.pop(old)
     
-    return citys
+    # sentiment analysis for hashtags
+    result_dict = {}
+    comp = []
+    neu = []
+    pos = []
+    neg = []
+    socre_dict = {}
+    
+    for city in citys.keys():
+        hashtag_list = citys[city]
+        result_dict[city] = calculate_city_score(hashtag_list)
+    
+    for score in result_dict.values():
+        comp.append(score['compound'])
+        neu.append(score['neu'])
+        pos.append(score['pos'])
+        neg.append(score['neg'])
+
+    socre_dict['comp'] = comp
+    socre_dict['neu'] = neu
+    socre_dict['pos'] = pos
+    socre_dict['neg'] = neg
+    
+    return citys, socre_dict

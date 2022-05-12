@@ -4,19 +4,10 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	font-family: FamiraTextSerif-Semibold;}
+	font-family: DS-DIGIT;}
 /* *,body{padding:0px;	margin:0px;color: #222;font-family: "微软雅黑";} */
-*,body{padding:0px;	margin:0px;color: #222;font-family: 'FamiraTextSerif-Semibold';}
-@font-face
-	{
-	font-family: 'FamiraTextSerif-Semibold';
-	src: url('../fonts/InterpolSerifClassic-SemiBold.eot');
-	src: local('☺'),
-		url('../fonts/InterpolSerifClassic-SemiBold.woff') format('woff');
-	font-weight: normal;
-	font-stretch: normal;
-    font-style: normal;
-	}
+*,body{padding:0px;	margin:0px;color: #222;font-family: 'DS-DIGIT';}
+
 @font-face{font-family:electronicFont;src:url(../font/DS-DIGIT.TTF)}
 body{ background:#000d4a url(../images/bg5.jpg) center top; background-size:cover;color:#666;font-size: .1rem;}
 li{ list-style-type:none;}
@@ -46,7 +37,7 @@ a:hover{ color:#06c; text-decoration: none!important}
 
 /***/
 
-.canvas{position: absolute; width:49%; left: 50%; top: 39%; height: 99%; z-index: 1;}
+.canvas{position: absolute; width:49%; left: 50%; top: 37%; height: 99%; z-index: 1;}
 .canvas h1{ color:#ef8a03; text-align: center; font-size: .35rem;}
 .canvas h1.padding{padding-top:20px;
 	padding-bottom:20px;

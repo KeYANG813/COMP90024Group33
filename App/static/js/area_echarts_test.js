@@ -35,6 +35,7 @@ $(function () {
         var setiChart = echarts.init(document.getElementById('echart4')); //初始化语言分布图
         var incomeChart = echarts.init(document.getElementById('echart6')); //初始化语言分布图
         var wordCloud = echarts.init(document.getElementById('echart5')); //初始化语言分布图
+        var wordseti = echarts.init(document.getElementById('echart3')); //初始化语言分布图
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('map_1'));
 
@@ -89,7 +90,7 @@ $(function () {
                 center: ['50%', '50%'],
                 // color: ['#065aab', '#066eab', '#0682ab', '#0696ab', '#06a0ab','#06b4ab','#06c8ab','#06dcab','#06f0ab'],
                 // color: ['#4B0082', '#800080', "8B008B", "#9932CC", "#8A2BE2", "#6A5ACD", "#9370DB", "#7B68EE", "#BA55D3", "#DDA0DD", "#D8BFD8", "#E6E6FA"],
-                color: ['#f0ddcc', '#f0c95a', '#f7b07e', '#cd5445', '#ffda8a', '#79b4b7', '#ff8600', '#ff6700', '#ffb900','#bb5b14', '#c28c5e'],
+                color: ['#f0ddcc', '#f0c95a', '#f7b07e', '#cd5445', '#ffda8a', '#79b4b7', '#ff8600', '#ffb900','#bb5b14', '#c28c5e'],
                 data: lang_data[i], //.sort(function (a, b) { return a.value - b.value; }),
                 emphasis: {
                     itemStyle: {
@@ -333,9 +334,7 @@ $(function () {
           };
 
           seti_option = {
-            // title: {
-            //   text: 'Line chart'
-            // },
+
             tooltip: {
               trigger: 'axis'
             },
@@ -409,6 +408,86 @@ $(function () {
                 data: [0.02837853551828669, 0.04361766772040745, 0.05207745504840939, 0.042994390315913775, 0.05306045340050377, 0.03144377811094452, 0.03878870558375634, 0.050101206434316356]
               },
             ]
+          };
+          console.log(seti_data)
+          live_seti_option = {
+              
+            tooltip: {
+              trigger: 'axis'
+            },
+            
+            legend: {
+                textStyle:{
+                    color: '#fff',
+                },
+                data: ['Score_Compound', 'Score_Neutral', 'Score_Postive', 'Score_Negative']
+            },
+     
+            grid: {
+                left: '3%',
+                right: '3%',
+                bottom: '2%',
+                containLabel: true
+                },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              axisLabel: {
+                show: true,
+                interval: 0,
+                rotate: 60,
+              },
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              },
+              data: ['Melbourne', 'Sydney', 'Brisbane', 'Darwin', 'Adelaide']
+            },
+            yAxis: {
+              type: 'value',
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              },
+            },
+            series: [
+              {
+                name: 'Score_Compound',
+                type: 'line',
+                stack: 'Total',
+                data: seti_data[1][0]
+                
+              },
+              {
+                name: 'Score_Neutral',
+                type: 'line',
+                stack: 'Total',
+                data: seti_data[1][1]
+              },
+              {
+                name: 'Score_Postive',
+                type: 'line',
+                stack: 'Total',
+                data: seti_data[1][2]
+              },
+              {
+                name: 'Score_Negative',
+                type: 'line',
+                stack: 'Total',
+                data: seti_data[1][3]
+              },
+              
+            ]
+            
           };
 
           optionXyMap01 = {
@@ -508,7 +587,7 @@ $(function () {
                                     .slice(0, 6)
                                 ),
                                 symbolSize: function (val) {
-                                  return val[2] / 1200;
+                                  return val[2] / 2500;
                                 },   
                                 encode: {
                                   value: 2
@@ -553,6 +632,7 @@ $(function () {
         setiChart.setOption(seti_option);
         myChart.setOption(optionXyMap01, true);
         wordCloud.setOption(wordCloud_option);
+        wordseti.setOption(live_seti_option);
         // freChart.setOption(fre_option);
         window.addEventListener("resize",function(){
             langChart.resize();
@@ -560,6 +640,7 @@ $(function () {
             setiChart.resize();
             myChart.resize();
             wordCloud.resize();
+            wordseti.resize()
             // freChart.resize();
         });
 

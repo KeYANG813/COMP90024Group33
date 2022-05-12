@@ -132,12 +132,6 @@ def get_freq_dis():
 #     income = income_dic
 #     return jsonify(income)    
 
-# setiment score
-@app.route("/senario3setiment")
-def get_setiment():
-    setiment = setiment_dic
-    return jsonify(setiment)
-
 # total tweet number each city
 @app.route("/tweetpercity")
 def get_city_twts():
@@ -150,9 +144,14 @@ def get_city_twts():
 @app.route("/senario3")
 def get_word_price():
     #top_word = word_dic
-    top_word = hashtag.count_hashtags()
+    top_word = hashtag.hashtags_analysis()[0]
     return jsonify(top_word)    
 
+# setiment score
+@app.route("/senario3setiment")
+def get_setiment():
+    setiment = hashtag.hashtags_analysis()[1]
+    return jsonify(setiment)
 
 if __name__ == '__main__':
     app.run(debug=True)
