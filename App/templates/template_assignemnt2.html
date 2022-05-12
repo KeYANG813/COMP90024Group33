@@ -18,9 +18,7 @@
   <!-- <script type="text/javascript" src="../static/js/axios.min.js"></script> -->
 
 <div id="app">
-  <!-- 透明度 -->
   <div class="canvas" style="opacity: .8" >
-    <!-- <h1 class="padding">Melbourne SA2 compound sentiment analysis</h1> -->
     <iframe frameborder="0" scrolling="no" src="../static/js/nltk_59.html" style="width: 100%; height: 63%"></iframe>
 
   </div>
@@ -60,19 +58,19 @@ $(document).ready(function(){
 	
 	<script>
     var t = null;
-    t = setTimeout(time,1000);//開始运行
+    t = setTimeout(time,1000);
     function time()
     {
-      clearTimeout(t);//清除定时器
+      clearTimeout(t);
       dt = new Date();
       var y=dt.getFullYear();
       var mt=dt.getMonth()+1;
       var day=dt.getDate();
-      var h=dt.getHours();//获取时
-      var m=dt.getMinutes();//获取分
-      var s=dt.getSeconds();//获取秒
+      var h=dt.getHours();
+      var m=dt.getMinutes();
+      var s=dt.getSeconds();
       document.getElementById("showTime").innerHTML = "Date: "+y+"/"+mt+"/"+day+"-"+h+":"+m+":"+s;
-      t = setTimeout(time,1000); //设定定时器，循环运行     
+      t = setTimeout(time,1000);      
     } 
 
   </script>
@@ -254,7 +252,6 @@ $(document).ready(function(){
 </div>
 
 <script>
-  // var city_2018 = {}, city_2019 = {}, city_2020 = {}, city_2021 = {};
   var city = {}
   var lang_data = [];
   var freq_data = [
@@ -275,8 +272,6 @@ $(document).ready(function(){
   ];
   var hashtags_data = [];
 
-  // var year = ["2018","2019", "2020", "2021"];
-  //geoCoordMap把所有可能出现的城市加到数组里面
   var geoCoordMap = {
       'adelaide': [138.6007, -34.9285],
       'brisbane': [153.0260, -27.4705],
@@ -297,9 +292,7 @@ $(document).ready(function(){
       city_lang:0,
       city_sentiment:0,
       city_tweets:0,
-      // city_time_dis:0,
       city_hashtags:0,
-      mel_income:0,
     },
     mounted (){
      this.get_total_tweets()
@@ -308,7 +301,6 @@ $(document).ready(function(){
      this.get_city_sentiment()
      this.get_city_freq_tweet()
      this.get_city_topwords()
-     this.get_city_income()
     },
     
     methods:{
@@ -406,12 +398,6 @@ $(document).ready(function(){
                 .then(function (response) {
                   // console.log(response);
                   that.city_tweets=response.data;
-                  // console.log(that.city_tweets);
-                  // city['adelaide'] = that.city_tweets.adelaide
-                  // city['brisbane'] =  that.city_tweets.brisbane
-                  // city["darwin"] = that.city_tweets.darwin
-                  // city["melbourne"] = that.city_tweets.melbourne
-                  // city["sydney"] = that.city_tweets.sydney
                   city['adelaide'] = that.city_tweets.db_adelaide['2022']
                   city['brisbane'] =  that.city_tweets.db_brisbane['2022']
                   city["darwin"] = that.city_tweets.db_darwin['2022']
@@ -439,32 +425,6 @@ $(document).ready(function(){
                 });
 
       },
-
-      // get_city_income(){
-      //   var that =this;
-      //   axios.get("/senario2income")
-      //           .then(function (response) {
-      //             console.log(response);
-      //             that.mel_income=response.data;
-      //             for (var i = 0; i < income_data.length; i++){
-      //               if (i == 0){
-      //                 for (loc in that.mel_income){
-      //                   income_data[i].push(loc)
-      //                 }
-      //               } else {
-      //                 for (loc in that.mel_income){
-      //                   income_data[i].push(that.mel_income[loc])
-      //                 }
-      //               }
-      //             }
-      //             console.log(income_data)
-                  
-      //           })
-      //           .catch(function (error) {
-      //             console.log(error);
-      //           });
-      // },
-
 
     }
 

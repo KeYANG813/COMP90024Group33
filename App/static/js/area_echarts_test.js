@@ -30,11 +30,11 @@ $(function () {
     // map();
     function map() {
 
-        var langChart = echarts.init(document.getElementById('echart2')); //初始化语言分布图
-        var setiChart = echarts.init(document.getElementById('echart4')); //初始化语言分布图
-        var incomeChart = echarts.init(document.getElementById('echart6')); //初始化语言分布图
-        var wordCloud = echarts.init(document.getElementById('echart5')); //初始化语言分布图
-        var wordseti = echarts.init(document.getElementById('echart3')); //初始化语言分布图
+        var langChart = echarts.init(document.getElementById('echart2')); 
+        var setiChart = echarts.init(document.getElementById('echart4')); 
+        var incomeChart = echarts.init(document.getElementById('echart6')); 
+        var wordCloud = echarts.init(document.getElementById('echart5')); 
+        var wordseti = echarts.init(document.getElementById('echart3')); 
   
         var myChart = echarts.init(document.getElementById('map_1'));
 
@@ -55,8 +55,8 @@ $(function () {
         } 
 
         for (var i = 0; i < mapData.length; i++) {
-            barData.push(mapData[i].value); // tweet数量
-            categoryData.push(mapData[i].name.toUpperCase()); //城市名字
+            barData.push(mapData[i].value); 
+            categoryData.push(mapData[i].name.toUpperCase()); 
         }
 
         var convertData = function(data) {
@@ -144,8 +144,6 @@ $(function () {
         }
         
  
-        
-        // 饼状图配置
         var lang_option = {
             // backgroundColor: '#2c343c',
             title: {
@@ -217,9 +215,8 @@ $(function () {
             },
             series: {
             type: 'wordCloud',
-            sizeRange: [14,30],//文字范围
+            sizeRange: [14,30],
             // 12,25
-            //文本旋转范围，文本将通过rotationStep45在[-90,90]范围内随机旋转
             rotationRange: [-45, 90],
             rotationStep: 45,
             textRotation: [0, 45, 90, -45],
@@ -252,31 +249,6 @@ $(function () {
             }
         }; 
         
-        // seti_option = {
-        //     xAxis: {
-        //       type: 'category',
-        //       data: seti_data[0],
-        //       axisLine: {
-        //         lineStyle: {
-        //             color:'#fff'
-        //         }
-        //       },
-        //     },
-        //     yAxis: {
-        //       type: 'value',
-        //       axisLine: {
-        //         lineStyle: {
-        //             color:'#fff'
-        //         } 
-        //       },
-        //     },
-        //     series: [
-        //       {
-        //         data: seti_data[1],
-        //         type: 'line'
-        //       }
-        //     ]
-        //   };
           
           income_option = {
             xAxis: {
@@ -309,7 +281,7 @@ $(function () {
             },
            
             grid: {
-                // top: '3%', // 等价于 y: '16%'
+                
                 left: '3%',
                 right: '3%',
                 bottom: '2%',
@@ -489,11 +461,11 @@ $(function () {
 
           optionXyMap01 = {
             title: {
-                text: "Five city live tweets", // 主标题文本，支持使用 \n 换行
+                text: "Five city live tweets", 
                 
-                left: "left", // 值: 'left', 'center', 'right' 同上
+                left: "left", 
                 textStyle: {
-                  // 文本样式
+                  
                   fontSize: 18,
                   fontWeight: 600,
                   color: "#fff"
@@ -513,7 +485,7 @@ $(function () {
                 }
             },
             
-                geo: { //地图设置
+                geo: { 
                     // nameProperty: "STATE_NAME",
                     show: true,
                     map: 'australia',
@@ -544,12 +516,12 @@ $(function () {
                                 r: 0.8,
                                 colorStops: [{
                                     offset: 0,
-                                    color: 'rgba(147, 235, 248, 0)' // 0% 处的颜色
+                                    color: 'rgba(147, 235, 248, 0)'  
                                 }, {
                                     offset: 1,
-                                    color: 'rgba(147, 235, 248, .2)' // 100% 处的颜色
+                                    color: 'rgba(147, 235, 248, .2)' 
                                 }],
-                                globalCoord: false // 缺省为 false
+                                globalCoord: false 
                             },
                             shadowColor: 'rgba(128, 217, 248, 1)',
                             // shadowColor: 'rgba(255, 255, 255, 1)',
@@ -609,24 +581,22 @@ $(function () {
                                 },
                                 zlevel: 2
                               },
-                            
-            
+
                         ]
-                    // })
             }
           
         //--------------------------- Charts Initialisation ---------------------------\\
 
         console.log(langdis_data[0])
         console.log(freq_data)
-        // 初始化数据
+
         langChart.setOption(lang_option);
         incomeChart.setOption(income_option);
         setiChart.setOption(seti_option);
         myChart.setOption(optionXyMap01, true);
         wordCloud.setOption(wordCloud_option);
         wordseti.setOption(live_seti_option);
-        // freChart.setOption(fre_option);
+        
         window.addEventListener("resize",function(){
             langChart.resize();
             incomeChart.resize();
@@ -634,7 +604,6 @@ $(function () {
             myChart.resize();
             wordCloud.resize();
             wordseti.resize()
-            // freChart.resize();
         });
 
         myChart.on('click', function (params) {
@@ -667,4 +636,3 @@ $(function () {
     }
 
 })
-// },10000)
