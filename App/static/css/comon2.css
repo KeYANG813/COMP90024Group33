@@ -37,7 +37,7 @@ a:hover{ color:#06c; text-decoration: none!important}
 
 /***/
 
-.canvas{position: absolute; width:49%; left: 50%; top: 38%; height: 95%; z-index: 1;}
+.canvas{position: absolute; width:49%; left: 50%; top: 39%; height: 75%; z-index: 1;}
 .canvas h1{ color:#ef8a03; text-align: center; font-size: .35rem;}
 .canvas h1.padding{padding-top:20px;
 	padding-bottom:20px;
