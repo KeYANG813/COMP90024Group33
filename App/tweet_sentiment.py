@@ -154,15 +154,17 @@ def tweet_analysis():
                         num2 = save_results["nums"][i]
                         pre_results[scores][i] = (pre_results[scores][i] * num1 + save_results[scores][i] * num2)/(num1+num2)
                         pre_results["nums"][i] = num1+num2
-
-            
             json.dump(pre_results, f)
+
+            combine_results = pre_results
+            combine_results.pop("nums")
+            
         except IOError as e:
             print("file IO error!")
         finally:
             f.close()
         
-        return pre_results
+        return combine_results
                 
     
 
