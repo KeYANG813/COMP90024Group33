@@ -35,6 +35,7 @@ $(function () {
         var incomeChart = echarts.init(document.getElementById('echart6')); 
         var wordCloud = echarts.init(document.getElementById('echart5')); 
         var wordseti = echarts.init(document.getElementById('echart3')); 
+        var tweetseti = echarts.init(document.getElementById('echart1'));
   
         var myChart = echarts.init(document.getElementById('map_1'));
 
@@ -377,6 +378,7 @@ $(function () {
               },
             ]
           };
+          
           console.log(seti_data)
           live_seti_option = {
               
@@ -455,6 +457,87 @@ $(function () {
               },
               
               
+            ]
+            
+          };
+
+          
+          tweet_seti_option = {
+              
+            tooltip: {
+              trigger: 'axis'
+            },
+            
+            legend: {
+                textStyle:{
+                    color: '#fff',
+                },
+                data: ['Avg_Score_Compound', 'Avg_Score_Postive', 'Avg_Score_Neutral', 'Avg_Score_Negative']
+            },
+     
+            grid: {
+                left: '3%',
+                right: '3%',
+                bottom: '2%',
+                containLabel: true
+                },
+            toolbox: {
+              feature: {
+                saveAsImage: {}
+              }
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              axisLabel: {
+                show: true,
+                interval: 0,
+                rotate: 60,
+              },
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              },
+              data: ['Melbourne', 'Sydney', 'Brisbane', 'Darwin', 'Adelaide']
+            },
+            yAxis: {
+              type: 'value',
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              },
+            },
+            series: [
+              {
+                name: 'Avg_Score_Compound',
+                type: 'line',
+                stack: 'Total',
+                data: senti_tweets[1][0]
+                
+              },
+              {
+                name: 'Avg_Score_Negative',
+                type: 'line',
+                stack: 'Total',
+                data: senti_tweets[1][1]
+              },
+              {
+                name: 'Avg_Score_Neutral',
+                type: 'line',
+                stack: 'Total',
+                data: senti_tweets[1][2]
+              },
+              {
+                name: 'Avg_Score_Postive',
+                type: 'line',
+                stack: 'Total',
+                data: senti_tweets[1][3]
+              },
+
             ]
             
           };
@@ -596,6 +679,7 @@ $(function () {
         myChart.setOption(optionXyMap01, true);
         wordCloud.setOption(wordCloud_option);
         wordseti.setOption(live_seti_option);
+        tweetseti.setOption(tweet_seti_option);
         
         window.addEventListener("resize",function(){
             langChart.resize();
@@ -603,7 +687,8 @@ $(function () {
             setiChart.resize();
             myChart.resize();
             wordCloud.resize();
-            wordseti.resize()
+            wordseti.resize();
+            tweetseti.resize()
         });
 
         myChart.on('click', function (params) {

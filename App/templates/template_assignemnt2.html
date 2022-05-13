@@ -185,6 +185,20 @@ $(document).ready(function(){
           <div class="allnav" id="echart2"></div>
           <div class="boxfoot"></div>
         </div>
+    
+      <div class="bar2">
+        <div class="barbox3">
+            <ul class="clearfix">
+            <li class="padding">Tweets Sentiment analysis</li>
+          </ul>
+        </div>
+      </div>
+      <div class="boxall" style="height: 4rem">
+          <div class="alltitle">Regional sentiment of tweets</div>
+          <div class="allnav" id="echart1"></div>
+          <div class="boxfoot"></div>
+      </div>
+      <div class="boxfoot">
     </li>
 
     <li>
@@ -224,9 +238,7 @@ $(document).ready(function(){
       <div class="boxfoot">
 			
 		  </div>
-    <!-- </li> 
-
-    <li> -->
+  
       <div class="bar2">
         <div class="barbox3">
           <ul class="clearfix">
@@ -266,7 +278,7 @@ $(document).ready(function(){
     [],
     []
   ];
-  var income_data = [
+  var senti_tweets = [
         [],
         []
   ];
@@ -288,19 +300,19 @@ $(document).ready(function(){
     el:'#app',
     data:{
       totalltweets:0,
-      freq_tweets:0,
       city_lang:0,
       city_sentiment:0,
       city_tweets:0,
       city_hashtags:0,
+      tweet_sentiment:0,
     },
     mounted (){
      this.get_total_tweets()
      this.get_city_tweets()
      this.get_city_lang_distribution()
-     this.get_city_sentiment()
-     this.get_city_freq_tweet()
+     this.get_hashtag_sentiment()
      this.get_city_topwords()
+     this.get_tweet_sentiment()
     },
     
     methods:{
@@ -313,6 +325,25 @@ $(document).ready(function(){
                   console.log(response);
                   that.totalltweets=response.data['total_tweets'];
                   console.log(response.data['total_tweets']);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+
+      },
+
+      get_city_tweets:function(){
+        var that =this;
+        axios.get("/tweetpercity")
+                .then(function (response) {
+                  // console.log(response);
+                  that.city_tweets=response.data;
+                  city['adelaide'] = that.city_tweets.db_adelaide['2022']
+                  city['brisbane'] =  that.city_tweets.db_brisbane['2022']
+                  city["darwin"] = that.city_tweets.db_darwin['2022']
+                  city["melbourne"] = that.city_tweets.db_melbourne['2022']
+                  city["sydney"] = that.city_tweets.db_sydney['2022']
+                  console.log(city);
                 })
                 .catch(function (error) {
                   console.log(error);
@@ -340,36 +371,24 @@ $(document).ready(function(){
 
       },
 
-      get_city_freq_tweet(){
+      get_city_topwords(){
         var that =this;
         axios.get("/senario2")
                 .then(function (response) {
-                  console.log(response);
-                  that.freq_tweets=response.data;
-                  for (var i = 0; i < freq_data.length; i++){
-                    if (i == 0){
-                      freq_data[i].push("Hot Topic")
-                      freq_data[i].push("shopping")
-                      freq_data[i].push("luxury")
-                      freq_data[i].push("travel")
-                    } else {
-                      freq_data[i].push(keys[i-1])
-                      freq_data[i].push(that.freq_tweets[keys[i-1]]["shopping"])
-                      freq_data[i].push(that.freq_tweets[keys[i-1]]["luxury"])
-                      freq_data[i].push(that.freq_tweets[keys[i-1]]["travel"])
-                    }
-                  }
-                  console.log(freq_data)
-                  
+                  //console.log(response);
+                  that.city_hashtags=response.data;
+                  hashtags_data = JSON.parse(JSON.stringify(that.city_hashtags))
+                  console.log(hashtags_data);
                 })
                 .catch(function (error) {
-                  console.log(error);
+                  console.log(error.response.data);
                 });
 
       },
-      get_city_sentiment(){
+
+      get_hashtag_sentiment(){
         var that =this;
-        axios.get("/senario3setiment")
+        axios.get("/senario2sentiment")
                 .then(function (response) {
                   console.log(response);
                   that.city_sentiment=response.data;
@@ -392,43 +411,32 @@ $(document).ready(function(){
                   console.log(error);
                 });
       },
-      get_city_tweets:function(){
+
+      get_tweet_sentiment(){
         var that =this;
-        axios.get("/tweetpercity")
+        axios.get("/senario3")
                 .then(function (response) {
-                  // console.log(response);
-                  that.city_tweets=response.data;
-                  city['adelaide'] = that.city_tweets.db_adelaide['2022']
-                  city['brisbane'] =  that.city_tweets.db_brisbane['2022']
-                  city["darwin"] = that.city_tweets.db_darwin['2022']
-                  city["melbourne"] = that.city_tweets.db_melbourne['2022']
-                  city["sydney"] = that.city_tweets.db_sydney['2022']
-                  console.log(city);
-                })
+                  console.log(response);
+                  that.tweet_sentiment=response.data;
+                  for (var i = 0; i < senti_tweets.length; i++){
+                    if (i == 0){
+                      for (name in that.tweet_sentiment){
+                        senti_tweets[i].push(name)
+                      }
+                    } else {
+                      for (name in that.tweet_sentiment){
+                        senti_tweets[i].push(that.tweet_sentiment[name])
+                      }
+                    }
+                  }
+
+              })
                 .catch(function (error) {
                   console.log(error);
                 });
-
-      },
-      get_city_topwords(){
-        var that =this;
-
-        axios.get("/senario3")
-                .then(function (response) {
-                  //console.log(response);
-                  that.city_hashtags=response.data;
-                  hashtags_data = JSON.parse(JSON.stringify(that.city_hashtags))
-                  console.log(hashtags_data);
-                })
-                .catch(function (error) {
-                  console.log(error.response.data);
-                });
-
       },
 
     }
-
-    
 
   });
 

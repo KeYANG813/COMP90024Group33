@@ -14,7 +14,7 @@
 
 from flask import Flask
 from flask import render_template, jsonify
-import language_analysis, total_tweets, hashtag
+import language_analysis, total_tweets, hashtag, tweet_sentiment
 
 app = Flask(__name__)
 
@@ -114,24 +114,6 @@ def get_total():
     total_t = total_tweets.total_twts()[1] 
     return jsonify(total_t)
 
-# language distribution each city
-@app.route("/senario1")
-def get_lang_dis():
-    langdis = language_analysis.lang_count_for_city()
-    return jsonify(langdis)
-
-
-@app.route("/senario2")
-def get_freq_dis():
-    frequency = freq_dic
-    return jsonify(frequency)
-
-# # old data income
-# @app.route("/senario2income")
-# def get_income():
-#     income = income_dic
-#     return jsonify(income)    
-
 # total tweet number each city
 @app.route("/tweetpercity")
 def get_city_twts():
@@ -140,18 +122,30 @@ def get_city_twts():
     #totaltwt = city_tweet
     return jsonify(totaltwt)
 
+# language distribution each city
+@app.route("/senario1")
+def get_lang_dis():
+    langdis = language_analysis.lang_count_for_city()
+    return jsonify(langdis)
+
 # number of hashtag each city
-@app.route("/senario3")
+@app.route("/senario2")
 def get_word_price():
     #top_word = word_dic
     top_word = hashtag.hashtags_analysis()[0]
     return jsonify(top_word)    
 
-# setiment score
-@app.route("/senario3setiment")
+# hashtag setiment score
+@app.route("/senario2sentiment")
 def get_setiment():
-    setiment = hashtag.hashtags_analysis()[1]
-    return jsonify(setiment)
+    sentiment = hashtag.hashtags_analysis()[1]
+    return jsonify(sentiment)
+
+# live tweets sentiment
+@app.route("/senario3")
+def get_tweet_setiment():
+    sentiment_t = tweet_sentiment.tweet_analysis()
+    return jsonify(sentiment_t)  
 
 if __name__ == '__main__':
     app.run(debug=True)
