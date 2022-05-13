@@ -1,36 +1,51 @@
-## directory structure
-```
-| /AURIN
-      - Preprocessing AURIN data download from AURIN
-  /static 
-      - design the web
-  /templates
-      - template of the frontend
-  /test
-      - unused codes
-  /app.py
-      - start the frontend
-  /Dockerfile
-      - configure dockerfile for backend
-  /hashtag.py
-      -  count the top 10 hashtags each cities and calculate the sentimentic score
-  /language_analysis.py
-      - count top 10 languages used in cities
-  /requirements.txt
-      - install the environment need (e.g. flask)
-  /save_json_from_cloud_couchdb.py
-      - save live tweets as json from couchdb 
-  /total_tweets.py
-      - count total tweets for each city
-```
+# COMP90015_2022_SM1_Assignment2
+
+# Group Members:  
+- Ke Yang (Student ID: 1219623) - city: Anhui
+- Yimeng Liu (Student ID: 1074206) - city: Guangdong
+- Jintong Liu (Student ID: 1074498) - city: Hebei
+- Keang Xu (Student ID: 1008807) - city: Hubei
+- Xinwei Qian (Student ID: 1068271) - city: Jiangsu
+
+## Directory structure
+## Repo Structure 
+- `/AURIN`
+  - `/income_mel` : preprocessing melbourne income data from 
+  - `/language` : basic configration of crawler on hosts 
+- `/static`
+  - `/css`: CSS styles for frontend
+  - `/font`:  font for frontend
+  - `/geo`: australia geograohical map
+  - `/images`: frontend background image 
+  - `/js`: js for frontend web
+  - `/json`: language code json
+  - `/picture`: frontend loading images
+- `/templates` : template for frontend
+  - `/test`: unused analysis code
 
 
 ## How to run
 ### Ubuntu
-1. ```cd backend```
-2. ```python3 -m venv venv```
-3. ```. venv/bin/activate```
-4. ```pip install -r requirements.txt```
-5. ```pip install flask```
-6. ```pip install python-dotenv```
-7. ```flask run```
+Using the following command to run the app
+1.  ```sh
+   cd backend
+   ```
+2. ```sh
+   python3 -m venv venv
+   ```
+3. ```sh
+   . venv/bin/activate
+   ```
+4. ```sh
+   pip install -r requirements.txt
+   ```
+5. ```sh
+   pip install flask
+   ```
+6. ```sh
+   pip install python-dotenv
+   ```
+7. ```sh
+   flask run
+   ```
+

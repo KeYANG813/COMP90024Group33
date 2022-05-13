@@ -32,9 +32,10 @@
   - `/AURIN`: code and processed data from the raw data downloaded from AURIN
   - `/static`:  Basic setup for frontend including background image, CSS styles, echart layout etc.  
   - `/templates`: The HTML file which will be rendered as frontend
+  - `/test`: unused code on backend
 - `/TwitterCrawler`
   - `/code`: Crawler for 5 cities 
-  - `/data`: (just for test) the tweets crawled from Twitter API to check the format
+   
 
 
 <!-- Deploy Guide -->
