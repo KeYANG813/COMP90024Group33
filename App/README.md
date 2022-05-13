@@ -27,7 +27,7 @@
 ## How to run
 ### Ubuntu
 Using the following command to run the app
-1.  ```sh
+1. ```sh
    cd backend
    ```
 2. ```sh
