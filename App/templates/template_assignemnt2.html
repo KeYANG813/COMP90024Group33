@@ -76,27 +76,6 @@ $(document).ready(function(){
   </script>
 </div>
 
-<div class="mainbox1"  >
-  <ul class="clearfix">
-    <li>
-      <div class="bar">
-        <div class="barbox">
-          <ul class="clearfix">
-           
-            <li class="pulll_left counter">434847</li>
-          </ul>
-        </div>
-        <div class="barbox2">
-          <ul class="clearfix">
-            <li class="pulll_left">Melbourne Total Tweets (from old data)</li>
-          </ul>
-        </div>
-</li> 
-</ul>
-</div>
-
-
-
 <div class="mainbox4"  >
   <ul class="clearfix">
     <li>
@@ -108,7 +87,7 @@ $(document).ready(function(){
         </div>
       </div>
       <div class="boxall" style="height: 5rem">
-        <div class="alltitle">Income over poor and rich suburbs</div>
+        <div class="alltitle">Income and Rent over 8 suburbs</div>
         <div class="allnav" id="echart6"></div>
         <div class="boxfoot"></div>
       </div>
@@ -116,6 +95,19 @@ $(document).ready(function(){
     </li>
 
     <li>
+        <div class="bar">
+          <div class="barbox">
+            <ul class="clearfix">
+             
+              <li class="pulll_left counter">434847</li>
+            </ul>
+          </div>
+          <div class="barbox2">
+            <ul class="clearfix">
+              <li class="pulll_left">Melbourne Total Tweets (from old data)</li>
+            </ul>
+          </div>
+    
       <div class="bar2">
         <div class="barbox3">
           <ul class="clearfix">
@@ -184,20 +176,22 @@ $(document).ready(function(){
           <div class="boxfoot"></div>
         </div>
         <div class="boxfoot"></div>
-    
-      <div class="bar2">
-        <div class="barbox3">
+
+
+        <div class="bar2">
+          <div class="barbox3">
             <ul class="clearfix">
-            <li class="padding">Tweets Sentiment analysis</li>
+            <li class="padding">Hashtags Word Cloud</li>
           </ul>
+          </div>
         </div>
-      </div>
-      <div class="boxall" style="height: 4rem">
-          <div class="alltitle">Regional sentiment of tweets</div>
-          <div class="allnav" id="echart1"></div>
+        <div class="boxall" style="height: 4rem">
+          <div class="alltitle">Regional Top hashtags</div>
+          <div class="allnav" id="echart5"></div>
           <div class="boxfoot"></div>
-      </div>
-      <div class="boxfoot"></div>
+        </div>
+        <div class="boxfoot"></div>
+
     </li>
 
     <li>
@@ -222,29 +216,30 @@ $(document).ready(function(){
 
 
     <li>
+
       <div class="bar2">
         <div class="barbox3">
-          <ul class="clearfix">
-          <li class="padding">Hashtags Word Cloud</li>
-        </ul>
+            <ul class="clearfix">
+            <li class="padding">Tweets Sentiment analysis 1</li>
+          </ul>
         </div>
       </div>
       <div class="boxall" style="height: 4rem">
-        <div class="alltitle">Regional Top hashtags</div>
-        <div class="allnav" id="echart5"></div>
-        <div class="boxfoot"></div>
+          <div class="alltitle">Compound score of live sentiment</div>
+          <div class="allnav" id="echart1"></div>
+          <div class="boxfoot"></div>
       </div>
       <div class="boxfoot"></div>
-  
+
       <div class="bar2">
         <div class="barbox3">
           <ul class="clearfix">
-          <li class="padding">Hashtags Sentiment analysis</li>
+          <li class="padding">Tweets Sentiment analysis 2</li>
         </ul>
         </div>
       </div>
       <div class="boxall" style="height: 4rem">
-        <div class="alltitle">Regional sentiment of hashtags</div>
+        <div class="alltitle">Polarity score of live sentiment</div>
         <div class="allnav" id="echart3"></div>
         <div class="boxfoot"></div>
       </div>
@@ -269,11 +264,11 @@ $(document).ready(function(){
         [],
         []
   ];
-  var seti_data = [
+  var comp_data = [
     [],
     []
   ];
-  var senti_tweets = [
+  var pola_data = [
         [],
         []
   ];
@@ -305,9 +300,9 @@ $(document).ready(function(){
      this.get_total_tweets()
      this.get_city_tweets()
      this.get_city_lang_distribution()
-     this.get_hashtag_sentiment()
      this.get_city_topwords()
-     this.get_tweet_sentiment()
+     this.get_tweet_sentiment_comp()
+     this.get_tweet_sentiment_pola()
     },
     
     methods:{
@@ -381,25 +376,25 @@ $(document).ready(function(){
 
       },
 
-      get_hashtag_sentiment(){
+      get_tweet_sentiment_comp(){
         var that =this;
-        axios.get("/senario2sentiment")
+        axios.get("/senario3compound")
                 .then(function (response) {
                   console.log(response);
                   that.city_sentiment=response.data;
-                  for (var i = 0; i < seti_data.length; i++){
+                  for (var i = 0; i < comp_data.length; i++){
                     if (i == 0){
                       for (name in that.city_sentiment){
-                        seti_data[i].push(name)
+                        comp_data[i].push(name)
                       }
                     } else {
                       for (name in that.city_sentiment){
-                        seti_data[i].push(that.city_sentiment[name])
+                        comp_data[i].push(that.city_sentiment[name])
                       }
                     }
                   }
    
-                  console.log(seti_data)    
+                  console.log(comp_data)    
                 
               })
                 .catch(function (error) {
@@ -407,20 +402,20 @@ $(document).ready(function(){
                 });
       },
 
-      get_tweet_sentiment(){
+      get_tweet_sentiment_pola(){
         var that =this;
-        axios.get("/senario3")
+        axios.get("/senario3polarity")
                 .then(function (response) {
                   console.log(response);
                   that.tweet_sentiment=response.data;
-                  for (var i = 0; i < senti_tweets.length; i++){
+                  for (var i = 0; i < pola_data.length; i++){
                     if (i == 0){
                       for (name in that.tweet_sentiment){
-                        senti_tweets[i].push(name)
+                        pola_data[i].push(name)
                       }
                     } else {
                       for (name in that.tweet_sentiment){
-                        senti_tweets[i].push(that.tweet_sentiment[name])
+                        pola_data[i].push(that.tweet_sentiment[name])
                       }
                     }
                   }

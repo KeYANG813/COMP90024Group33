@@ -35,8 +35,8 @@ $(function () {
         var setiChart2 = echarts.init(document.getElementById('echart7'));
         var incomeChart = echarts.init(document.getElementById('echart6')); 
         var wordCloud = echarts.init(document.getElementById('echart5')); 
-        var wordseti = echarts.init(document.getElementById('echart3')); 
-        var tweetseti = echarts.init(document.getElementById('echart1'));
+        var polaseti = echarts.init(document.getElementById('echart3')); 
+        var compseti = echarts.init(document.getElementById('echart1'));
   
         var myChart = echarts.init(document.getElementById('map_1'));
 
@@ -279,6 +279,11 @@ $(function () {
             xAxis: [
               {
                 type: 'category',
+                axisLabel: {
+                  show: true,
+                  interval: 0,
+                  rotate: 60,
+                },
                 axisLine:{
                   show: true,
                   lineStyle:{
@@ -301,6 +306,9 @@ $(function () {
                   }
                 },
                 name: 'Income',
+                min: 0,
+                max: 70000,
+                interval: 7,
                 axisLabel: {
                   formatter: '{value} AUD'
                 }
@@ -315,6 +323,9 @@ $(function () {
                   }
                 },
                 name: 'Rent',
+                min: 0,
+                max: 3500,
+                interval: 7,
                 axisLabel: {
                   formatter: '{value} AUD'
                 }
@@ -467,8 +478,8 @@ $(function () {
             ]
           };
           
-          console.log(seti_data)
-          live_seti_option = {
+          
+          pola_seti_option = {
               
             tooltip: {
               trigger: 'axis'
@@ -478,7 +489,7 @@ $(function () {
                 textStyle:{
                     color: '#fff',
                 },
-                data: ['Score_Compound', 'Score_Postive', 'Score_Neutral','Score_Negative']
+                data: ['Score_Negative', 'Score_Neutral', 'Score_Postive']
             },
      
             grid: {
@@ -518,50 +529,34 @@ $(function () {
               },
             },
             series: [
-              {
-                name: 'Score_Compound',
-                type: 'line',
-                stack: 'Total',
-                data: seti_data[1][0]
-                
-              },
+
               {
                 name: 'Score_Negative',
                 type: 'line',
-                stack: 'Total',
-                data: seti_data[1][1]
+                data: pola_data[1][0]
               },
               {
                 name: 'Score_Neutral',
                 type: 'line',
-                stack: 'Total',
-                data: seti_data[1][2]
+                data: seti_data[1][1]
               },
               {
                 name: 'Score_Postive',
                 type: 'line',
-                stack: 'Total',
-                data: seti_data[1][3]
+                data: seti_data[1][2]
               },
-              
               
             ]
             
           };
 
           
-          tweet_seti_option = {
+          comp_seti_option = {
               
             tooltip: {
               trigger: 'axis'
             },
             
-            legend: {
-                textStyle:{
-                    color: '#fff',
-                },
-                data: ['Avg_Score_Compound', 'Avg_Score_Postive', 'Avg_Score_Neutral', 'Avg_Score_Negative']
-            },
      
             grid: {
                 left: '3%',
@@ -601,33 +596,11 @@ $(function () {
             },
             series: [
               {
-                name: 'Avg_Score_Compound',
+                data: comp_data[1],
                 type: 'line',
-                stack: 'Total',
-                data: senti_tweets[1][0]
-                
-              },
-              {
-                name: 'Avg_Score_Negative',
-                type: 'line',
-                stack: 'Total',
-                data: senti_tweets[1][1]
-              },
-              {
-                name: 'Avg_Score_Neutral',
-                type: 'line',
-                stack: 'Total',
-                data: senti_tweets[1][2]
-              },
-              {
-                name: 'Avg_Score_Postive',
-                type: 'line',
-                stack: 'Total',
-                data: senti_tweets[1][3]
-              },
-
+              }
             ]
-            
+ 
           };
 
           optionXyMap01 = {
@@ -767,8 +740,9 @@ $(function () {
         setiChart2.setOption(seti_option2);
         myChart.setOption(optionXyMap01, true);
         wordCloud.setOption(wordCloud_option);
-        wordseti.setOption(live_seti_option);
-        tweetseti.setOption(tweet_seti_option);
+        
+        polaseti.setOption(pola_seti_option);
+        compseti.setOption(comp_seti_option);
         
         window.addEventListener("resize",function(){
             langChart.resize();
@@ -777,8 +751,8 @@ $(function () {
             setiChart2.resize();
             myChart.resize();
             wordCloud.resize();
-            wordseti.resize();
-            tweetseti.resize()
+            polaseti.resize();
+            compseti.resize()
         });
 
         myChart.on('click', function (params) {
