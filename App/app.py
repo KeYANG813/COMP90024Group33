@@ -50,20 +50,21 @@ def get_lang_dis():
 @app.route("/senario2")
 def get_word_price():
     #top_word = word_dic
-    top_word = hashtag.hashtags_analysis()[0]
+    top_word = hashtag.hashtags_analysis()
     return jsonify(top_word)    
 
-# hashtag setiment score
-@app.route("/senario2sentiment")
-def get_setiment():
-    sentiment = hashtag.hashtags_analysis()[1]
-    return jsonify(sentiment)
 
 # live tweets sentiment
-@app.route("/senario3")
+@app.route("/senario3compound")
 def get_tweet_setiment():
-    sentiment_t = tweet_sentiment.tweet_analysis()
-    return jsonify(sentiment_t)  
+    sentiment_compound = tweet_sentiment.tweet_analysis()["compound"]
+    return jsonify(sentiment_compound)  
+
+# live tweets sentiment
+@app.route("/senario3polarity")
+def get_tweet_setiment():
+    sentiment_polarity = tweet_sentiment.tweet_analysis()["polarity"]
+    return jsonify(sentiment_polarity)  
 
 if __name__ == '__main__':
     app.run(debug=True)

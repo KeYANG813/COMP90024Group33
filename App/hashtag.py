@@ -91,27 +91,5 @@ def hashtags_analysis():
     for old, new in dict_change.items():
         citys[new] = citys.pop(old)
     
-    # sentiment analysis for hashtags
-    result_dict = {}
-    comp = []
-    neu = []
-    pos = []
-    neg = []
-    socre_dict = {}
     
-    for city in citys.keys():
-        hashtag_list = citys[city]
-        result_dict[city] = calculate_city_score(hashtag_list)
-    
-    for score in result_dict.values():
-        comp.append(score['compound'])
-        neu.append(score['neu'])
-        pos.append(score['pos'])
-        neg.append(score['neg'])
-
-    socre_dict['comp'] = comp
-    socre_dict['neu'] = neu
-    socre_dict['pos'] = pos
-    socre_dict['neg'] = neg
-    
-    return citys, socre_dict
+    return citys

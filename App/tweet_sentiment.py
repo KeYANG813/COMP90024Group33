@@ -114,22 +114,27 @@ def tweet_analysis():
         pos_score.append(ave_pos_score)
 
 
-    results = {} 
-    results["compound"] = compound_score
-    results["neg"] = neg_score
-    results["neu"] = neu_score
-    results["pos"] = pos_score
-
-    save_results = results
+    polarity = {} 
+    polarity["neg"] = neg_score
+    polarity["neu"] = neu_score
+    polarity["pos"] = pos_score
+    
+    save_results={}
+    save_results["compound"] = compound_score
     save_results["nums"] = nums
+    save_results["polarity"] = polarity
 
-    # save_results:
-    # {"compound":[xx,xx,xx,xx,xx],
-    #  "neg":[xx,xx,xx,xx,xx],
-    #   ...
-    #  "nums":[xx,xx,xx,xx,xx]
+    results = save_results
+    results.pop("nums")
+
+
+    # results:
+    # {
+    #   "compound":[xx,xx,xx,xx,xx],
+    #   "polarity": 
+    #      {"neg":[xx,xx,xx,xx,xx], ....}
+    #   
     # }
-
 
     filePath = "pre_sentiment.txt"
     if not os.path.exists(filePath):
@@ -140,20 +145,34 @@ def tweet_analysis():
             print("save file error!")
         finally:
             f.close()
-
         return results
+
+    # save_results:
+    # {
+    #   "compound":[xx,xx,xx,xx,xx],
+    #   "nums":[xx,xx,xx,xx,xx],
+    #   "polarity": 
+    #      {"neg":[xx,xx,xx,xx,xx], ....}
+    #   
+    # }
     else:
         f = open(filePath,"w")
         try:
             pre_results = json.load(f)
+            cityNums = len(pre_results["compound"])
 
-            for scores in pre_results:
-                if scores != "nums":
-                    for i in pre_results[scores]:
-                        num1 = pre_results["nums"][i]
-                        num2 = save_results["nums"][i]
-                        pre_results[scores][i] = (pre_results[scores][i] * num1 + save_results[scores][i] * num2)/(num1+num2)
-                        pre_results["nums"][i] = num1+num2
+            for i in range(cityNums):
+                num1 = pre_results["nums"][i]
+                num2 = save_results["nums"][i]
+                pre_results["compound"][i] = (pre_results["compound"][i] * num1 + save_results["compound"][i] * num2)/(num1+num2)
+
+            for scores in pre_results["polarity"]:
+                for i in range(cityNums):
+                    num1 = pre_results["nums"][i]
+                    num2 = save_results["nums"][i]
+                    pre_results["polarity"][scores][i] = (pre_results["polarity"][scores][i] * num1 + save_results["polarity"][scores][i] * num2)/(num1+num2)
+                    pre_results["nums"][i] = num1+num2
+
             json.dump(pre_results, f)
 
             combine_results = pre_results
