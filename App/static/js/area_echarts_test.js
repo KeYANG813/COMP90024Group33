@@ -31,7 +31,8 @@ $(function () {
     function map() {
 
         var langChart = echarts.init(document.getElementById('echart2')); 
-        var setiChart = echarts.init(document.getElementById('echart4')); 
+        var setiChart1 = echarts.init(document.getElementById('echart4')); 
+        var setiChart2 = echarts.init(document.getElementById('echart7'));
         var incomeChart = echarts.init(document.getElementById('echart6')); 
         var wordCloud = echarts.init(document.getElementById('echart5')); 
         var wordseti = echarts.init(document.getElementById('echart3')); 
@@ -252,37 +253,76 @@ $(function () {
         
           
           income_option = {
-            xAxis: {
-              type: 'category',
-              axisLabel: {
-                show: true,
-                interval: 0,
-                rotate: 60,
-              },
-              axisLine:{
-                show: true,
-                lineStyle:{
-                    color: "#fff"
-                }
-              },
-              data: ['Melbourne', 'Carlton', 'Box Hill', 'Parkville', 'Chadstone', 'Balwyn', 'Kew', 'South Yarra - West']
-            },
-            yAxis: {
-              type: 'value',
-              axisLine:{
-                show: true,
-                lineStyle:{
-                    color: "#fff"
+            tooltip: {
+              trigger: 'axis',
+              axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                  color: '#999'
                 }
               }
             },
-            tooltip:{
-                // type: "cross",
-                trigger: 'axis',
+            toolbox: {
+              feature: {
+                dataView: { show: true, readOnly: false },
+                magicType: { show: true, type: ['line', 'bar'] },
+                restore: { show: true },
+                saveAsImage: { show: true }
+              }
             },
+            legend: {
+              textStyle:{
+                color: '#fff',
+            },
+              data: ['Income', 'Rent']
+            },
+            xAxis: [
+              {
+                type: 'category',
+                axisLine:{
+                  show: true,
+                  lineStyle:{
+                      color: "#fff"
+                  }
+                },
+                data: ['Melbourne', 'Brunswick', 'Docklands', 'Footscray', 'Surrey Hills (West) - Canterbury', 'Camberwell', 'Dandenong','Mornington'],
+                axisPointer: {
+                  type: 'shadow'
+                }
+              }
+            ],
+            yAxis: [
+              {
+                type: 'value',
+                axisLine:{
+                  show: true,
+                  lineStyle:{
+                      color: "#fff"
+                  }
+                },
+                name: 'Income',
+                axisLabel: {
+                  formatter: '{value} AUD'
+                }
+              },
+              
+              {
+                type: 'value',
+                axisLine:{
+                  show: true,
+                  lineStyle:{
+                      color: "#fff"
+                  }
+                },
+                name: 'Rent',
+                axisLabel: {
+                  formatter: '{value} AUD'
+                }
+              }
+            ],
            
             grid: {
-                
+
                 left: '3%',
                 right: '3%',
                 bottom: '2%',
@@ -291,18 +331,30 @@ $(function () {
             
             series: [
               {
-                data: [28068, 36819, 37979, 45596, 47564, 49615, 59400, 65330],
+                name: 'Income',
+                type: 'bar',
+                tooltip: {
+                  valueFormatter: function (value) {
+                    return value + ' AUD';
+                  }
+                },
+                data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2]
+              },
+              {
+                name: 'Rent',
                 type: 'line',
-                // lineStyle:{
-                //     normal:{
-                //         color: "#fff"
-                //     }
-                // }
+                yAxisIndex: 1,
+                tooltip: {
+                  valueFormatter: function (value) {
+                    return value + ' AUD';
+                  }
+                },
+                data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4]
               }
             ]
           };
 
-          seti_option = {
+          seti_option1 = {
 
             tooltip: {
               trigger: 'axis'
@@ -312,7 +364,7 @@ $(function () {
                 textStyle:{
                     color: '#fff',
                 },
-                data: ['Score_Compound', 'Score_Neutral', 'Score_Postive', 'Score_Negative']
+                data: ['Score_Neutral', 'Score_Postive', 'Score_Negative']
             },
      
             grid: {
@@ -353,29 +405,65 @@ $(function () {
             },
             series: [
               {
-                name: 'Score_Compound',
-                type: 'line',
-                stack: 'Total',
-                data: [0.13524705837203288,0.13246898489638217,0.08995380359612716,0.1136941245940361,0.017715952980688243,0.2383178410794603,0.15716871827411202, 0.14902319034852549]
-              },
-              {
                 name: 'Score_Neutral',
                 type: 'line',
-                stack: 'Total',
                 data: [0.8753614191963948,0.8450275728837369, 0.8478540802213,0.85736728668438, 0.8780319059613767, 0.7905412293853068, 0.8334022842639596,0.8253739946380705]
               },
               {
                 name: 'Score_Postive',
                 type: 'line',
-                stack: 'Total',
                 data: [0.09624118279157347,0.11135511064278181, 0.10007330567081606, 0.09964275169766747, 0.06891603694374478, 0.1765097451274362, 0.12780837563451777, 0.1245234584450403]
               },
               {
                 name: 'Score_Negative',
                 type: 'line',
-                stack: 'Total',
                 data: [0.02837853551828669, 0.04361766772040745, 0.05207745504840939, 0.042994390315913775, 0.05306045340050377, 0.03144377811094452, 0.03878870558375634, 0.050101206434316356]
               },
+            ]
+          };
+
+          seti_option2 = {
+            xAxis: {
+              type: 'category',
+              axisLabel: {
+                show: true,
+                interval: 0,
+                rotate: 60,
+              },
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              },
+              data: ['Melbourne', 'Carlton', 'Box Hill', 'Parkville', 'Chadstone', 'Balwyn', 'Kew', 'South Yarra - West']
+            },
+            yAxis: {
+              type: 'value',
+              axisLine:{
+                show: true,
+                lineStyle:{
+                    color: "#fff"
+                }
+              }
+            },
+            tooltip:{
+                trigger: 'axis',
+            },
+           
+            grid: {
+                
+                left: '3%',
+                right: '3%',
+                bottom: '2%',
+                containLabel: true
+            },
+            
+            series: [
+              {
+                data: [28068, 36819, 37979, 45596, 47564, 49615, 59400, 65330],
+                type: 'line',
+              }
             ]
           };
           
@@ -675,7 +763,8 @@ $(function () {
 
         langChart.setOption(lang_option);
         incomeChart.setOption(income_option);
-        setiChart.setOption(seti_option);
+        setiChart1.setOption(seti_option1);
+        setiChart2.setOption(seti_option2);
         myChart.setOption(optionXyMap01, true);
         wordCloud.setOption(wordCloud_option);
         wordseti.setOption(live_seti_option);
@@ -684,7 +773,8 @@ $(function () {
         window.addEventListener("resize",function(){
             langChart.resize();
             incomeChart.resize();
-            setiChart.resize();
+            setiChart1.resize();
+            setiChart2.resize();
             myChart.resize();
             wordCloud.resize();
             wordseti.resize();

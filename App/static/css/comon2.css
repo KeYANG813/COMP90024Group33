@@ -81,9 +81,14 @@ a:hover{ color:#06c; text-decoration: none!important}
 .mainbox4{ padding:.4rem .1rem 0rem .1rem;}
 .mainbox4>ul{}
 .mainbox4>ul>li{ float: left; padding: 0 .1rem}
-.mainbox4>ul>li{ width: 25%}
-.mainbox4>ul>li:nth-child(3){ width: 50%;padding: 0}
+.mainbox4>ul>li{ width: 50%}
+.mainbox4>ul>li:nth-child(2){ width: 50%;padding: 0}
 
+.mainbox3{ padding:.4rem .1rem 0rem .1rem;}
+.mainbox3>ul{}
+.mainbox3>ul>li{ float: left; padding: 0 .1rem}
+.mainbox3>ul>li{ width: 25%}
+.mainbox3>ul>li:nth-child(2){ width: 25%;padding: 0}
 
 .mainbox5{ padding:.4rem .1rem 0rem .1rem;}
 .mainbox5>ul{}
