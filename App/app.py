@@ -56,14 +56,14 @@ def get_word_price():
 # live tweets sentiment
 @app.route("/senario3compound")
 def get_tweet_setiment_compound():
-    sentiment_compound = tweet_sentiment.tweet_analysis()["compound"]
-    return jsonify(sentiment_compound)  
+    sentiment_compound = tweet_sentiment.tweet_analysis()
+    return jsonify(sentiment_compound["compound"])  
 
 # live tweets sentiment
 @app.route("/senario3polarity")
 def get_tweet_setiment_polarity():
-    sentiment_polarity = tweet_sentiment.tweet_analysis()["polarity"]
-    return jsonify(sentiment_polarity)  
+    sentiment_polarity = tweet_sentiment.tweet_analysis()
+    return jsonify(sentiment_polarity["polarity"])  
 
 if __name__ == '__main__':
     app.run(debug=True)

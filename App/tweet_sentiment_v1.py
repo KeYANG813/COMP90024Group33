@@ -124,12 +124,8 @@ def tweet_analysis():
         neg_score = []
         neu_score = []
         pos_score = []
-        newTweets = get_new_tweets(city, numCity[city])
+        text_dic = get_new_tweets(city, numCity[city])
         
-        index = 0
-        for result in newTweets:
-            text_dic[index]= result['text']
-            index += 1
         # if not json_data['_id'] in citydb:
             
         #     citydb.create_document(json_data)
