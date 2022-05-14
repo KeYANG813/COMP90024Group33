@@ -282,7 +282,7 @@ $(function () {
                 axisLabel: {
                   show: true,
                   interval: 0,
-                  rotate: 60,
+                  rotate: 20,
                 },
                 axisLine:{
                   show: true,
@@ -308,7 +308,7 @@ $(function () {
                 name: 'Income',
                 min: 0,
                 max: 70000,
-                interval: 7,
+                interval: 10000,
                 axisLabel: {
                   formatter: '{value} AUD'
                 }
@@ -325,7 +325,7 @@ $(function () {
                 name: 'Rent',
                 min: 0,
                 max: 3500,
-                interval: 7,
+                interval: 500,
                 axisLabel: {
                   formatter: '{value} AUD'
                 }
@@ -334,9 +334,9 @@ $(function () {
            
             grid: {
 
-                left: '3%',
-                right: '3%',
-                bottom: '2%',
+                left: '1%',
+                right: '1%',
+                bottom: '1%',
                 containLabel: true
             },
             
@@ -379,9 +379,9 @@ $(function () {
             },
      
             grid: {
-                left: '3%',
-                right: '3%',
-                bottom: '2%',
+                left: '10%',
+                right: '1%',
+                bottom: '1%',
                 containLabel: true
                 },
             toolbox: {
@@ -395,7 +395,7 @@ $(function () {
               axisLabel: {
                 show: true,
                 interval: 0,
-                rotate: 60,
+                rotate: 28,
               },
               axisLine:{
                 show: true,
@@ -439,7 +439,7 @@ $(function () {
               axisLabel: {
                 show: true,
                 interval: 0,
-                rotate: 60,
+                rotate: 28,
               },
               axisLine:{
                 show: true,
@@ -464,8 +464,8 @@ $(function () {
            
             grid: {
                 
-                left: '3%',
-                right: '3%',
+                left: '1%',
+                right: '1%',
                 bottom: '2%',
                 containLabel: true
             },
@@ -493,8 +493,8 @@ $(function () {
             },
      
             grid: {
-                left: '3%',
-                right: '3%',
+                left: '1%',
+                right: '1%',
                 bottom: '2%',
                 containLabel: true
                 },
