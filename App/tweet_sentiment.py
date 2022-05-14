@@ -23,6 +23,8 @@ nltk.download('vader_lexicon')
 from nltk.sentiment import SentimentIntensityAnalyzer
 import re
 import os
+import time
+import datetime
 
 
 def textProcess(text):
@@ -57,15 +59,15 @@ def tweet_analysis():
         "language": "javascript",
         "views" : {
           "new_view" : {
-            "map": "function(doc){emit(doc.text)}",  
+            "map": "function(doc){emit(doc.text,doc.created_at)}",  
             "reduce" : "_count"}
         }
     }
     '''
     client = couchdb_init()
 
-    allCityResults = {}
-    nums = []
+
+    # nums = []
     for city in dbname:
         citydb = client[city]
         json_data = json.loads(design_hashtag_doc, strict=False)
@@ -82,13 +84,21 @@ def tweet_analysis():
 
         create_view = View(citydb['_design/text'], 'new_view')
 
+
+        sevenDayAgo = (datetime.datetime.now() - datetime.timedelta(days = 7))
+        sevenDayAgoTimeStamp = int(time.mktime(sevenDayAgo.timetuple()))
+
+        time.mktime(time.strptime(a,"%a %b %d %H:%M:%S %Y"))
         with create_view.custom_result(group=True) as results:
             index = 0
             for result in results:
-                text_dic[index]= result['key']
-                index += 1
+                create_time = result['value']
+                timestamp = int(time.mktime(time.strptime(create_time,"%a %b %d %H:%M:%S +0000 %Y")))
+                if timestamp > sevenDayAgoTimeStamp:
+                    text_dic[index]= result['key']
+                    index += 1
 
-        nums.append(index)
+        # nums.append(index)
                 
         c_score_sum = 0
         neg_score_sum = 0
@@ -114,76 +124,78 @@ def tweet_analysis():
         pos_score.append(ave_pos_score)
 
 
+    
     polarity = {} 
     polarity["neg"] = neg_score
     polarity["neu"] = neu_score
     polarity["pos"] = pos_score
     
-    save_results={}
-    save_results["compound"] = compound_score
-    save_results["nums"] = nums
-    save_results["polarity"] = polarity
+    results={}
+    results["compound"] = compound_score
+    results["polarity"] = polarity
 
-    results = save_results
-    results.pop("nums")
+    return results
+
+    # results = save_results
+    # results.pop("nums")
 
 
-    # results:
-    # {
-    #   "compound":[xx,xx,xx,xx,xx],
-    #   "polarity": 
-    #      {"neg":[xx,xx,xx,xx,xx], ....}
-    #   
-    # }
+    # # results:
+    # # {
+    # #   "compound":[xx,xx,xx,xx,xx],
+    # #   "polarity": 
+    # #      {"neg":[xx,xx,xx,xx,xx], ....}
+    # #   
+    # # }
 
-    filePath = "pre_sentiment.txt"
-    if not os.path.exists(filePath):
-        f = open(filePath,"w")
-        try:
-            json.dump(save_results, f)
-        except IOError as e:
-            print("save file error!")
-        finally:
-            f.close()
-        return results
+    # filePath = "pre_sentiment.txt"
+    # if not os.path.exists(filePath):
+    #     f = open(filePath,"w")
+    #     try:
+    #         json.dump(save_results, f)
+    #     except IOError as e:
+    #         print("save file error!")
+    #     finally:
+    #         f.close()
+    #     return results
 
-    # save_results:
-    # {
-    #   "compound":[xx,xx,xx,xx,xx],
-    #   "nums":[xx,xx,xx,xx,xx],
-    #   "polarity": 
-    #      {"neg":[xx,xx,xx,xx,xx], ....}
-    #   
-    # }
-    else:
-        f = open(filePath,"w")
-        try:
-            pre_results = json.load(f)
-            cityNums = len(pre_results["compound"])
+    # # save_results:
+    # # {
+    # #   "compound":[xx,xx,xx,xx,xx],
+    # #   "nums":[xx,xx,xx,xx,xx],
+    # #   "polarity": 
+    # #      {"neg":[xx,xx,xx,xx,xx], ....}
+    # #   
+    # # }
+    # else:
+    #     f = open(filePath,"w")
+    #     try:
+    #         pre_results = json.load(f)
+    #         cityNums = len(pre_results["compound"])
 
-            for i in range(cityNums):
-                num1 = pre_results["nums"][i]
-                num2 = save_results["nums"][i]
-                pre_results["compound"][i] = (pre_results["compound"][i] * num1 + save_results["compound"][i] * num2)/(num1+num2)
+    #         for i in range(cityNums):
+    #             num1 = pre_results["nums"][i]
+    #             num2 = save_results["nums"][i]
+    #             pre_results["compound"][i] = (pre_results["compound"][i] * num1 + save_results["compound"][i] * num2)/(num1+num2)
 
-            for scores in pre_results["polarity"]:
-                for i in range(cityNums):
-                    num1 = pre_results["nums"][i]
-                    num2 = save_results["nums"][i]
-                    pre_results["polarity"][scores][i] = (pre_results["polarity"][scores][i] * num1 + save_results["polarity"][scores][i] * num2)/(num1+num2)
-                    pre_results["nums"][i] = num1+num2
+    #         for scores in pre_results["polarity"]:
+    #             for i in range(cityNums):
+    #                 num1 = pre_results["nums"][i]
+    #                 num2 = save_results["nums"][i]
+    #                 pre_results["polarity"][scores][i] = (pre_results["polarity"][scores][i] * num1 + save_results["polarity"][scores][i] * num2)/(num1+num2)
+    #                 pre_results["nums"][i] = num1+num2
 
-            json.dump(pre_results, f)
+    #         json.dump(pre_results, f)
 
-            combine_results = pre_results
-            combine_results.pop("nums")
+    #         combine_results = pre_results
+    #         combine_results.pop("nums")
             
-        except IOError as e:
-            print("file IO error!")
-        finally:
-            f.close()
+    #     except IOError as e:
+    #         print("file IO error!")
+    #     finally:
+    #         f.close()
         
-        return combine_results
+    #     return combine_results
                 
     
 
