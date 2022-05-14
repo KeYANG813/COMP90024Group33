@@ -338,7 +338,7 @@ $(function () {
                     return value + ' AUD';
                   }
                 },
-                data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2]
+                data: [51576,51342,28068,57447,61533,37323,44970,44686]
               },
               {
                 name: 'Rent',
@@ -349,7 +349,7 @@ $(function () {
                     return value + ' AUD';
                   }
                 },
-                data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4]
+                data: [2240,2408,1841,2718,2811,1596,2023,1842] 
               }
             ]
           };
@@ -392,7 +392,7 @@ $(function () {
                     color: "#fff"
                 }
               },
-              data: ['Melbourne', 'Carlton', 'Box Hill', 'Parkville', 'Chadstone', 'Balwyn', 'Kew', 'South Yarra - West']
+              data: ['Melbourne', 'Brunswick', 'Docklands', 'Footscray', 'Surrey Hills (West) - Canterbury', 'Camberwell', 'Dandenong','Mornington'],
             },
             yAxis: {
               type: 'value',
@@ -436,7 +436,7 @@ $(function () {
                     color: "#fff"
                 }
               },
-              data: ['Melbourne', 'Carlton', 'Box Hill', 'Parkville', 'Chadstone', 'Balwyn', 'Kew', 'South Yarra - West']
+              data: ['Melbourne', 'Brunswick', 'Docklands', 'Footscray', 'Surrey Hills (West) - Canterbury', 'Camberwell', 'Dandenong','Mornington'],
             },
             yAxis: {
               type: 'value',
