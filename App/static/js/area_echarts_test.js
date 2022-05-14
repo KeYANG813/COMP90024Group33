@@ -538,12 +538,12 @@ $(function () {
               {
                 name: 'Score_Neutral',
                 type: 'line',
-                data: seti_data[1][1]
+                data: pola_data[1][1]
               },
               {
                 name: 'Score_Postive',
                 type: 'line',
-                data: seti_data[1][2]
+                data: pola_data[1][2]
               },
               
             ]
