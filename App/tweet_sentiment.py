@@ -52,14 +52,15 @@ def calculate_city_score(text):
 def tweet_analysis():
     # count hashtags
     citys = {}
-    dbname = ["db_melbourne", "db_sydney", "db_adelaide", "db_darwin", "db_brisbane"]
+#     dbname = ["db_melbourne", "db_sydney", "db_adelaide", "db_darwin", "db_brisbane"]
+    dbname = ["db_darwin", "db_sydney", "db_adelaide", "db_darwin", "db_brisbane"]
     design_hashtag_doc= '''
     {
         "_id" : "_design/text",
         "language": "javascript",
         "views" : {
           "new_view" : {
-            "map": "function(doc){emit(doc.text,doc.created_at)}",  
+            "map": "function(doc){emit([doc.text, doc.created_at], 1)}", 
             "reduce" : "_count"}
         }
     }
@@ -68,6 +69,7 @@ def tweet_analysis():
 
 
     # nums = []
+    aaa = []
     for city in dbname:
         citydb = client[city]
         json_data = json.loads(design_hashtag_doc, strict=False)
@@ -78,8 +80,9 @@ def tweet_analysis():
         neg_score = []
         neu_score = []
         pos_score = []
-    
+        
         if not json_data['_id'] in citydb:
+            
             citydb.create_document(json_data)
 
         create_view = View(citydb['_design/text'], 'new_view')
@@ -88,17 +91,38 @@ def tweet_analysis():
         sevenDayAgo = (datetime.datetime.now() - datetime.timedelta(days = 7))
         sevenDayAgoTimeStamp = int(time.mktime(sevenDayAgo.timetuple()))
 
-        time.mktime(time.strptime(a,"%a %b %d %H:%M:%S %Y"))
+
         with create_view.custom_result(group=True) as results:
             index = 0
-            for result in results:
-                create_time = result['value']
-                timestamp = int(time.mktime(time.strptime(create_time,"%a %b %d %H:%M:%S +0000 %Y")))
-                if timestamp > sevenDayAgoTimeStamp:
-                    text_dic[index]= result['key']
-                    index += 1
+            
+            for result in results:                  
+                create_time = result['key'][1]
 
-        # nums.append(index)
+        
+                #"Tue Apr 26 14:56:27 +0000 2022",
+                items = create_time.split(' ')
+                # items =["Tue","Apr",....,"+0000","2022"]
+                # 6 
+                process_time = ""
+                for i in range(len(items)):
+                    if i!=4:
+                        process_time = process_time + items[i] + " "
+                length = len(process_time)
+                process_time = process_time[0:length-1]
+
+    
+                try:
+                    timestamp = int(time.mktime(time.strptime(process_time,"%a %b %d %H:%M:%S %Y")))
+                except:
+                    print(process_time)
+                    continue
+     
+                
+                
+                if timestamp > sevenDayAgoTimeStamp:
+                    text_dic[index]= result['key'][0]
+                    index += 1
+                
                 
         c_score_sum = 0
         neg_score_sum = 0
@@ -133,69 +157,7 @@ def tweet_analysis():
     results={}
     results["compound"] = compound_score
     results["polarity"] = polarity
-
+    
     return results
 
-    # results = save_results
-    # results.pop("nums")
-
-
-    # # results:
-    # # {
-    # #   "compound":[xx,xx,xx,xx,xx],
-    # #   "polarity": 
-    # #      {"neg":[xx,xx,xx,xx,xx], ....}
-    # #   
-    # # }
-
-    # filePath = "pre_sentiment.txt"
-    # if not os.path.exists(filePath):
-    #     f = open(filePath,"w")
-    #     try:
-    #         json.dump(save_results, f)
-    #     except IOError as e:
-    #         print("save file error!")
-    #     finally:
-    #         f.close()
-    #     return results
-
-    # # save_results:
-    # # {
-    # #   "compound":[xx,xx,xx,xx,xx],
-    # #   "nums":[xx,xx,xx,xx,xx],
-    # #   "polarity": 
-    # #      {"neg":[xx,xx,xx,xx,xx], ....}
-    # #   
-    # # }
-    # else:
-    #     f = open(filePath,"w")
-    #     try:
-    #         pre_results = json.load(f)
-    #         cityNums = len(pre_results["compound"])
-
-    #         for i in range(cityNums):
-    #             num1 = pre_results["nums"][i]
-    #             num2 = save_results["nums"][i]
-    #             pre_results["compound"][i] = (pre_results["compound"][i] * num1 + save_results["compound"][i] * num2)/(num1+num2)
-
-    #         for scores in pre_results["polarity"]:
-    #             for i in range(cityNums):
-    #                 num1 = pre_results["nums"][i]
-    #                 num2 = save_results["nums"][i]
-    #                 pre_results["polarity"][scores][i] = (pre_results["polarity"][scores][i] * num1 + save_results["polarity"][scores][i] * num2)/(num1+num2)
-    #                 pre_results["nums"][i] = num1+num2
-
-    #         json.dump(pre_results, f)
-
-    #         combine_results = pre_results
-    #         combine_results.pop("nums")
-            
-    #     except IOError as e:
-    #         print("file IO error!")
-    #     finally:
-    #         f.close()
-        
-    #     return combine_results
-                
-    
-
+print(tweet_analysis())
