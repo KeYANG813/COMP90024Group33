@@ -113,6 +113,11 @@ def tweet_analysis():
             "db_darwin": 160,
             "db_adelaide": 1100
             }
+    
+    compound_score = []
+    neg_score = []
+    neu_score = []
+    pos_score = []
     for city in dbname:
         
         # citydb = client[city]
@@ -120,10 +125,6 @@ def tweet_analysis():
         # client = couchdb_init()
         
         text_dic = {}
-        compound_score = []
-        neg_score = []
-        neu_score = []
-        pos_score = []
         newTweets = get_new_tweets(city, numCity[city])
         
         index = 0
@@ -187,13 +188,13 @@ def tweet_analysis():
             neu_score_sum = neu_score_sum + score_all_dict['neu']
             pos_score_sum = pos_score_sum + score_all_dict['pos']
 
-        ave_compound_score = c_score_sum/len(text_dic.values())
+        ave_compound_score = round(c_score_sum/len(text_dic.values()),5)
         compound_score.append(ave_compound_score)
-        ave_neg_score = neg_score_sum/len(text_dic.values())
+        ave_neg_score = round(neg_score_sum/len(text_dic.values()),5)
         neg_score.append(ave_neg_score)
-        ave_neu_score = neu_score_sum/len(text_dic.values())
+        ave_neu_score = round(neu_score_sum/len(text_dic.values()),5)
         neu_score.append(ave_neu_score)
-        ave_pos_score = pos_score_sum/len(text_dic.values()) 
+        ave_pos_score = round(pos_score_sum/len(text_dic.values()),5) 
         pos_score.append(ave_pos_score)
 
 
@@ -208,5 +209,5 @@ def tweet_analysis():
     results["polarity"] = polarity
     
     return results
-
+#print(tweet_analysis())
 

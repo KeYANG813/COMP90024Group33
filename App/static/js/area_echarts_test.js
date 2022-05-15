@@ -464,8 +464,8 @@ $(function () {
            
             grid: {
                 
-                left: '1%',
-                right: '1%',
+                left: '10%',
+                right: '10%',
                 bottom: '2%',
                 containLabel: true
             },
@@ -493,8 +493,8 @@ $(function () {
             },
      
             grid: {
-                left: '1%',
-                right: '1%',
+                left: '10%',
+                right: '10%',
                 bottom: '2%',
                 containLabel: true
                 },
@@ -509,7 +509,7 @@ $(function () {
               axisLabel: {
                 show: true,
                 interval: 0,
-                rotate: 60,
+                rotate: 28,
               },
               axisLine:{
                 show: true,
@@ -521,6 +521,9 @@ $(function () {
             },
             yAxis: {
               type: 'value',
+              min: 0,
+              max: 1,
+              interval: 0.25,
               axisLine:{
                 show: true,
                 lineStyle:{
@@ -559,8 +562,8 @@ $(function () {
             
      
             grid: {
-                left: '3%',
-                right: '3%',
+                left: '10%',
+                right: '10%',
                 bottom: '2%',
                 containLabel: true
                 },
@@ -575,7 +578,7 @@ $(function () {
               axisLabel: {
                 show: true,
                 interval: 0,
-                rotate: 60,
+                rotate: 28,
               },
               axisLine:{
                 show: true,
@@ -588,6 +591,10 @@ $(function () {
             yAxis: {
               type: 'value',
               axisLine:{
+                min: -1,
+                max: 1,
+                splitNumber:0.2,
+                interval: 0.5,
                 show: true,
                 lineStyle:{
                     color: "#fff"
