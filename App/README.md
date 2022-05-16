@@ -9,9 +9,11 @@
 
 ## Directory structure
 ## Repo Structure 
-- `/AURIN`
-  - `/income_mel` : preprocessing melbourne income data from 
-  - `/language` : basic configration of crawler on hosts 
+- `/data`
+  - `/language` : preprocessing language distribution in 5 different cities 
+  - And some processed old tweets data stored in CSV 
+- `/old_tweets`
+  - Code used to process the old tweet data
 - `/static`
   - `/css`: CSS styles for frontend
   - `/font`:  font for frontend
@@ -21,7 +23,7 @@
   - `/json`: language code json
   - `/picture`: frontend loading images
 - `/templates` : template for frontend
-  - `/test`: unused analysis code
+- `/test`: unused analysis code
 
 
 ## How to run
