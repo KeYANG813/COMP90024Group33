@@ -380,7 +380,7 @@ $(function () {
      
             grid: {
                 left: '10%',
-                right: '1%',
+                right: '10%',
                 bottom: '1%',
                 containLabel: true
                 },
@@ -464,8 +464,8 @@ $(function () {
            
             grid: {
                 
-                left: '10%',
-                right: '10%',
+                left: '8%',
+                right: '8%',
                 bottom: '2%',
                 containLabel: true
             },
@@ -562,8 +562,8 @@ $(function () {
             
      
             grid: {
-                left: '10%',
-                right: '10%',
+                left: '8%',
+                right: '8%',
                 bottom: '2%',
                 containLabel: true
                 },
@@ -591,10 +591,10 @@ $(function () {
             yAxis: {
               type: 'value',
               axisLine:{
-                min: -1,
                 max: 1,
+                min: -1,
                 splitNumber:0.2,
-                interval: 0.5,
+                // interval: 0.5,
                 show: true,
                 lineStyle:{
                     color: "#fff"
