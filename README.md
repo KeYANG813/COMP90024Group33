@@ -16,25 +16,29 @@
 - Group 33
 
 # Group Members:  
-- Ke Yang (Student ID: 1219623) - city: Anhui
-- Yimeng Liu (Student ID: 1074206) - city: Guangdong
-- Jintong Liu (Student ID: 1074498) - city: Hebei
-- Keang Xu (Student ID: 1008807) - city: Hubei
-- Xinwei Qian (Student ID: 1068271) - city: Jiangsu
+- Ke Yang (Student ID: 1219623) [@KeYANG813](https://github.com/KeYANG813) - city: Anhui 
+- Yimeng Liu [@ccclym](https://github.com/ccclym) (Student ID: 1074206) - city: Guangdong
+- Jintong Liu [@crystal0161](https://github.com/crystal0161) (Student ID: 1074498) - city: Hebei 
+- Keang Xu [@Xukeang315](https://github.com/Xukeang315) (Student ID: 1008807) - city: Hubei
+- Xinwei Qian [@simonqian999](https://github.com/simonqian999) (Student ID: 1068271) - city: Jiangsu
 
 ## Repo Structure 
 - `/Ansible`
-  - `/config` : contain some private keys to access the MRC or Github
   - `/configs` : basic configration of crawler on hosts 
   - `/host_vars` : initialise basic variables 
   - `/roles`: contains different role files, each of them automatically loading certain vars_files or tasks
 - `/App`
-  - `/AURIN`: code and processed data from the raw data downloaded from AURIN
+  - `/data`: raw and processed data from AURIN and old tweets
   - `/static`:  Basic setup for frontend including background image, CSS styles, echart layout etc.  
   - `/templates`: The HTML file which will be rendered as frontend
   - `/test`: unused code on backend
+  - `/old_tweets`: code for preprocessing AURIN data and old tweets 
+
 - `/TwitterCrawler`
-  - `/code`: Crawler for 5 cities 
+  - `/tweepy_melbourne`: Crawler for Melbourne 
+  - `/tweepy_sydney`: Crawler for Sydney
+  - `/tweepy_threecity`: Crawler for Adelaide, Darwin, Brisbane
+  - `/test`: unused code, just for testing
    
 
 
