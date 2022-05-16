@@ -28,7 +28,7 @@
 ### Ubuntu
 Using the following command to run the app
 1. ```sh
-   cd backend
+   cd App
    ```
 2. ```sh
    python3 -m venv venv

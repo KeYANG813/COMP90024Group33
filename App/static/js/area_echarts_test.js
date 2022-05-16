@@ -307,8 +307,8 @@ $(function () {
                 },
                 name: 'Income',
                 min: 0,
-                max: 70000,
-                interval: 10000,
+                max: 6000,
+                interval: 600,
                 axisLabel: {
                   formatter: '{value} AUD'
                 }
@@ -349,7 +349,7 @@ $(function () {
                     return value + ' AUD';
                   }
                 },
-                data: [51576,51342,28068,57447,61533,37323,44970,44686]
+                data: [51576/12,51342/12,28068/12,57447/12,61533/12,37323/12,44970/12,44686/12]
               },
               {
                 name: 'Rent',
