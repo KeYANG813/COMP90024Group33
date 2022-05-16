@@ -523,7 +523,7 @@ $(function () {
               type: 'value',
               min: 0,
               max: 1,
-              interval: 0.25,
+              interval: 0.2,
               axisLine:{
                 show: true,
                 lineStyle:{
