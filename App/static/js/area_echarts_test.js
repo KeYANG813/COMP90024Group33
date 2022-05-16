@@ -307,8 +307,8 @@ $(function () {
                 },
                 name: 'Income',
                 min: 0,
-                max: 6000,
-                interval: 600,
+                max: 7000,
+                interval: 1000,
                 axisLabel: {
                   formatter: '{value} AUD'
                 }
@@ -349,7 +349,7 @@ $(function () {
                     return value + ' AUD';
                   }
                 },
-                data: [51576/12,51342/12,28068/12,57447/12,61533/12,37323/12,44970/12,44686/12]
+                data: [4298,4278.5,2339,4787.25,5127.75,3110.25,3747.5,3723.833]
               },
               {
                 name: 'Rent',
@@ -647,7 +647,7 @@ $(function () {
                     // If width-height ratio is larger than 1, then width is set to be 100.
                     // Otherwise, height is set to be 100.
                     // This makes sure that it will not exceed the area of 100x100
-                    layoutSize: 480,
+                    layoutSize: 470,
                     // center: [133.7751, -25.2744], 320
                     label: {
                         emphasis: {
